@@ -9,6 +9,7 @@ Prefacing your search with "QtQuick.Controls 2" will help make sure you're getti
 # Javascript
 
 QML uses javascript to manipulate the graphical objects. This implementation of ECMAScript is not exactly the same as javascript for browsers, but it's close. Here's more info:
+
 http://doc.qt.io/qt-5/qtqml-javascript-expressions.html
 
 http://doc.qt.io/qt-5/qtqml-javascript-resources.html

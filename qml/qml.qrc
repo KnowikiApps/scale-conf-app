@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>NavButton.qml</file>
+        <file>TopBar.qml</file>
+        <file>NavMenu.qml</file>
+        <file>PgSchedule.qml</file>
+        <file>PgHome.qml</file>
+        <file>PgContacts.qml</file>
+        <file>PgMessages.qml</file>
+    </qresource>
+</RCC>

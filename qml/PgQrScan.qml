@@ -26,7 +26,7 @@ Pane{
             id: videoOutput
             source: camera
             Layout.preferredWidth: window.width
-            Layout.preferredHeight: 200
+            Layout.preferredHeight: window.height
             autoOrientation: true
             fillMode: VideoOutput.PreserveAspectFit
             filters: [zxingFilter]
@@ -64,23 +64,6 @@ Pane{
             }
     //        onDecodingStarted: {console.log("Decoding Started...");}
     //        onDecodingFinished: {console.log("Decoding Finished...");}
-        }
-
-        Switch{
-            id: autoFocus
-            text: "Autofocus"
-            checked: camera.focus.focusMode === CameraFocus.FocusContinuous
-            anchors{right: parent.right; bottom: parent.bottom}
-
-            onCheckedChanged: {
-                if(checked){
-                    camera.focus.focusMode = CameraFocus.FocusContinuous;
-                    camera.focus.focusPointMode = CameraFocus.FocusPointAuto;
-                }else{
-                    camera.focus.focusPointMode = CameraFocus.FocusPointCustom;
-                    camera.focus.customFocusPoint = Qt.point(0.5,  0.5);
-                }
-            }
         }
     }
 }

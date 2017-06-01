@@ -1,6 +1,6 @@
 QT += qml quick
 
-CONFIG += c++11
+CONFIG += c++11 qzxing_multimedia
 
 SOURCES += \
     cpp/main.cpp
@@ -16,3 +16,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     qml/qml.qrc \
     js/js.qrc
+
+include(QZXing/QZXing.pri)

@@ -8,5 +8,6 @@
         <file>PgHome.qml</file>
         <file>PgContacts.qml</file>
         <file>PgMessages.qml</file>
+        <file>PgQrScan.qml</file>
     </qresource>
 </RCC>

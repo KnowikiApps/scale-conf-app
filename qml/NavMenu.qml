@@ -24,5 +24,10 @@ Drawer {
             text: "Messges"
             onClicked: pages.push("qrc:/PgMessages.qml")
         }
+        NavButton{
+            id: qrScan
+            text: "Scan QR Code"
+            onClicked: pages.push("qrc:/PgQrScan.qml")
+        }
     }
 }

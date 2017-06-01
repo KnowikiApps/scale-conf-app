@@ -19,3 +19,9 @@ http://doc.qt.io/qt-5/qtqml-javascript-imports.html
 http://doc.qt.io/qt-5/qtqml-javascript-qmlglobalobject.html
 
 https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+# QZXing
+
+This library is included to provide QR Code scanning capability.
+
+https://github.com/ftylitak/qzxing

@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import "qrc:/js/nav.js" as NavHelper
 
 Drawer {
     width: 0.5 * window.width
@@ -12,22 +13,22 @@ Drawer {
         NavButton{
             id: schedule
             text: "Schedule"
-            onClicked: pages.push("qrc:/PgSchedule.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/PgSchedule.qml")
         }
         NavButton{
             id: contacts
             text: "Contacts"
-            onClicked: pages.push("qrc:/PgContacts.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/PgContacts.qml")
         }
         NavButton{
             id: messages
             text: "Messges"
-            onClicked: pages.push("qrc:/PgMessages.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/PgMessages.qml")
         }
         NavButton{
             id: qrScan
             text: "Scan QR Code"
-            onClicked: pages.push("qrc:/PgQrScan.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/PgQrScan.qml")
         }
     }
 }

@@ -20,7 +20,6 @@ Pane{
                 focusMode: CameraFocus.FocusContinuous
                 focusPointMode: CameraFocus.FocusPointAuto
             }
-            Component.onCompleted: console.log(" completed")
         }
 
         VideoOutput{
@@ -33,6 +32,7 @@ Pane{
             filters: [zxingFilter]
 
             MouseArea{
+                id: focusArea
                 anchors.fill: parent
                 onClicked: {
                     camera.focus.customFocusPoint = Qt.point(mouse.x/width, mouse.y/height);
@@ -67,6 +67,7 @@ Pane{
         }
 
         Switch{
+            id: autoFocus
             text: "Autofocus"
             checked: camera.focus.focusMode === CameraFocus.FocusContinuous
             anchors{right: parent.right; bottom: parent.bottom}

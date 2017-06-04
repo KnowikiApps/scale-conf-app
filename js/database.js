@@ -10,7 +10,7 @@ function connect_db(name, version, desc, size){
 
 function create_tables(){
     var tables = ["speakers(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, first TEXT, last TEXT, company TEXT, position TEXT, bio TEXT)",
-                  "presentations(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, room TEXT, day_time TEXT, speakers TEXT, topic TEXT, abstract TEXT, photo TEXT, path TEXT)",]
+                  "presentations(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, room TEXT, day_time TEXT, speakers TEXT, topic TEXT, abstract TEXT, photo TEXT, path TEXT) UNIQUE(room, day_time)"]
 
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{

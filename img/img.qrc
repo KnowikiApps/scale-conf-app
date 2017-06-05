@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>navicon.svg</file>
+        <file>arrow-left.svg</file>
+    </qresource>
+</RCC>

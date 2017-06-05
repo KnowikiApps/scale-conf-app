@@ -1,4 +1,4 @@
-QT += qml quick
+QT += qml quick svg
 
 CONFIG += c++11 qzxing_multimedia
 
@@ -15,6 +15,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     qml/qml.qrc \
-    js/js.qrc
+    js/js.qrc \
+    img/img.qrc
 
 include(QZXing/QZXing.pri)

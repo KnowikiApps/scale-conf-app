@@ -25,3 +25,9 @@ https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 This library is included to provide QR Code scanning capability.
 
 https://github.com/ftylitak/qzxing
+
+# SVG Icons	
+
+Icons for this project are from this open source project:
+
+https://github.com/encharm/Font-Awesome-SVG-PNG

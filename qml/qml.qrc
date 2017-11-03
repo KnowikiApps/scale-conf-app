@@ -9,5 +9,7 @@
         <file>PgContacts.qml</file>
         <file>PgMessages.qml</file>
         <file>PgQrScan.qml</file>
+        <file>SignModel.qml</file>
+        <file>ProgressPopup.qml</file>
     </qresource>
 </RCC>

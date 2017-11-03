@@ -9,9 +9,7 @@ function connect_db(name, version, desc, size){
 }
 
 function create_tables(){
-    var tables = ["speakers(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, first TEXT, last TEXT, company TEXT, position TEXT, bio TEXT)",
-                  "presentations(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, title TEXT, room TEXT, day_time TEXT, speakers TEXT, topic TEXT, abstract TEXT, photo TEXT, path TEXT) UNIQUE(room, day_time)"]
-
+    var tables = ["sign_data(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)"];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         db.transaction(function(tx){
@@ -21,6 +19,17 @@ function create_tables(){
         })
     }catch(err){
         console.log("Error creating table in database: " + err)
+    };
+}
+
+function add_xml(xml_data){
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    try{
+        db.transaction(function(tx){
+            tx.executeSql("INSERT INTO `sign_data`(`xml_data`) VALUES (?)", [xml_data]);
+        })
+    }catch(err){
+        console.log("add_xml() -> " + err);
     };
 }
 
@@ -36,7 +45,7 @@ function add_record(table_name, json_data){
             tx.executeSql("INSERT INTO "+ table_name + get_sql(json_data));
         })
     }catch(err){
-        console.log("Error inserting record: " + err);
+        console.log("add_record() -> " + err);
     };
 }
 
@@ -57,7 +66,18 @@ function get_sql(json_object){
     return cols + vals;
 }
 
-
+function get_xml() {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    try{
+        var xml;
+        db.transaction(function(tx){
+            xml = tx.executeSql("SELECT * FROM sign_data ORDER BY id DESC LIMIT 1");
+        });
+        return xml.rows.item(0).xml_data;
+    }catch(err){
+        console.log("get_xml() -> " + err);
+    };
+}
 
 
 

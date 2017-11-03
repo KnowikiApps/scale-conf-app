@@ -15,7 +15,7 @@ XmlListModel{
     XmlRole { id: timeRole; name: "time"; query: "Time/string()" }
     XmlRole { id: speakersRole; name: "speakers"; query: "Speakers/string()" }
     XmlRole { id: topicRole; name: "topic"; query: "Topic/string()" }
-    XmlRole { id: abstractRole; name: "abstract"; query: "Short-abstract/string()" }
+    XmlRole { id: abstractRole; name: "shortabstract"; query: "Short-abstract/string()" }
     XmlRole { id: photoRole; name: "photo"; query: "Photo/string()" }
     XmlRole { id: pathRole; name: "path"; query: "Path/string()" }
 

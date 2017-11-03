@@ -1,4 +1,27 @@
-Uses Qt 5.8
+# SCaLE Mobile App
+Mobile App for Southern California Linux Expo.
+
+# Getting Started
+Qt is a cross-platform software development kit written in C++. This project uses Qt Quick which allows us to write an application that can run on any desktop and mobile platform. You'll need to have Qt installed as well as the mobile SDKs in order to compile for mobile. Windows and Linux users can compile for Android and desktop only because iOS SDK is not available for those platforms. OSX users can compile for all platforms.
+
+## Installing Qt
+You willl need to install Qt SDK and Qt Creator. This project uses Qt SDK version 5.8
+
+### For Windows
+http://doc.qt.io/qt-5/windows-support.html
+
+### For OSX
+http://doc.qt.io/qt-5/osx.html
+
+### For Linux
+http://doc.qt.io/qt-5/linux.html
+
+### For Android
+In order to compile for Android you will need to set up the Android development tools.
+http://doc.qt.io/qt-5/androidgs.html
+
+### For iOS (OSX Users Only)
+http://doc.qt.io/qt-5/ios-support.html
 
 # Qt Documentation
 

@@ -7,23 +7,44 @@ ListView {
     width: parent.parent.width; height: parent.parent.height
     model: SignModel{}
 
-    delegate: Row {
-        spacing: schedule.width * 0.05
-        Text {
-            text: time
-            width: schedule.width * 0.15
-            wrapMode: Text.Wrap
-        }
-        Text {
-            text: shortabstract
-            width: schedule.width * 0.6
-            maximumLineCount: 3
-            wrapMode: Text.Wrap
-        }
-        Text {
-            text: room
-            width: schedule.width * 0.15
-            wrapMode: Text.Wrap
+    delegate: Component {
+        Rectangle {
+            width: schedule.width
+            height: shortabstractText.height
+
+            Row {
+                spacing: schedule.width * 0.05
+                Text {
+                    text: time
+                    width: schedule.width * 0.15
+                    wrapMode: Text.Wrap
+                }
+                Text {
+                    id: shortabstractText
+                    text: shortabstract
+                    width: schedule.width * 0.6
+                    maximumLineCount: 3
+                    wrapMode: Text.Wrap
+                }
+                Text {
+                    text: room
+                    width: schedule.width * 0.15
+                    wrapMode: Text.Wrap
+                }
+            }
+
+            MouseArea{
+                z: 1
+                anchors.fill: parent
+                onClicked: {
+                    console.log("row clicked");
+                    //TODO - push detail page on to the stack
+                }
+                onPressAndHold: {
+                    console.log("row long press...");
+                    //TODO - add event to user schedule
+                }
+            }
         }
     }
 }

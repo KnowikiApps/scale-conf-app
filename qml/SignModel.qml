@@ -5,7 +5,6 @@ import "qrc:/js/database.js" as DB
 
 XmlListModel{
     id: model
-//    xml: {DB.get_xml()} //sets initial xml from database while data is being downloaded from source
     source:"https://www.socallinuxexpo.org/scale/15x/sign.xml"
     query: "/nodes/node"
 
@@ -35,7 +34,6 @@ XmlListModel{
         switch(status){
             case 0:
                 console.log("Null - No XML data has been set for this model.");
-                lastStatus = 0;
                 break;
             case 1:
                 console.log("Ready - The XML data has been loaded into the model.");

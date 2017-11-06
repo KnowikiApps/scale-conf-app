@@ -2,11 +2,14 @@
 #include <QQmlApplicationEngine>
 #include <QZXing.h>
 #include <QDebug>
+#include <QtWebView/QtWebView>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+
+    QtWebView::initialize();
 
     QZXing::registerQMLTypes();
 

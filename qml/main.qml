@@ -26,18 +26,7 @@ ApplicationWindow {
         initialItem: "qrc:/PgHome.qml"
     }
 
-    Item {
-        MessageDialog {
-            id: errorDialog
-            title: "Can't Connect to Wi-Fi"
-            text: "Not Connected to Wi-Fi"
-            standardButtons: StandardButton.Ok
-            modality: Qt.WindowModal
-            onAccepted: this.close()
-
-            function setErrText(textstr) {
-                errorDialog.text = textstr;
-            }
-        }
+    ErrorModal {
+        id: errorDialog
     }
 }

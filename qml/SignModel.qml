@@ -46,13 +46,12 @@ XmlListModel{
                 console.log(errorString());
                 xml = DB.get_xml();
                 var timer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", model);
-                timer.interval = 10000;
+                timer.interval = 300000;
                 timer.triggered.connect(function(){
                     console.log("retrying fetching sign data...");
                     xml = "";
                 });
                 timer.start();
-                //TODO - popup modal with error string
                 errorDialog.open();
                 break;
             default:

@@ -53,6 +53,7 @@ XmlListModel{
                 });
                 timer.start();
                 //TODO - popup modal with error string
+                errorDialog.open();
                 break;
             default:
                 break;

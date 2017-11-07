@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtQuick.Dialogs 1.1
 import "qrc:/js/database.js" as DB
 import "qrc:/js/initialize.js" as Initializer
 
@@ -25,4 +26,7 @@ ApplicationWindow {
         initialItem: "qrc:/PgHome.qml"
     }
 
+    ErrorModal {
+        id: errorDialog
+    }
 }

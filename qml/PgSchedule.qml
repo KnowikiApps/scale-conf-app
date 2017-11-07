@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
+import "qrc:/js/nav.js" as NavHelper
 
 ListView {
     id: schedule
@@ -38,7 +39,7 @@ ListView {
                 anchors.fill: parent
                 onClicked: {
                     console.log("row clicked");
-                    //TODO - push detail page on to the stack
+                    NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
                 }
                 onPressAndHold: {
                     console.log("row long press...");

@@ -12,5 +12,6 @@
         <file>SignModel.qml</file>
         <file>ProgressPopup.qml</file>
         <file>ErrorModal.qml</file>
+        <file>PresentationDetail.qml</file>
     </qresource>
 </RCC>

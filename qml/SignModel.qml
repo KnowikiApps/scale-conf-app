@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
+import QtQuick.Dialogs 1.1
 import "qrc:/js/feed.js" as Feed
 import "qrc:/js/database.js" as DB
 
@@ -53,6 +54,8 @@ XmlListModel{
                 });
                 timer.start();
                 //TODO - popup modal with error string
+                errorDialog.setErrText(errorString());
+                errorDialog.open();
                 break;
             default:
                 break;

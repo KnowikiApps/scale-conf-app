@@ -2,6 +2,8 @@ QT += qml quick svg webview
 
 CONFIG += c++11 qzxing_multimedia
 
+QTPLUGIN+= qsqlite
+
 SOURCES += \
     cpp/main.cpp
 

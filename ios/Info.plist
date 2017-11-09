@@ -7,15 +7,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Created by Qt/QMake</string>
+	<string>SCaLE Conference App By Knowiki Apps</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
 	<string>scale-conf</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.example.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.knowikiapps.SCaLE</string>
 	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>SCaLE</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleShortVersionString</key>

@@ -4,6 +4,9 @@ CONFIG += c++11 qzxing_multimedia
 
 QTPLUGIN+= qsqlite
 
+# Default rules for deployment.
+include(deployment.pri)
+
 SOURCES += \
     cpp/main.cpp
 

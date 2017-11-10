@@ -13,5 +13,6 @@
         <file>ProgressPopup.qml</file>
         <file>ErrorModal.qml</file>
         <file>PresentationDetail.qml</file>
+        <file>PgExhibitors.qml</file>
     </qresource>
 </RCC>

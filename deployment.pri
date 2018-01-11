@@ -2,7 +2,7 @@ ios {
     #custom plist file for bundle
     QMAKE_INFO_PLIST = ios/Info.plist
 
-#    #icon files
+    #icon files
 #    ios_icon.files = $$files($$PWD/ios/AppIcon*.png)
 #    QMAKE_BUNDLE_DATA += ios_icon
 
@@ -16,4 +16,9 @@ ios {
     export(first.depends)
     export(copydata.commands)
     QMAKE_EXTRA_TARGETS += first copydata
+
+    #add image assets to bundle
+#    assets_catalogs.files = $$files($$PWD/ios/*.xcassets)
+#    QMAKE_BUNDLE_DATA += assets_catalogs
+    QMAKE_ASSET_CATALOGS = $$files($$PWD/ios/*.xcassets)
 }

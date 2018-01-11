@@ -3,56 +3,50 @@
 
 import cairosvg
 
-# import source svg
+# import source svg at 20x20px original size
 appIcon = cairosvg.svg2svg(bytestring=open("AppIcon.svg").read().encode('utf-8'))
 
+# convert for 20x20
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon20x20~ipad.png")
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon20x20@2x~ipad.png", scale=2)
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon20x20@2x.png", scale=2)
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon20x20@3x.png", scale=3)
+
 # convert for 29x29
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29.png")
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29~ipad.png")
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.45)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29@2x.png", scale=2)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29@2x~ipad.png", scale=2)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29@3x.png", scale=3)
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29~ipad.png")
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon29x29@2x~ipad.png", scale=2)
 
 # convert for 40x40
 appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.38)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon40x40@2x.png", scale=2)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon40x40@2x~ipad.png", scale=2)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon40x40@3x.png", scale=3)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon40x40~ipad.png")
-
-# convert for 50x50
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.25)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon50x50@2x~ipad.png", scale=2)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon50x50~ipad.png")
-
-# convert for 57x57
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.14)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon57x57.png")
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon57x57@2x.png", scale=2)
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon40x40@2x~ipad.png", scale=2)
 
 # convert for 60x60
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.0526)
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.5)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon60x60@2x.png", scale=2)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon60x60@3x.png", scale=3)
 
-# convert for 72x72
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.2)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon72x72@2x~ipad.png", scale=2)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon72x72~ipad.png")
 
 # convert for 76x76
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.055556)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon76x76@2x~ipad.png", scale=2)
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.27)
 cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon76x76~ipad.png")
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon76x76@2x~ipad.png", scale=2)
 
 # convert for 83.5x83.5
 appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=1.09868)
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon83.5x83.5~ipad.png")
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon83.5x83.5@2x~ipad.png", scale=2)
 
 # convert for 1024x1024
-cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon1024x1024.png", scale=12.2635)
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=12.23)
+cairosvg.svg2png(bytestring=appIcon, write_to="AppIcon1024x1024~ipad.png")
 
 
+# ------------ LAUNCH IMAGES ------------
 # render for 320x480
 launchImage = cairosvg.svg2svg(bytestring=open("LaunchImage320x480.svg").read().encode('utf-8'))
 cairosvg.svg2png(bytestring=launchImage, write_to="LaunchImage320x480.png")

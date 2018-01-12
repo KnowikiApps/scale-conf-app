@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.1
 import QtMultimedia 5.5
 import QtQuick.Window 2.0
 import QZXing 2.3
+import "qrc:/js/database.js" as DB
 
 Pane{
     id: scanningPage
@@ -35,6 +36,7 @@ Pane{
                 id: focusArea
                 anchors.fill: parent
                 onClicked: {
+                    console.log("focus area clicked");
                     camera.focus.customFocusPoint = Qt.point(mouse.x/width, mouse.y/height);
                     camera.focus.focusMode = CameraFocus.FocusMacro;
                     camera.focus.focusPointMode = CameraFocus.FocusPointCustom;
@@ -59,7 +61,12 @@ Pane{
             }
             decoder{
                 enabledDecoders: QZXing.DecoderFormat_QR_CODE
-                onTagFound: console.log(tag + " | " + decoder.foundedFormat() + " | " + decoder.charSet());
+//                onTagFound: console.log(tag + " | " + decoder.foundedFormat() + " | " + decoder.charSet());
+                onTagFound: {
+                    console.log(tag.split("~"));
+                    DB.add_contact(tag.split("~"));
+                }
+
                 tryHarder: false
             }
     //        onDecodingStarted: {console.log("Decoding Started...");}

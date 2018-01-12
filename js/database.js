@@ -9,7 +9,11 @@ function connect_db(name, version, desc, size){
 }
 
 function create_tables(){
-    var tables = ["sign_data(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)"];
+    var table_defaults = "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE";
+    var tables = [
+                "sign_data(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
+                "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
+            ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         db.transaction(function(tx){
@@ -79,7 +83,23 @@ function get_xml() {
     };
 }
 
-
+/*
+  Adds contact info from the QR scanner to the database
+  @param = {array} info - array of strings with info from badge
+*/
+function add_contact(info) {
+    var json_data = {
+        badge: info[0],
+        first: info[1],
+        last: info[2],
+        email: info[3],
+        title: info[4],
+        company: info[5],
+        phone: info[6],
+        zip: info[7],
+    };
+    add_record("contacts", json_data);
+}
 
 
 

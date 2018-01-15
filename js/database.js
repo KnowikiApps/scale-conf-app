@@ -102,9 +102,24 @@ function add_contact(info) {
     add_record("contacts", json_data);
 }
 
+function get_contacts() {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
 
+    db.transaction(function(tx){
+        var results = tx.executeSql("SELECT * FROM contacts ORDER BY id DESC LIMIT 1");
 
-
-
-
-
+        for (var i = 0; i < results.rows.length; i++) {
+            contactsModel.append({
+                                     id: results.rows.item(i).rowid,
+                                     badge: results.rows.item(i).badge,
+                                     first: results.rows.item(i).first,
+                                     last: results.rows.item(i).last,
+                                     email: results.rows.item(i).email,
+                                     title: results.rows.item(i).title,
+                                     company: results.rows.item(i).company,
+                                     phone: results.rows.item(i).phone,
+                                     zip: results.rows.item(i).zip,
+                                 });
+        }
+    });
+}

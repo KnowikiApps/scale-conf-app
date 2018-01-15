@@ -44,7 +44,7 @@ XmlListModel{
             case 3:
                 console.log("Error - An error occurred while the model was loading");
                 console.log(errorString());
-                xml = DB.get_xml();
+                xml = DB.get_xml("sign_data");
                 var timer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", model);
                 timer.interval = 300000;
                 timer.triggered.connect(function(){

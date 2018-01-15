@@ -71,12 +71,12 @@ function get_sql(json_object){
     return cols + vals;
 }
 
-function get_xml() {
+function get_xml(table) {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         var xml;
         db.transaction(function(tx){
-            xml = tx.executeSql("SELECT * FROM sign_data ORDER BY id DESC LIMIT 1");
+            xml = tx.executeSql("SELECT * FROM "+ table + " ORDER BY id DESC LIMIT 1");
         });
         return xml.rows.item(0).xml_data;
     }catch(err){

@@ -50,6 +50,7 @@ function add_record(table_name, json_data){
         })
     }catch(err){
         console.log("add_record() -> " + err);
+        throw err; //pass error on to component for handling
     };
 }
 

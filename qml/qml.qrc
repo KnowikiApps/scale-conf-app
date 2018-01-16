@@ -14,5 +14,6 @@
         <file>ErrorModal.qml</file>
         <file>PresentationDetail.qml</file>
         <file>PgExhibitors.qml</file>
+        <file>AnnouncementsModel.qml</file>
     </qresource>
 </RCC>

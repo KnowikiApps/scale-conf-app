@@ -4,21 +4,15 @@ import "qrc:/js/feed.js" as Feed
 import "qrc:/js/database.js" as DB
 
 XmlListModel{
-    id: model
-    source:"https://www.socallinuxexpo.org/scale/15x/sign.xml"
+    id: announcementsModel
+    source:"https://www.socallinuxexpo.org/announcementappdata/16x"
     query: "/nodes/node"
 
     XmlRole { id: titleRole; name: "title"; query: "Title/string()" }
-    XmlRole { id: roomRole; name: "room"; query: "Room/string()" }
-    XmlRole { id: dayRole; name: "day"; query: "Day/string()" }
-    XmlRole { id: timeRole; name: "time"; query: "Time/string()" }
-    XmlRole { id: speakersRole; name: "speakers"; query: "Speakers/string()" }
-    XmlRole { id: topicRole; name: "topic"; query: "Topic/string()" }
-    XmlRole { id: abstractRole; name: "shortabstract"; query: "Short-abstract/string()" }
-    XmlRole { id: photoRole; name: "photo"; query: "Photo/string()" }
-    XmlRole { id: pathRole; name: "path"; query: "Path/string()" }
+    XmlRole { id: bodyRole; name: "body"; query: "Body/string()" }
+    XmlRole { id: announcementIdRole; name: "announcementId"; query: "Announcement-ID/string()" }
 
-    Component.onCompleted: {Feed.get_feed()}
+    Component.onCompleted: {Feed.get_announcements()}
 
     onProgressChanged: {
         console.log("progress -> "+progress);
@@ -44,7 +38,7 @@ XmlListModel{
             case 3:
                 console.log("Error - An error occurred while the model was loading");
                 console.log(errorString());
-                xml = DB.get_xml("sign_data");
+                xml = DB.get_xml("announcements");
                 var timer = Qt.createQmlObject("import QtQuick 2.0; Timer {}", model);
                 timer.interval = 300000;
                 timer.triggered.connect(function(){
@@ -52,6 +46,7 @@ XmlListModel{
                     xml = "";
                 });
                 timer.start();
+                errorDialog.text = "There was a problem downloading announcements, check your internet connection and try again"
                 errorDialog.open();
                 break;
             default:

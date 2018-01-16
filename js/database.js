@@ -9,7 +9,12 @@ function connect_db(name, version, desc, size){
 }
 
 function create_tables(){
-    var tables = ["sign_data(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)"];
+    var table_defaults = "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE";
+    var tables = [
+                "sign_data(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
+                "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
+                "announcements(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
+            ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         db.transaction(function(tx){
@@ -22,11 +27,11 @@ function create_tables(){
     };
 }
 
-function add_xml(xml_data){
+function add_xml(xml_data, table_name){
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         db.transaction(function(tx){
-            tx.executeSql("INSERT INTO `sign_data`(`xml_data`) VALUES (?)", [xml_data]);
+            tx.executeSql("INSERT INTO `"+ table_name + "`(`xml_data`) VALUES (?)", [xml_data]);
         })
     }catch(err){
         console.log("add_xml() -> " + err);
@@ -46,6 +51,7 @@ function add_record(table_name, json_data){
         })
     }catch(err){
         console.log("add_record() -> " + err);
+        throw err; //pass error on to component for handling
     };
 }
 
@@ -66,12 +72,12 @@ function get_sql(json_object){
     return cols + vals;
 }
 
-function get_xml() {
+function get_xml(table) {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         var xml;
         db.transaction(function(tx){
-            xml = tx.executeSql("SELECT * FROM sign_data ORDER BY id DESC LIMIT 1");
+            xml = tx.executeSql("SELECT * FROM "+ table + " ORDER BY id DESC LIMIT 1");
         });
         return xml.rows.item(0).xml_data;
     }catch(err){
@@ -79,11 +85,42 @@ function get_xml() {
     };
 }
 
+/*
+  Adds contact info from the QR scanner to the database
+  @param = {array} info - array of strings with info from badge
+*/
+function add_contact(info) {
+    var json_data = {
+        badge: info[0],
+        first: info[1],
+        last: info[2],
+        email: info[3],
+        title: info[4],
+        company: info[5],
+        phone: info[6],
+        zip: info[7],
+    };
+    add_record("contacts", json_data);
+}
 
+function get_contacts() {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
 
+    db.transaction(function(tx){
+        var results = tx.executeSql("SELECT * FROM contacts ORDER BY id DESC LIMIT 1");
 
-
-
-
-
-
+        for (var i = 0; i < results.rows.length; i++) {
+            contactsModel.append({
+                                     id: results.rows.item(i).rowid,
+                                     badge: results.rows.item(i).badge,
+                                     first: results.rows.item(i).first,
+                                     last: results.rows.item(i).last,
+                                     email: results.rows.item(i).email,
+                                     title: results.rows.item(i).title,
+                                     company: results.rows.item(i).company,
+                                     phone: results.rows.item(i).phone,
+                                     zip: results.rows.item(i).zip,
+                                 });
+        }
+    });
+}

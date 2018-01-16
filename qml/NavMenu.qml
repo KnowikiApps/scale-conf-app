@@ -21,9 +21,9 @@ Drawer {
             onClicked: NavHelper.nav_tray_push("qrc:/PgContacts.qml")
         }
         NavButton{
-            id: messages
-            text: "Messges"
-            onClicked: NavHelper.nav_tray_push("qrc:/PgMessages.qml")
+            id: exhibitors
+            text: "Exhibitors"
+            onClicked: NavHelper.nav_tray_push("qrc:/PgExhibitors.qml")
         }
         NavButton{
             id: qrScan

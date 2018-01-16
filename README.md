@@ -49,6 +49,20 @@ If you're using Mac OS, then you should be able to run the app on the iOS simula
 `iphonesimulator-clang Qt 5.8.0 for iOS3`
 `iphoneos-clang Qt 5.8.0 for iOS3`
 
+### Building for iOS
+iOS devices require a lot of images for icons and launch screens. In the `ios` directory you'll find the SVG source images which need to be rendered to png before build. There is a python script that uses CairoSVG to render the png files and puts them in the assets catalog (which is just a directory).
+
+To install cairosvg:
+
+```bash
+pip3 install cairosvg
+```
+
+To run the render script (from within the ios directory):
+
+```bash
+python3 render-images.py
+```
 
 # Qt Documentation
 

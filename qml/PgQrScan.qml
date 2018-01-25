@@ -75,6 +75,16 @@ Pane{
                     camera.focus.focusMode = CameraFocus.FocusMacro;
                     camera.focus.focusPointMode = CameraFocus.FocusPointCustom;
                 }
+
+                PinchArea{
+                    id: zoomControl
+                    height: parent.height
+                    width: parent.width
+
+                    onPinchUpdated:{
+                        camera.digitalZoom = camera.digitalZoom + (pinch.previousScale - pinch.scale);
+                    }
+                }
             }
             Rectangle{
                 id: captureZone

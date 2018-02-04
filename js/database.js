@@ -50,8 +50,9 @@ function add_record(table_name, json_data){
         db.transaction(function(tx){
             tx.executeSql("INSERT INTO "+ table_name + " " + get_sql(json_data));
         })
+        addedModal.open();
     }catch(err){
-        console.log("add_record() -> " + err);
+        console.error("add_record() -> " + err);
         throw err; //pass error on to component for handling
     };
 }

@@ -48,7 +48,7 @@ ListView {
                     console.error("description:  " + shortabstract);
                     console.error("room:  " + room);
                     //TODO - add event to user schedule
-                    Database.add_record("schedule_list", {time: time, description: shortabstract, room: room, path: path})
+                    Database.add_record("schedule_list", {time: time, abstractText: shortabstract, room: room, path: path})
                 }
             }
         }

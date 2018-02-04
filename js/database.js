@@ -105,6 +105,23 @@ function add_contact(info) {
     add_record("contacts", json_data);
 }
 
+function get_schedule_list() {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    db.transaction(function(tx) {
+        var results = tx.executeSql("SELECT * FROM schedule_list");
+
+        for (var i = 0; i < results.rows.length; ++i) {
+            scheduleListModel.append({
+                                         id: results.rows.item(i).rowid,
+                                         time: results.rows.item(i).time,
+                                         title: results.rows.item(i).title,
+                                         room: results.rows.item(i).room,
+                                         path: results.rows.item(i).path,
+            });
+        }
+    });
+}
+
 function get_contacts() {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
 

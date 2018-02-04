@@ -48,7 +48,7 @@ ListView {
                 icon: StandardIcon.NoIcon;
                 modality: Qt.WindowModal
                 onAccepted: {
-                    console.error("deleting: " + talkTitle);
+                    console.log("deleting: " + talkTitle);
                     DB.remove_schedule_entry(talkTitle);
                     this.close()
                 }

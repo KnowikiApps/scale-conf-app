@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtQuick.Dialogs 1.1
 import "qrc:/js/nav.js" as NavHelper
 import "qrc:/js/database.js" as DB
 
@@ -20,13 +21,14 @@ ListView {
 
             Row {
                 spacing: schedule_list.width * 0.25
+
                 Text {
                     text: time
                     width: schedule_list.width * 0.15
                     wrapMode: Text.NoWrap
                 }
                 Text {
-                    text: title
+                    text: talkTitle
                     width: schedule_list.width * 0.15
                     wrapMode: Text.Wrap
                 }
@@ -35,6 +37,20 @@ ListView {
                     width: schedule_list.width * 0.1
                     maximumLineCount: 3
                     wrapMode: Text.NoWrap
+                }
+            }
+
+            MessageDialog {
+                id: confirmDelete
+                title: "Delete Entry"
+                text: "Press OK to confirm saved event deletion"
+                standardButtons: StandardButton.Ok | StandardButton.Cancel
+                icon: StandardIcon.NoIcon;
+                modality: Qt.WindowModal
+                onAccepted: {
+                    console.error("deleting: " + talkTitle);
+                    DB.remove_schedule_entry(talkTitle);
+                    this.close()
                 }
             }
 
@@ -47,7 +63,7 @@ ListView {
                 }
                 onPressAndHold: {
                     console.log("row long press...");
-                    DB.remove_schedule_entry(title);
+                    confirmDelete.open();
                     //TODO - add event to user schedule
                 }
             }

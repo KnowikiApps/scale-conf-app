@@ -14,7 +14,7 @@ function create_tables(){
                 "sign_data(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
                 "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
                 "announcements(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
-                "schedule_list(" + table_defaults + ", time TEXT, title TEXT, room TEXT, path TEXT)",
+                "schedule_list(" + table_defaults + ", time TEXT, talkTitle TEXT, room TEXT, path TEXT)",
             ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
@@ -114,7 +114,7 @@ function get_schedule_list() {
             scheduleListModel.append({
                                          id: results.rows.item(i).rowid,
                                          time: results.rows.item(i).time,
-                                         title: results.rows.item(i).title,
+                                         talkTitle: results.rows.item(i).talkTitle,
                                          room: results.rows.item(i).room,
                                          path: results.rows.item(i).path,
             });
@@ -127,7 +127,7 @@ function remove_schedule_entry(title) {
 
     db.transaction(function(tx) {
         try {
-            tx.executeSql("DELETE FROM schedule_list WHERE title='" + title + "'");
+            tx.executeSql("DELETE FROM schedule_list WHERE talkTitle='" + title + "'");
         }
         catch(err) {
             console.log("remove_schedule_entry() -> " + err);

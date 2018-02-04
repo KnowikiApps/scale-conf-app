@@ -45,7 +45,7 @@ ListView {
                 onPressAndHold: {
                     console.error("row long press...");
                     //TODO - add event to user schedule
-                    Database.add_record("schedule_list", {time: time, title: title, room: room, path: path})
+                    Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
                 }
             }
         }

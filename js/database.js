@@ -122,6 +122,19 @@ function get_schedule_list() {
     });
 }
 
+function remove_schedule_entry(title) {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+
+    db.transaction(function(tx) {
+        try {
+            tx.executeSql("DELETE FROM schedule_list WHERE title='" + title + "'");
+        }
+        catch(err) {
+            console.log("remove_schedule_entry() -> " + err);
+        }
+    });
+}
+
 function get_contacts() {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
 

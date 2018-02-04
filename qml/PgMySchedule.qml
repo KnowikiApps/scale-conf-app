@@ -47,6 +47,7 @@ ListView {
                 }
                 onPressAndHold: {
                     console.log("row long press...");
+                    DB.remove_schedule_entry(title);
                     //TODO - add event to user schedule
                 }
             }

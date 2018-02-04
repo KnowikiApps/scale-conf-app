@@ -10,6 +10,7 @@
         <file>PgMessages.qml</file>
         <file>PgQrScan.qml</file>
         <file>SignModel.qml</file>
+	<file>ScheduleAddedModal.qml</file>
         <file>ProgressPopup.qml</file>
         <file>ErrorModal.qml</file>
         <file>PresentationDetail.qml</file>

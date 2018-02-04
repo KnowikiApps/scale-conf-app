@@ -14,6 +14,7 @@ function create_tables(){
                 "sign_data(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
                 "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
                 "announcements(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
+                "schedule_list(" + table_defaults + ", time TEXT, abstractText TEXT, room TEXT, path TEXT)",
             ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
@@ -47,7 +48,7 @@ function add_record(table_name, json_data){
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         db.transaction(function(tx){
-            tx.executeSql("INSERT INTO "+ table_name + get_sql(json_data));
+            tx.executeSql("INSERT INTO "+ table_name + " " + get_sql(json_data));
         })
     }catch(err){
         console.log("add_record() -> " + err);

@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
 import "qrc:/js/nav.js" as NavHelper
+import "qrc:/js/database.js" as Database
 
 ListView {
     id: schedule
@@ -42,8 +43,12 @@ ListView {
                     NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
                 }
                 onPressAndHold: {
-                    console.log("row long press...");
+                    console.error("row long press...");
+                    console.error("time:  " + time);
+                    console.error("description:  " + shortabstract);
+                    console.error("room:  " + room);
                     //TODO - add event to user schedule
+                    Database.add_record("schedule_list", {time: time, description: shortabstract, room: room, path: path})
                 }
             }
         }

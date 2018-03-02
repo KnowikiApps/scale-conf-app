@@ -39,6 +39,16 @@ Qt Versioning is pretty specific, so it's important to use the correct Qt versio
 If you have installed the Android SDK and tools necessary, you should have an option that looks something like this:
 `Android for armeabi_v7a (GCC 4.9, Qt 5.8.0)`
 
+##### SSL Support
+Qt Networking libraries (like the one we use to pull data from api endpoints) use OpenSSL, but Android no longer supports it. In order to get this to work you need to provide the binaries. They can be downloaded here:
+
+https://indy.fulgan.com/SSL/OpenSSL%201.0.2g%20Android.zip
+
+unzip the contents into `$PROJECT_ROOT/android/ssl-libs`
+
+This is the official Qt Article on the topic:
+http://doc.qt.io/qt-5/opensslsupport.html
+
 #### Desktop
 For most development work, you can get away with not using a mobile virtual device or simulator. The app should run basically the same as a desktop app. You should at least have this option, if you dont have any others. 
 `Desktop Qt 5.8.0 <compiler>`

@@ -42,3 +42,7 @@ appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=2.665)
 icon_dir = "google-play-store/"
 os.makedirs(icon_dir, exist_ok=True)
 cairosvg.svg2png(bytestring=appIcon, write_to=icon_dir+"ic_launcher.png")
+
+# Feature Graphic
+featureGraphic = cairosvg.svg2svg(bytestring=open("FeatureGraphic.svg").read().encode('utf-8'))
+cairosvg.svg2png(bytestring=featureGraphic, write_to="feature_graphic.png")

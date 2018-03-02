@@ -3,3 +3,6 @@
 *.ab
 *.tar
 apps
+local.properties
+*.gradle
+gradlew.bat

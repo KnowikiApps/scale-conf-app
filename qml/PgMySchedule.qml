@@ -16,7 +16,7 @@ ListView {
 
     delegate: Component {
         Rectangle {
-            width: schedule_list.width
+            width: schedule_list.width * 0.94
             height: schedule_list.height * 0.1
 
             Row {
@@ -24,7 +24,7 @@ ListView {
 
                 Text {
                     text: time
-                    width: schedule_list.width * 0.15
+                    width: schedule_list.width * 0.02
                     wrapMode: Text.NoWrap
                 }
                 Text {
@@ -34,9 +34,18 @@ ListView {
                 }
                 Text {
                     text: room
-                    width: schedule_list.width * 0.1
+                    width: schedule_list.width * 0.02
                     maximumLineCount: 3
                     wrapMode: Text.NoWrap
+                }
+                Button {
+                    id: deleteButton
+                    text: "X"
+                    width: schedule_list.width * 0.06
+                    onClicked: {
+                        console.log("close button clicked...");
+                        confirmDelete.open();
+                    }
                 }
             }
 

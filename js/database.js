@@ -14,6 +14,7 @@ function create_tables(){
                 "sign_data(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
                 "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
                 "announcements(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
+                "schedule_list(" + table_defaults + ", time TEXT, talkTitle TEXT, room TEXT, path TEXT)",
             ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
@@ -47,8 +48,9 @@ function add_record(table_name, json_data){
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
         db.transaction(function(tx){
-            tx.executeSql("INSERT INTO "+ table_name + get_sql(json_data));
+            tx.executeSql("INSERT INTO "+ table_name + " " + get_sql(json_data));
         })
+        addedModal.open();
     }catch(err){
         console.log("add_record() -> " + err);
         throw err; //pass error on to component for handling
@@ -101,6 +103,36 @@ function add_contact(info) {
         zip: info[7],
     };
     add_record("contacts", json_data);
+}
+
+function get_schedule_list() {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    db.transaction(function(tx) {
+        var results = tx.executeSql("SELECT * FROM schedule_list");
+
+        for (var i = 0; i < results.rows.length; ++i) {
+            scheduleListModel.append({
+                                         id: results.rows.item(i).rowid,
+                                         time: results.rows.item(i).time,
+                                         talkTitle: results.rows.item(i).talkTitle,
+                                         room: results.rows.item(i).room,
+                                         path: results.rows.item(i).path,
+            });
+        }
+    });
+}
+
+function remove_schedule_entry(title) {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+
+    db.transaction(function(tx) {
+        try {
+            tx.executeSql("DELETE FROM schedule_list WHERE talkTitle='" + title + "'");
+        }
+        catch(err) {
+            console.log("remove_schedule_entry() -> " + err);
+        }
+    });
 }
 
 function get_contacts() {

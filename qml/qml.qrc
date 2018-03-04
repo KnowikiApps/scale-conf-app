@@ -8,8 +8,10 @@
         <file>PgHome.qml</file>
         <file>PgContacts.qml</file>
         <file>PgMessages.qml</file>
+        <file>PgMySchedule.qml</file>
         <file>PgQrScan.qml</file>
         <file>SignModel.qml</file>
+        <file>ScheduleAddedModal.qml</file>
         <file>ProgressPopup.qml</file>
         <file>ErrorModal.qml</file>
         <file>PresentationDetail.qml</file>

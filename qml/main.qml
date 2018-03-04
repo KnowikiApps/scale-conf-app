@@ -29,4 +29,8 @@ ApplicationWindow {
     ErrorModal {
         id: errorDialog
     }
+
+    ScheduleAddedModal {
+        id: addedModal
+    }
 }

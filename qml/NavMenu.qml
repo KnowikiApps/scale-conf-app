@@ -15,6 +15,12 @@ Drawer {
             text: "Schedule"
             onClicked: NavHelper.nav_tray_push("qrc:/PgSchedule.qml")
         }
+        NavButton {
+            id: mySchedule
+            text: "My Schedule"
+            onClicked: NavHelper.nav_tray_push("qrc:/PgMySchedule.qml")
+        }
+
         NavButton{
             id: contacts
             text: "Contacts"

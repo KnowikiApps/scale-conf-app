@@ -70,11 +70,6 @@ ListView {
                     console.log("row clicked");
                     NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
                 }
-                onPressAndHold: {
-                    console.log("row long press...");
-                    confirmDelete.open();
-                    //TODO - add event to user schedule
-                }
             }
         }
     }

@@ -33,4 +33,8 @@ ApplicationWindow {
     ScheduleAddedModal {
         id: addedModal
     }
+
+    EventAlreadySavedModal {
+        id: savedAlreadyModal
+    }
 }

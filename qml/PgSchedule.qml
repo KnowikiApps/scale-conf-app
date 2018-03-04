@@ -11,7 +11,7 @@ ListView {
 
     delegate: Component {
         Rectangle {
-            width: schedule.width
+            width: schedule.width * 0.94
             height: shortabstractText.height
 
             Row {
@@ -24,7 +24,7 @@ ListView {
                 Text {
                     id: shortabstractText
                     text: shortabstract
-                    width: schedule.width * 0.6
+                    width: schedule.width * 0.49
                     maximumLineCount: 3
                     wrapMode: Text.Wrap
                 }
@@ -32,6 +32,14 @@ ListView {
                     text: room
                     width: schedule.width * 0.15
                     wrapMode: Text.Wrap
+                }
+                Button {
+                    width: schedule.width * 0.06
+                    text: "+"
+                    onClicked: {
+                        console.log("add button clicked");
+                        Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
+                    }
                 }
             }
 

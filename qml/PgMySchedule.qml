@@ -39,8 +39,7 @@ ListView {
                     wrapMode: Text.NoWrap
                 }
                 Button {
-                    id: deleteButton
-                    text: "X"
+                    text: "-"
                     width: schedule_list.width * 0.06
                     onClicked: {
                         console.log("close button clicked...");

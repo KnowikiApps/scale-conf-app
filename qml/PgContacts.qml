@@ -8,6 +8,14 @@ ListView {
     id: contacts
     width: parent.parent.width; height: parent.parent.height
 
+    FilePicker {
+        anchors.fill: parent
+        showDotAndDotDot: true
+        onFileSelected: {
+            onsole.log("File -> "+ currentFolder() + "/" +fileName)
+        }
+    }
+
     model: ListModel {
         id: contactsModel
         Component.onCompleted: DB.get_contacts()

@@ -1,4 +1,4 @@
-QT += qml quick svg webview
+QT += qml quick svg webview widgets
 
 CONFIG += c++11 qzxing_multimedia
 

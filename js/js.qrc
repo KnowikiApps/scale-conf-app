@@ -4,5 +4,6 @@
         <file>initialize.js</file>
         <file>feed.js</file>
         <file>nav.js</file>
+        <file>utils.js</file>
     </qresource>
 </RCC>

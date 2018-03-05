@@ -2,5 +2,7 @@
     <qresource prefix="/img">
         <file>navicon.svg</file>
         <file>arrow-left.svg</file>
+        <file>ic_folder_open_black_48dp.png</file>
+        <file>ic_insert_drive_file_black_48dp.png</file>
     </qresource>
 </RCC>

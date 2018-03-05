@@ -6,7 +6,6 @@ Rectangle {
     property string currentDay: ""
 
     Row {
-        anchors.fill: parent
 
         Button {
             width: parent.parent.width * 0.25

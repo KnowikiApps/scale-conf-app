@@ -13,7 +13,7 @@ Rectangle {
 
         ScheduleFilter {
             id: dayFilter
-            width: parent.parent.parent.parent.width; height: parent.parent.parent.parent.height
+            width: parent.parent.parent.parent.width
         }
 
         ListView {
@@ -26,26 +26,12 @@ Rectangle {
                     width: schedule.width * 0.94
                     height: shortabstractText.height
 
-                    /*
-                    Row {
-                        width: schedule.width
-                        height: markDay.text.length * 3
-
-                        Text {
-                            id: markDay
-                            text: Feed.mark_day() // display day above first event only
-                            wrapMode: Text.Wrap;
-                        }
-                    }
-                    */
-
                     Row {
                         spacing: schedule.width * 0.05
                         Text {
                             text: time
                             width: schedule.width * 0.15
                             wrapMode: Text.Wrap
-                            visible: Feed.dayMatches(dayFilter.currentDay, day);
                         }
                         Text {
                             id: shortabstractText
@@ -53,18 +39,15 @@ Rectangle {
                             width: schedule.width * 0.49
                             maximumLineCount: 3
                             wrapMode: Text.Wrap
-                            visible: Feed.dayMatches(dayFilter.currentDay, day);
                         }
                         Text {
                             text: room
                             width: schedule.width * 0.15
                             wrapMode: Text.Wrap
-                            visible: Feed.dayMatches(dayFilter.currentDay, day);
                         }
                         Button {
                             width: schedule.width * 0.06
                             text: "+"
-                            visible: Feed.dayMatches(dayFilter.currentDay, day)
                             onClicked: {
                                 console.log("add button clicked");
                                 Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})

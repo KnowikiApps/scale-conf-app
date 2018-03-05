@@ -3,10 +3,11 @@ import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
 
 Rectangle {
-    property string currentDay
-    anchors.fill: parent
+    property string currentDay: ""
 
     Row {
+        anchors.fill: parent
+
         Button {
             width: parent.parent.width * 0.25
             text: "Thursday"

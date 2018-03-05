@@ -1,19 +1,23 @@
 .import "database.js" as Database
 
-var evtCount = 0;
-
-function mark_day() {
-    evtCount = evtCount + 1;
-    if (evtCount === 1)
-        return "Thu, Mar 8";
-    else if (evtCount === 21)
-        return "Fri, Mar 9";
-    else if (evtCount === 90)
-        return "Sat, Mar 10";
-    else if (evtCount === 162)
-        return "Sun, Mar 11";
+function parseDay(day) {
+    if (day.indexOf("Thursday") >= 0)
+        return "Thursday";
+    else if (day.indexOf("Friday") >= 0)
+        return "Friday";
+    else if (day.indexOf("Saturday") >= 0)
+        return "Saturday";
+    else if (day.indexOf("Sunday") >= 0)
+        return "Sunday";
     else
         return "";
+}
+
+function dayMatches(currentDay, day) {
+    if (currentDay === parseDay(day) || parseDay(day) === "")
+        return true;
+    else
+        return false;
 }
 
 /*

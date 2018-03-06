@@ -36,6 +36,7 @@ import "qrc:/js/database.js" as DB
 Item {
 	id:picker
 	signal fileSelected(string fileName)
+    signal fileSaved()
 	readonly property real textmargin: Utils.dp(Screen.pixelDensity, 8)
 	readonly property real textSize: Utils.dp(Screen.pixelDensity, 10)
 	readonly property real headerTextSize: Utils.dp(Screen.pixelDensity, 12)
@@ -52,6 +53,7 @@ Item {
         var request = new XMLHttpRequest();
         request.open("PUT", path+"/SCaLE-Contacts.csv", false);
         request.send(DB.get_contacts_csv());
+        fileSaved();
     }
 
 	function currentFolder() {

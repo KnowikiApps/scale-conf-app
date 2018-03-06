@@ -1,12 +1,27 @@
 import QtQuick 2.0
-import QtQuick.Dialogs 1.1
+import QtQuick.Controls 2.2
 
-MessageDialog {
-    id: errorDialog
+Dialog {
     title: "Can't Connect to Wi-Fi"
-    text: "There was an error downloading the schedule, check your internet connection and try again"
-    standardButtons: StandardButton.Ok
-    icon: StandardIcon.Critical;
-    modality: Qt.WindowModal
+    standardButtons: Dialog.Ok
+
+    x: (parent.width / 2) - (implicitWidth / 2)
+    y: (parent.height / 2) - (implicitHeight / 2)
+
+    closePolicy: Popup.NoAutoClose
+    modal: true
     onAccepted: this.close()
+    contentItem: Rectangle {
+        color: "lightskyblue"
+        implicitWidth: parent.parent.width * 0.75
+        implicitHeight: parent.parent.height * 0.10
+
+        Text {
+            text: "There was an error downloading the schedule, check your internet connection and try again"
+            horizontalAlignment: Text.AlignCenter
+            wrapMode: Text.WordWrap
+            width: parent.width
+            elide: Text.ElideRight
+        }
+    }
 }

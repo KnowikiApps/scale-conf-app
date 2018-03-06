@@ -1,12 +1,27 @@
 import QtQuick 2.0
-import QtQuick.Dialogs 1.1
+import QtQuick.Controls 2.2
 
-MessageDialog {
-    id: addedModal
+Dialog {
     title: "Success!"
-    text: "Event was added to your schedule"
-    standardButtons: StandardButton.Ok
-    icon: StandardIcon.NoIcon;
-    modality: Qt.WindowModal
+    standardButtons: Dialog.Ok
+
+    x: (parent.width / 2) - (implicitWidth / 2)
+    y: (parent.height / 2) - (implicitHeight / 2)
+
+    closePolicy: Popup.NoAutoClose
+    modal: true
     onAccepted: this.close()
+    contentItem: Rectangle {
+        color: "lightskyblue"
+        implicitWidth: window.width * 0.75
+        implicitHeight: window.height * 0.10
+
+        Text {
+            text: "Event was added to your schedule"
+            horizontalAlignment: Text.AlignCenter
+            wrapMode: Text.WordWrap
+            width: parent.width
+            elide: Text.ElideRight
+        }
+    }
 }

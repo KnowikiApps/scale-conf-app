@@ -12,7 +12,6 @@ Rectangle {
             text: "Thursday"
             onClicked: {
                 parent.parent.currentDay = "Thursday"
-                console.error("currentDay: " + parent.parent.currentDay);
             }
         }
 
@@ -21,7 +20,6 @@ Rectangle {
             text: "Friday"
             onClicked: {
                 parent.parent.currentDay = "Friday"
-                console.error("currentDay: " + parent.parent.currentDay);
             }
         }
 
@@ -30,7 +28,6 @@ Rectangle {
             text: "Saturday"
             onClicked: {
                 parent.parent.currentDay = "Saturday"
-                console.error("currentDay: " + parent.parent.currentDay);
             }
         }
 
@@ -39,7 +36,6 @@ Rectangle {
             text: "Sunday"
             onClicked: {
                 parent.parent.currentDay = "Sunday"
-                console.error("currentDay: " + parent.parent.currentDay);
             }
         }
     }

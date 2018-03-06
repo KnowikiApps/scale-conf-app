@@ -12,8 +12,10 @@
         <file>PgQrScan.qml</file>
         <file>SignModel.qml</file>
         <file>ScheduleAddedModal.qml</file>
+	<file>ScheduleFilter.qml</file>
         <file>ProgressPopup.qml</file>
         <file>ErrorModal.qml</file>
+	<file>EventAlreadySavedModal.qml</file>
         <file>PresentationDetail.qml</file>
         <file>PgExhibitors.qml</file>
         <file>AnnouncementsModel.qml</file>

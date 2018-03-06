@@ -1,5 +1,32 @@
 .import "database.js" as Database
 
+function parseDay(day) {
+    if (day.indexOf("Thursday") >= 0)
+        return "Thursday";
+    else if (day.indexOf("Friday") >= 0)
+        return "Friday";
+    else if (day.indexOf("Saturday") >= 0)
+        return "Saturday";
+    else if (day.indexOf("Sunday") >= 0)
+        return "Sunday";
+    else
+        return "";
+}
+
+function dayMatches(currentDay, day) {
+    if (currentDay === parseDay(day) || currentDay === "")
+        return true;
+    else
+        return false;
+}
+
+function heightOf(currentDay, day, defaultHeight) {
+    if (currentDay === parseDay(day) || currentDay === "")
+        return defaultHeight;
+    else
+        return 0;
+}
+
 /*
 Library for handling the conference event feed
 */
@@ -15,8 +42,12 @@ function get_feed() {
         }
     }
 
-    doc.open("GET", "https://www.socallinuxexpo.org/scale/15x/sign.xml");
+    doc.open("GET", "https://www.socallinuxexpo.org/scale/16x/sign.xml");
     doc.send();
+}
+
+function seenFirstOf(dayOfWeek) {
+    return firstEventSeen[dayOfWeek];
 }
 
 function get_announcements() {

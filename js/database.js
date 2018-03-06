@@ -14,7 +14,7 @@ function create_tables(){
                 "sign_data(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
                 "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
                 "announcements(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
-                "schedule_list(" + table_defaults + ", time TEXT, talkTitle TEXT, room TEXT, path TEXT)",
+                "schedule_list(" + table_defaults + ", time TEXT, day TEXT, talkTitle TEXT, room TEXT, path TEXT)",
             ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
@@ -39,6 +39,24 @@ function add_xml(xml_data, table_name){
     };
 }
 
+function record_exists_in_schedule_list(path) {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    var exists = false;
+
+    db.transaction(function(tx) {
+        var results = tx.executeSql("SELECT * FROM schedule_list");
+
+        for (var i = 0; i < results.rows.length; ++i) {
+            if (results.rows.item(i).path === path) {
+                exists = true;
+                break;
+            }
+        }
+    });
+
+    return exists;
+}
+
 /*
   Add a record to a database table
   @param - table_name - string with table name
@@ -46,11 +64,18 @@ function add_xml(xml_data, table_name){
 */
 function add_record(table_name, json_data){
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+
     try{
-        db.transaction(function(tx){
-            tx.executeSql("INSERT INTO "+ table_name + " " + get_sql(json_data));
-        })
-        addedModal.open();
+
+        if (record_exists_in_schedule_list(json_data.path))
+            savedAlreadyModal.open();
+        else {
+            db.transaction(function(tx){
+                tx.executeSql("INSERT INTO " + table_name + " " + get_sql(json_data));
+            })
+
+            addedModal.open();
+        }
     }catch(err){
         console.log("add_record() -> " + err);
         throw err; //pass error on to component for handling
@@ -114,6 +139,7 @@ function get_schedule_list() {
             scheduleListModel.append({
                                          id: results.rows.item(i).rowid,
                                          time: results.rows.item(i).time,
+                                         day: results.rows.item(i).day,
                                          talkTitle: results.rows.item(i).talkTitle,
                                          room: results.rows.item(i).room,
                                          path: results.rows.item(i).path,

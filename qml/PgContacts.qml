@@ -11,9 +11,7 @@ ListView {
     FilePicker {
         anchors.fill: parent
         showDotAndDotDot: true
-        onFileSelected: {
-            onsole.log("File -> "+ currentFolder() + "/" +fileName)
-        }
+        visible: false
     }
 
     model: ListModel {

@@ -139,7 +139,7 @@ function get_contacts() {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
 
     db.transaction(function(tx){
-        var results = tx.executeSql("SELECT * FROM contacts ORDER BY id DESC LIMIT 1");
+        var results = tx.executeSql("SELECT * FROM contacts ORDER BY id DESC");
 
         for (var i = 0; i < results.rows.length; i++) {
             contactsModel.append({
@@ -156,3 +156,32 @@ function get_contacts() {
         }
     });
 }
+
+function get_contacts_csv() {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    var csv_string = "First Name, Last Name, Title, Company, email, Phone, Zip,\n";
+
+    db.transaction(function(tx){
+        var results = tx.executeSql("SELECT * FROM contacts");
+
+        for (var i = 0; i < results.rows.length; i++) {
+            csv_string += results.rows.item(i).first + ",";
+            csv_string += results.rows.item(i).last + ",";
+            csv_string += results.rows.item(i).title + ",";
+            csv_string += results.rows.item(i).company + ",";
+            csv_string += results.rows.item(i).email + ",";
+            csv_string += results.rows.item(i).phone + ",";
+            csv_string += results.rows.item(i).zip + ",\n";
+        }
+    });
+    return csv_string;
+}
+
+
+
+
+
+
+
+
+

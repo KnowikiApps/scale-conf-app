@@ -28,8 +28,10 @@ import QtQuick.Controls 2.1
 import Qt.labs.folderlistmodel 2.1
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
+import QtQuick.Controls.Styles 1.4
 
 import "qrc:/js/utils.js" as Utils
+import "qrc:/js/database.js" as DB
 
 Item {
 	id:picker
@@ -43,10 +45,14 @@ Item {
 	property bool showDotAndDotDot: false
 	property bool showHidden: true
 	property bool showDirsFirst: true
-//	property string folder: "file:///sdcard"
-//    property string folder: QStandardPaths::locate(QStandardPaths::GenericDataLocation, QString(), QStandardPaths::LocateDirectory)
-    property string folder: StandardPaths.writableLocation("txt")
+    property string folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
 	property string nameFilters: "*.*"
+
+    function writeCsvFile(path){
+        var request = new XMLHttpRequest();
+        request.open("PUT", path+"/SCaLE-Contacts.csv", false);
+        request.send(DB.get_contacts_csv());
+    }
 
 	function currentFolder() {
 		return folderListModel.folder;
@@ -59,7 +65,7 @@ Item {
 		return folderListModel.folder.toString() !== "file:///";
 	}
 
-	function onItemClick(fileName) {
+    function onItemClick(fileName) {
 		if(!isFolder(fileName)) {
 			fileSelected(fileName)
 			return;
@@ -74,45 +80,32 @@ Item {
 			}
 		}
 	}
-	Rectangle {
-		id: toolbar
-		anchors.right: parent.right
-		anchors.left: parent.left
-		anchors.top: parent.top
-		height: toolbarHeight
-		color: Utils.backgroundColor()
-		Button {
-			id: button
-			text: ".."
-			anchors.right: parent.right
-			anchors.rightMargin: buttonHeight
-			anchors.bottom: parent.bottom
-			anchors.top: parent.top
-			enabled: canMoveUp()
-			flat: true
-			onClicked: {
-				if(canMoveUp) {
-					folderListModel.folder = folderListModel.parentFolder
-				}
-			}
-		}
-		Text {
-			id: filePath
-			text: folderListModel.folder.toString().replace("file:///", "►").replace(new RegExp("/",'g'), "►")
-			renderType: Text.NativeRendering
-			elide: Text.ElideMiddle
-			anchors.right: button.left
-			font.italic: true
-			font.bold: true
-			verticalAlignment: Text.AlignVCenter
-			anchors.left: parent.left
-			anchors.leftMargin: buttonHeight
-			anchors.bottom: parent.bottom
-			anchors.top: parent.top
-			font.pixelSize: textSize
 
-		}
-	}
+    Rectangle {
+        id: toolbar
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        height: toolbarHeight
+        color: Utils.backgroundColor()
+        Button {
+            id: button
+            text: "Save"
+            anchors.right: parent.right
+            anchors.rightMargin: buttonHeight
+            anchors.bottom: parent.bottom
+            anchors.top: parent.top
+            width: buttonHeight * 3
+            background: Rectangle {
+                color: "lightskyblue"
+            }
+
+            onClicked: {
+                console.log(folderListModel.folder.toString());
+                writeCsvFile(folderListModel.folder.toString());
+            }
+        }
+    }
 
 	FolderListModel {
 		id:  folderListModel
@@ -121,21 +114,22 @@ Item {
 		showDirsFirst: picker.showDirsFirst
 		folder: picker.folder
 		nameFilters: picker.nameFilters
+        showFiles: false
 	}
 	OldControls.TableView {
 		id: view
-		anchors.top: toolbar.bottom
+        anchors.top: toolbar.bottom
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
 		model: folderListModel
-		headerDelegate:headerDelegate
+        headerDelegate:headerDelegate
 		rowDelegate: Rectangle {
 			height: rowHeight
-		}
+        }
 
 		OldControls.TableViewColumn {
-			title: qsTr("FileName")
+            title: qsTr("Select a folder to save your csv file to")
 			role: "fileName"
 			resizable: true
 			delegate: fileDelegate

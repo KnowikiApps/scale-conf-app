@@ -14,10 +14,17 @@ function parseDay(day) {
 }
 
 function dayMatches(currentDay, day) {
-    if (currentDay === parseDay(day) || parseDay(day) === "")
+    if (currentDay === parseDay(day) || currentDay === "")
         return true;
     else
         return false;
+}
+
+function heightOf(currentDay, day, defaultHeight) {
+    if (currentDay === parseDay(day) || currentDay === "")
+        return defaultHeight;
+    else
+        return 0;
 }
 
 /*

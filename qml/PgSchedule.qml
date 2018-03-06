@@ -23,14 +23,16 @@ ColumnLayout {
 
             Rectangle {
                     width: schedule.width * 0.94
-                    height: shortabstractText.height
+                    height: Feed.heightOf(dayFilter.currentDay, day, shortabstractText.height)
 
                     Row {
                         spacing: schedule.width * 0.05
+
                         Text {
                             text: time
                             width: schedule.width * 0.15
                             wrapMode: Text.Wrap
+                            visible: Feed.dayMatches(dayFilter.currentDay, day)
                         }
                         Text {
                             id: shortabstractText
@@ -38,11 +40,13 @@ ColumnLayout {
                             width: schedule.width * 0.49
                             maximumLineCount: 3
                             wrapMode: Text.Wrap
+                            visible: Feed.dayMatches(dayFilter.currentDay, day)
                         }
                         Text {
                             text: room
                             width: schedule.width * 0.15
                             wrapMode: Text.Wrap
+                            visible: Feed.dayMatches(dayFilter.currentDay, day)
                         }
                         Button {
                             width: schedule.width * 0.06
@@ -51,6 +55,7 @@ ColumnLayout {
                                 console.log("add button clicked");
                                 Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
                             }
+                            visible: Feed.dayMatches(dayFilter.currentDay, day)
                         }
                     }
 

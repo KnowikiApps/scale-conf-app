@@ -5,24 +5,23 @@ import "qrc:/js/nav.js" as NavHelper
 import "qrc:/js/database.js" as Database
 import "qrc:/js/feed.js" as Feed
 
-Rectangle {
+ColumnLayout {
 
-    Column {
+    spacing: 45
 
-        anchors.fill: parent
+    ScheduleFilter {
+        id: dayFilter
+        width: parent.parent.parent.parent.width
+    }
 
-        ScheduleFilter {
-            id: dayFilter
-            width: parent.parent.parent.parent.width
-        }
+    ListView {
+        id: schedule
+        width: parent.parent.parent.parent.width; height: parent.parent.parent.parent.height
+        model: SignModel{}
 
-        ListView {
-            id: schedule
-            width: parent.parent.parent.parent.width; height: parent.parent.parent.parent.height
-            model: SignModel{}
+        delegate: Component {
 
-            delegate: Component {
-                Rectangle {
+            Rectangle {
                     width: schedule.width * 0.94
                     height: shortabstractText.height
 
@@ -68,9 +67,8 @@ Rectangle {
                             Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
                         }
                     }
+
                 }
             }
-        }
-
     }
 }

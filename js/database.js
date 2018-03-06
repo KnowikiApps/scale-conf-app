@@ -39,27 +39,6 @@ function add_xml(xml_data, table_name){
     };
 }
 
-// check if an event already exists in My Schedule
-function record_exists(table_name, json_data) {
-    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
-    var recCount = 0;
-
-    try {
-        db.transaction(function(tx) {
-            recCount = tx.executeSql("SELECT COUNT(talkTitle) FROM " + table_name + " WHERE talkTitle='" + json_data.talkTitle + "'");
-        })
-    }
-    catch(err) {
-        console.log("error checking existence of event in My Schedule");
-        throw err;
-    }
-
-    if (recCount.insertId > 0)
-        return true;
-    else
-        return false;
-}
-
 /*
   Add a record to a database table
   @param - table_name - string with table name
@@ -67,16 +46,14 @@ function record_exists(table_name, json_data) {
 */
 function add_record(table_name, json_data){
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+
     try{
-        if (record_exists(table_name, json_data) === true) {
-            savedAlreadyModal.open();
-        }
-        else {
-            db.transaction(function(tx){
-                tx.executeSql("INSERT INTO "+ table_name + " " + get_sql(json_data));
-            })
-            addedModal.open();
-        }
+        db.transaction(function(tx){
+            // TODO INSERT SQL query to check if record exists
+            tx.executeSql("INSERT INTO "+ table_name + " " + get_sql(json_data));
+        })
+
+        addedModal.open();
     }catch(err){
         console.log("add_record() -> " + err);
         throw err; //pass error on to component for handling

@@ -53,7 +53,7 @@ ColumnLayout {
                             text: "+"
                             onClicked: {
                                 console.log("add button clicked");
-                                Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
+                                Database.add_record("schedule_list", {time: time, day: Feed.parseDay(day), talkTitle: title, room: room, path: path})
                             }
                             visible: Feed.dayMatches(dayFilter.currentDay, day)
                         }

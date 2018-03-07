@@ -7,16 +7,17 @@ import "qrc:/js/feed.js" as Feed
 
 ColumnLayout {
 
-    spacing: 45
+    spacing: 50
 
     ScheduleFilter {
         id: dayFilter
-        width: parent.parent.parent.parent.width
+        width: window.width
     }
 
     ListView {
         id: schedule
-        width: parent.parent.parent.parent.width; height: parent.parent.parent.parent.height
+        width: window.width
+        height: window.height
         model: SignModel{}
 
         delegate: Component {

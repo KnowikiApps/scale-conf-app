@@ -10,6 +10,19 @@ Drawer {
     ColumnLayout{
         spacing: 2
 
+        Rectangle {
+            width: parent.width
+            height: width/3
+            Image {
+                id: banner
+                source: "qrc:/img/HomePageBanner.svg"
+                width: 123
+                height: parent.height
+                fillMode: Image.PreserveAspectFit
+                anchors.centerIn: parent
+            }
+        }
+
         NavButton{
             id: schedule
             text: "Schedule"
@@ -33,7 +46,7 @@ Drawer {
         }
         NavButton{
             id: qrScan
-            text: "Scan QR Code"
+            text: "Scan Badge QR Code"
             onClicked: NavHelper.nav_tray_push("qrc:/PgQrScan.qml")
         }
     }

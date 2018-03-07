@@ -3,27 +3,52 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 
 import "qrc:/js/database.js" as DB
+import "qrc:/js/nav.js" as NavHelper
 
 Rectangle {
     id: pgContacts
     width: window.width
     height: window.height
 
-    Button {
-        id: exportButton
-        text: "Export to CSV"
-        onClicked: {
-            filePicker.visible = true;
-            visible = false;
+    Row {
+        id: buttonRow
+        spacing: 10
+        layoutDirection: Qt.RightToLeft
+        Button {
+            id: exportButton
+            text: "Export to CSV"
+            onClicked: {
+                filePicker.visible = true;
+                visible = false;
+            }
+//            anchors.top: parent.top
+//            anchors.right: parent.right
+            background: Rectangle {
+                color: "lightskyblue"
+                border.color: "black"
+            }
+            padding: 10
         }
-        anchors.top: parent.top
-        anchors.right: parent.right
+
+        Button {
+            id: scanButton
+            text: "Scan Badge"
+            onClicked: NavHelper.nav_tray_push("qrc:/PgQrScan.qml")
+//            anchors.top: parent.top
+//            anchors.right: exportButton.left
+            background: Rectangle {
+                color: "lightskyblue"
+                border.color: "black"
+            }
+            padding: 10
+        }
     }
+
 
     ListView {
         id: contacts
         width: parent.width
-        anchors.top: exportButton.bottom
+        anchors.top: buttonRow.bottom
         anchors.bottom: parent.bottom
 
         FilePicker {

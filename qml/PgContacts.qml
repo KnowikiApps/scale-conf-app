@@ -21,8 +21,6 @@ Rectangle {
                 filePicker.visible = true;
                 visible = false;
             }
-//            anchors.top: parent.top
-//            anchors.right: parent.right
             background: Rectangle {
                 color: "lightskyblue"
                 border.color: "black"
@@ -34,8 +32,6 @@ Rectangle {
             id: scanButton
             text: "Scan Badge"
             onClicked: NavHelper.nav_tray_push("qrc:/PgQrScan.qml")
-//            anchors.top: parent.top
-//            anchors.right: exportButton.left
             background: Rectangle {
                 color: "lightskyblue"
                 border.color: "black"
@@ -57,7 +53,7 @@ Rectangle {
             showDotAndDotDot: true
             visible: false
             onFileSaved: {
-                visible = false
+                visible = false;
             }
         }
 
@@ -66,46 +62,86 @@ Rectangle {
             Component.onCompleted: DB.get_contacts()
         }
 
-        delegate: Component {
-            Rectangle {
-                width: contacts.width
-                height: shortabstractText.height
+        delegate: Rectangle {
+            id: delegateRoot
+            width: contacts.width
+            height: lastText.height + lastText.height + phoneText.height + zipText.height + 10
 
-                Row {
-                    spacing: contacts.width * 0.05
+            property int dividerHeight: delegateRoot.height - 10
+            property int availWidth: contacts.width - 11
+
+            Row {
+                spacing: 5
+
+                Column {
                     Text {
-                        text: first
-                        width: contacts.width * 0.15
+                        id: firstText
+                        text: "First Name: " + first
+                        width: delegateRoot.availWidth * 0.30
                         wrapMode: Text.Wrap
                     }
                     Text {
-                        text: last
-                        width: contacts.width * 0.15
+                        id: lastText
+                        text: "Last: " + last
+                        width: delegateRoot.availWidth * 0.30
                         wrapMode: Text.Wrap
                     }
                     Text {
-                        id: shortabstractText
-                        text: email
-                        width: contacts.width * 0.6
+                        id: phoneText
+                        text: "Phone: " + phone
+                        width: delegateRoot.availWidth * 0.30
+                        maximumLineCount: 3
+                        wrapMode: Text.Wrap
+                    }
+                    Text {
+                        id: zipText
+                        text: "Zip: " + zip
+                        width: delegateRoot.availWidth * 0.30
                         maximumLineCount: 3
                         wrapMode: Text.Wrap
                     }
                 }
-
-                MouseArea{
-                    z: 1
-                    anchors.fill: parent
-                    onClicked: {
-                        console.log("row clicked");
-    //                    NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1}
+                Column {
+                    id: rightColumn
+                    Text {
+                        id: emailText
+                        text: "Email: " + email
+                        width: delegateRoot.availWidth * 0.70
+                        maximumLineCount: 3
+                        wrapMode: Text.Wrap
                     }
-                    onPressAndHold: {
-                        console.log("row long press...");
-                        //TODO - add event to user schedule
+                    Text {
+                        id: companyText
+                        text: "Company: " + company
+                        width: delegateRoot.availWidth * 0.70
+                        maximumLineCount: 3
+                        wrapMode: Text.Wrap
+                    }
+                    Text {
+                        id: titleText
+                        text: "Title: " + title
+                        width: delegateRoot.availWidth * 0.70
+                        maximumLineCount: 3
+                        wrapMode: Text.Wrap
                     }
                 }
             }
+
+            MouseArea{
+                z: 1
+                anchors.fill: parent
+                onClicked: {
+                    console.log("row clicked");
+//                    NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
+                }
+                onPressAndHold: {
+                    console.log("row long press...");
+                    //TODO - add event to user schedule
+                }
+            }
         }
+
     }
 }
 

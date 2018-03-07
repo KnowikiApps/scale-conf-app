@@ -72,6 +72,7 @@ function add_record(table_name, json_data){
         else {
             db.transaction(function(tx){
                 tx.executeSql("INSERT INTO " + table_name + " " + get_sql(json_data));
+                console.log("INSERT INTO " + table_name + " " + get_sql(json_data));
             })
 
             addedModal.open();
@@ -130,20 +131,20 @@ function add_contact(info) {
     add_record("contacts", json_data);
 }
 
-function get_schedule_list() {
+function get_schedule_list(model) {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     db.transaction(function(tx) {
         var results = tx.executeSql("SELECT * FROM schedule_list");
 
         for (var i = 0; i < results.rows.length; ++i) {
-            scheduleListModel.append({
-                                         id: results.rows.item(i).rowid,
-                                         time: results.rows.item(i).time,
-                                         day: results.rows.item(i).day,
-                                         talkTitle: results.rows.item(i).talkTitle,
-                                         room: results.rows.item(i).room,
-                                         path: results.rows.item(i).path,
-            });
+            model.append({
+                             id: results.rows.item(i).rowid,
+                             time: results.rows.item(i).time,
+                             day: results.rows.item(i).day,
+                             talkTitle: results.rows.item(i).talkTitle,
+                             room: results.rows.item(i).room,
+                             path: results.rows.item(i).path,
+                         });
         }
     });
 }

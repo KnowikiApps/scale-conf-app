@@ -1,96 +1,89 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
-import QtQuick.Dialogs 1.1
 import "qrc:/js/nav.js" as NavHelper
 import "qrc:/js/database.js" as DB
 import "qrc:/js/feed.js" as Feed
 
 ColumnLayout {
-
-    spacing: 45
+    spacing: 50
 
     ScheduleFilter {
         id: dayFilter
-        width: parent.parent.parent.parent.width
+        width: window.width
     }
 
     ListView {
-        id: schedule_list
-        width: parent.parent.parent.parent.width; height: parent.parent.parent.parent.height
-
-        model: ListModel {
+        id: mySchedule
+        width: window.width
+        height: window.height
+        model: ListModel{
             id: scheduleListModel
-            Component.onCompleted: DB.get_schedule_list()
+            Component.onCompleted: DB.get_schedule_list(this);
         }
 
-        delegate: Component {
-            Rectangle {
-                width: schedule_list.width * 0.94
-                height: Feed.heightOf(dayFilter.currentDay, day, schedule_list.height * 0.1)
+        delegate: Rectangle {
+            id: delegateRoot
+            width: mySchedule.width * 0.94
 
-                Row {
-                    spacing: schedule_list.width * 0.25
+            property bool rowVisible: Feed.dayMatches(dayFilter.currentDay, day)
+            property int dividerHeight: rowVisible ? delegateRoot.height - (rowVisible * 10) : 0
+            property int availWidth: mySchedule.width - 33 - addButton.width
+            property int delegateHeight: Feed.heightOf(dayFilter.currentDay, day, talkTitleText.height * 3)
 
-                    Text {
-                        text: time
-                        width: schedule_list.width * 0.02
-                        wrapMode: Text.NoWrap
-                        visible: Feed.dayMatches(dayFilter.currentDay, day)
-                    }
-                    Text {
-                        text: talkTitle
-                        width: schedule_list.width * 0.15
-                        wrapMode: Text.Wrap
-                        visible: Feed.dayMatches(dayFilter.currentDay, day)
-                    }
-                    Text {
-                        text: room
-                        width: schedule_list.width * 0.02
-                        maximumLineCount: 3
-                        wrapMode: Text.NoWrap
-                        visible: Feed.dayMatches(dayFilter.currentDay, day)
-                    }
-                    Button {
-                        text: "-"
-                        width: schedule_list.width * 0.06
-                        onClicked: {
-                            console.log("close button clicked...");
-                            confirmDelete.open();
-                        }
+            height: delegateHeight + (rowVisible * 10)
 
-                        visible: Feed.dayMatches(dayFilter.currentDay, day)
-                    }
+            Row {
+                id: delegateRow
+                spacing: 5
+
+                Text {
+                    text: time
+                    width: delegateRoot.availWidth * 0.15
+                    wrapMode: Text.Wrap
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
-
-                MessageDialog {
-                    id: confirmDelete
-                    title: "Delete Entry"
-                    text: "Press OK to confirm saved event deletion"
-                    standardButtons: StandardButton.Ok | StandardButton.Cancel
-                    icon: StandardIcon.NoIcon;
-                    modality: Qt.WindowModal
-                    onAccepted: {
-                        console.log("deleting: " + talkTitle);
-                        DB.remove_schedule_entry(talkTitle);
-                        this.close()
-                    }
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                Text {
+                    id: talkTitleText
+                    text: talkTitle
+                    width: delegateRoot.availWidth * 0.7
+                    maximumLineCount: 3
+                    wrapMode: Text.Wrap
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
-
-                MouseArea{
-                    z: 1
-                    anchors.fill: parent
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                Text {
+                    text: room
+                    width: delegateRoot.availWidth * 0.15
+                    wrapMode: Text.Wrap
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
+                }
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                Button {
+                    id: addButton
+                    width: height
+                    text: "-"
                     onClicked: {
-                        console.log("row clicked");
-                        NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
-                    }
-                    onPressAndHold: {
-                        console.log("row long press");
                         confirmDelete.open();
+                        confirmDelete.model = scheduleListModel;
+                        confirmDelete.talkTitle = talkTitleText.text;
                     }
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
             }
+
+            MouseArea{
+                z: 1
+                anchors.fill: parent
+                onClicked: {
+                    NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
+                }
+                onPressAndHold: {
+                    confirmDelete.open();
+                }
+            }
+
         }
     }
-
 }

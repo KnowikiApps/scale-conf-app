@@ -37,4 +37,15 @@ ApplicationWindow {
     EventAlreadySavedModal {
         id: savedAlreadyModal
     }
+
+    ScheduleDeleteModal {
+        id: confirmDelete
+        onAccepted: {
+            console.log("deleting: " + talkTitle);
+            DB.remove_schedule_entry(talkTitle);
+            model.clear();
+            DB.get_schedule_list(model);
+            this.close()
+        }
+    }
 }

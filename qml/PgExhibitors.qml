@@ -6,7 +6,7 @@ WebView {
 
     width: window.width
     height: window.height
-    url: "https://www.socallinuxexpo.org/scale/15x/exhibitors"
+    url: "https://www.socallinuxexpo.org/scale/16x/exhibitors"
 
     onLoadingChanged:{
         if(loadRequest.errorString){

@@ -20,61 +20,66 @@ ColumnLayout {
         height: window.height
         model: SignModel{}
 
-        delegate: Component {
+        delegate: Rectangle {
+            id: delegateRoot
+            width: schedule.width * 0.94
 
-            Rectangle {
-                    width: schedule.width * 0.94
-                    height: Feed.heightOf(dayFilter.currentDay, day, shortabstractText.height)
+            property bool rowVisible: Feed.dayMatches(dayFilter.currentDay, day)
+            property int dividerHeight: rowVisible ? delegateRoot.height - (rowVisible * 10) : 0
+            property int availWidth: schedule.width - 33 - addButton.width
+            property int delegateHeight: Feed.heightOf(dayFilter.currentDay, day, shortabstractText.height)
 
-                    Row {
-                        spacing: schedule.width * 0.05
+            height: delegateHeight + (rowVisible * 10)
 
-                        Text {
-                            text: time
-                            width: schedule.width * 0.15
-                            wrapMode: Text.Wrap
-                            visible: Feed.dayMatches(dayFilter.currentDay, day)
-                        }
-                        Text {
-                            id: shortabstractText
-                            text: shortabstract
-                            width: schedule.width * 0.49
-                            maximumLineCount: 3
-                            wrapMode: Text.Wrap
-                            visible: Feed.dayMatches(dayFilter.currentDay, day)
-                        }
-                        Text {
-                            text: room
-                            width: schedule.width * 0.15
-                            wrapMode: Text.Wrap
-                            visible: Feed.dayMatches(dayFilter.currentDay, day)
-                        }
-                        Button {
-                            width: schedule.width * 0.06
-                            text: "+"
-                            onClicked: {
-                                console.log("add button clicked");
-                                Database.add_record("schedule_list", {time: time, day: Feed.parseDay(day), talkTitle: title, room: room, path: path})
-                            }
-                            visible: Feed.dayMatches(dayFilter.currentDay, day)
-                        }
+            Row {
+                id: delegateRow
+                spacing: 5
+
+                Text {
+                    text: time
+                    width: delegateRoot.availWidth * 0.15
+                    wrapMode: Text.Wrap
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
+                }
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                Text {
+                    id: shortabstractText
+                    text: shortabstract
+                    width: delegateRoot.availWidth * 0.7
+                    maximumLineCount: 3
+                    wrapMode: Text.Wrap
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
+                }
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                Text {
+                    text: room
+                    width: delegateRoot.availWidth * 0.15
+                    wrapMode: Text.Wrap
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
+                }
+                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                Button {
+                    id: addButton
+                    width: height
+                    text: "+"
+                    onClicked: {
+                        Database.add_record("schedule_list",{time: time, day: Feed.parseDay(day), talkTitle: title, room: room, path: path})
                     }
-
-                    MouseArea{
-                        z: 1
-                        anchors.fill: parent
-                        onClicked: {
-                            console.log("row clicked");
-                            NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
-                        }
-                        onPressAndHold: {
-                            console.error("row long press...");
-                            //TODO - add event to user schedule
-                            Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
-                        }
-                    }
-
+                    visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
             }
+
+            MouseArea{
+                z: 1
+                anchors.fill: parent
+                onClicked: {
+                    NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
+                }
+                onPressAndHold: {
+                    Database.add_record("schedule_list", {time: time, talkTitle: title, room: room, path: path})
+                }
+            }
+
+        }
     }
 }

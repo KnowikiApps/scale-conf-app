@@ -1,6 +1,6 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.1
-import QtQuick.Dialogs 1.2
+import QtQuick.Controls 2.2
+//import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import QtMultimedia 5.5
 import QtQuick.Window 2.0
@@ -12,27 +12,55 @@ Pane{
     contentWidth: theLayout.implicitWidth
     contentHeight: theLayout.implicitHeight
 
-    MessageDialog {
+    Dialog {
         id: contactError
-        icon: StandardIcon.Critical
-        standardButtons: StandardButton.Ok
+        standardButtons: Dialog.Ok
+
+        property string text
+
         onAccepted: this.close()
+        contentItem: Rectangle {
+            color: "lightskyblue"
+            implicitWidth: parent.parent.width * 0.75
+            implicitHeight: parent.parent.height * 0.10
+
+            Text {
+                text: contactError.text
+                horizontalAlignment: Text.AlignCenter
+                wrapMode: Text.WordWrap
+                width: parent.width
+                elide: Text.ElideRight
+            }
+        }
     }
 
-    MessageDialog {
+    Dialog {
         id: contactDialog
+        title: "Add Contact"
+        standardButtons: Dialog.Yes | Dialog.No
+        modal: true
 
         property string tag
 
-        title: "Add Contact"
-        text: {
-            var info = tag.split("~");
-            return "Add to contacts? \n"+info[1] + " " + info[2] + '\n' + info[3];
-        }
-        standardButtons: StandardButton.Yes | StandardButton.No
-        icon: StandardIcon.Question;
-        modality: Qt.WindowModal
-        onYes: {
+        contentItem: Rectangle {
+                    color: "lightskyblue"
+                    implicitWidth: window.width * 0.75
+                    implicitHeight: window.height * 0.10
+
+                    Text {
+                        text: {
+                            var info = contactDialog.tag.split("~");
+                            return "Add to contacts? \n"+info[1] + " " + info[2] + '\n' + info[3];
+                        }
+                        horizontalAlignment: Text.AlignCenter
+                        wrapMode: Text.WordWrap
+                        width: parent.width
+                        elide: Text.ElideRight
+                    }
+                }
+
+        onRejected: this.close();
+        onAccepted: {
             this.close();
             try {
                 DB.add_contact(tag.split("~"));
@@ -42,7 +70,6 @@ Pane{
             }
 
         }
-        onNo: this.close();
     }
 
     ColumnLayout{

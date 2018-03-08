@@ -21,6 +21,11 @@ Drawer {
                 fillMode: Image.PreserveAspectFit
                 anchors.centerIn: parent
             }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: NavHelper.nav_tray_push("qrc:/PgHome.qml")
+            }
         }
 
         NavButton{

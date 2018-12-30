@@ -1,25 +1,25 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>NavButton.qml</file>
-        <file>TopBar.qml</file>
-        <file>NavMenu.qml</file>
-        <file>PgSchedule.qml</file>
-        <file>PgHome.qml</file>
-        <file>PgContacts.qml</file>
-        <file>PgMessages.qml</file>
-        <file>PgMySchedule.qml</file>
-        <file>PgQrScan.qml</file>
-        <file>SignModel.qml</file>
-        <file>ScheduleAddedModal.qml</file>
-        <file>ScheduleFilter.qml</file>
-        <file>ProgressPopup.qml</file>
-        <file>ErrorModal.qml</file>
-        <file>EventAlreadySavedModal.qml</file>
-        <file>PresentationDetail.qml</file>
-        <file>PgExhibitors.qml</file>
-        <file>AnnouncementsModel.qml</file>
-        <file>FilePicker.qml</file>
-        <file>ScheduleDeleteModal.qml</file>
+        <file>components/modals/ErrorModal.qml</file>
+        <file>components/modals/EventAlreadySavedModal.qml</file>
+        <file>components/modals/ProgressModal.qml</file>
+        <file>components/modals/ScheduleAddedModal.qml</file>
+        <file>components/modals/ScheduleDeleteModal.qml</file>
+        <file>components/navigation/NavButton.qml</file>
+        <file>components/navigation/NavMenu.qml</file>
+        <file>components/navigation/TopBar.qml</file>
+        <file>pages/components/PresentationDetail/PresentationDetail.qml</file>
+        <file>pages/components/ScheduleFilter/ScheduleFilter.qml</file>
+        <file>pages/Contacts/Contacts.qml</file>
+        <file>pages/Contacts/FilePicker.qml</file>
+        <file>pages/Exhibitors/Exhibitors.qml</file>
+        <file>pages/Home/AnnouncementsModel.qml</file>
+        <file>pages/Home/Home.qml</file>
+        <file>pages/Messages/Messages.qml</file>
+        <file>pages/MySchedule/MySchedule.qml</file>
+        <file>pages/QrScan/QrScan.qml</file>
+        <file>pages/Schedule/Schedule.qml</file>
+        <file>pages/Schedule/SignModel.qml</file>
     </qresource>
 </RCC>

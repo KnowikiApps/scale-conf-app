@@ -13,8 +13,8 @@ Dialog {
     onAccepted: this.close()
     contentItem: Rectangle {
         color: "lightskyblue"
-        implicitWidth: parent.parent.width * 0.75
-        implicitHeight: parent.parent.height * 0.10
+        implicitWidth: parent.width * 0.75
+        implicitHeight: parent.height * 0.10
 
         Text {
             text: "There was an error downloading the schedule, check your internet connection and try again"

@@ -21,8 +21,8 @@ Pane{
         onAccepted: this.close()
         contentItem: Rectangle {
             color: "lightskyblue"
-            implicitWidth: parent.parent.width * 0.75
-            implicitHeight: parent.parent.height * 0.10
+            implicitWidth: parent.contentWidth * 0.75
+            implicitHeight: parent.contentHeight * 0.10
 
             Text {
                 text: contactError.text

@@ -2,6 +2,10 @@ import QtQuick 2.8
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.1
+
+import "components/modals"
+import "components/navigation"
+
 import "qrc:/js/database.js" as DB
 import "qrc:/js/initialize.js" as Initializer
 import "qrc:/js/nav.js" as NavHelper
@@ -25,7 +29,7 @@ ApplicationWindow {
     StackView{
         id:pages
 //        initialItem: "qrc:/PgHome.qml"
-        Component.onCompleted: NavHelper.nav_tray_push("qrc:/PgHome.qml")
+        Component.onCompleted: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
     }
 
     ErrorModal {

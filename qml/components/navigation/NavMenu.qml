@@ -24,35 +24,35 @@ Drawer {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: NavHelper.nav_tray_push("qrc:/PgHome.qml")
+                onClicked: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
             }
         }
 
         NavButton{
             id: schedule
             text: "Schedule"
-            onClicked: NavHelper.nav_tray_push("qrc:/PgSchedule.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Schedule/Schedule.qml")
         }
         NavButton {
             id: mySchedule
             text: "My Schedule"
-            onClicked: NavHelper.nav_tray_push("qrc:/PgMySchedule.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/MySchedule/MySchedule.qml")
         }
 
         NavButton{
             id: contacts
             text: "Contacts"
-            onClicked: NavHelper.nav_tray_push("qrc:/PgContacts.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Contacts/Contacts.qml")
         }
         NavButton{
             id: exhibitors
             text: "Exhibitors"
-            onClicked: NavHelper.nav_tray_push("qrc:/PgExhibitors.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml")
         }
         NavButton{
             id: qrScan
             text: "Scan Badge QR Code"
-            onClicked: NavHelper.nav_tray_push("qrc:/PgQrScan.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScan.qml")
         }
     }
 }

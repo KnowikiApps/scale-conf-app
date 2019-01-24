@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
+
+import "../components/ScheduleFilter"
+
 import "qrc:/js/nav.js" as NavHelper
 import "qrc:/js/database.js" as DB
 import "qrc:/js/feed.js" as Feed

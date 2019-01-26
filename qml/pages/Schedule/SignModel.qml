@@ -5,7 +5,7 @@ import "qrc:/js/database.js" as DB
 
 XmlListModel{
     id: model
-    source:"https://www.socallinuxexpo.org/scale/16x/sign.xml"
+    source:"https://www.socallinuxexpo.org/scale/17x/sign.xml"
     query: "/nodes/node"
 
     XmlRole { id: titleRole; name: "title"; query: "Title/string()" }

@@ -42,7 +42,7 @@ function get_feed() {
         }
     }
 
-    doc.open("GET", "https://www.socallinuxexpo.org/scale/16x/sign.xml");
+    doc.open("GET", "https://www.socallinuxexpo.org/scale/17x/sign.xml");
     doc.send();
 }
 
@@ -62,7 +62,7 @@ function get_announcements() {
         }
     }
 
-    doc.open("GET", "https://www.socallinuxexpo.org/announcementappdata/16x");
+    doc.open("GET", "https://www.socallinuxexpo.org/announcementappdata/17x");
     doc.send();
 }
 

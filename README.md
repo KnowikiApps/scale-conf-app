@@ -74,6 +74,19 @@ To run the render script (from within the ios directory):
 python3 render-images.py
 ```
 
+### Building for Android
+Android needs fewer image assets than iOS does, but there is a render script for some of the image assets anyway.
+
+From the project root:
+
+```bash
+cd android/img/
+```
+```bash
+python3 render-images.py
+```
+
+
 # Qt Documentation
 
 Qt Quick has changed a lot over the years. With so many versions floating out there, you'll need to be sure that you're looking at the proper documentation. If you're doing Google searches be sure to check the version of Qt Quick Controls. An example of a search that will give you want you want:

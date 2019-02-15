@@ -54,4 +54,11 @@ ApplicationWindow {
             this.close()
         }
     }
+
+    onClosing: {
+        close.accepted = false;
+        if(pages.depth > 1){
+            pages.pop();
+        }
+    }
 }

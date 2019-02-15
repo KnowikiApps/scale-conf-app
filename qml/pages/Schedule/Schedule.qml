@@ -20,7 +20,7 @@ ColumnLayout {
     ListView {
         id: schedule
         width: window.width
-        height: window.height
+        height: window.height - parent.spacing*1.75
         model: SignModel{}
 
         delegate: Rectangle {

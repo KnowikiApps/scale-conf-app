@@ -30,7 +30,7 @@ ColumnLayout {
             property bool rowVisible: Feed.dayMatches(dayFilter.currentDay, day)
             property int dividerHeight: rowVisible ? delegateRoot.height - (rowVisible * 10) : 0
             property int availWidth: schedule.width - 33 - addButton.width
-            property int delegateHeight: Feed.heightOf(dayFilter.currentDay, day, shortabstractText.height)
+            property int delegateHeight: Feed.heightOf(dayFilter.currentDay, day, shortabstractText.height + titleText.height)
 
             height: delegateHeight + (rowVisible * 10)
 
@@ -45,14 +45,27 @@ ColumnLayout {
                     visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
                 Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
-                Text {
-                    id: shortabstractText
-                    text: shortabstract
-                    width: delegateRoot.availWidth * 0.7
-                    maximumLineCount: 3
-                    wrapMode: Text.Wrap
-                    visible: Feed.dayMatches(dayFilter.currentDay, day)
+                Column{
+                    Text {
+                        id: titleText
+                        text: title
+                        width: delegateRoot.availWidth * 0.7
+                        maximumLineCount: 1
+                        wrapMode: Text.Wrap
+                        font.bold: true
+                        visible: Feed.dayMatches(dayFilter.currentDay, day)
+                    }
+                    Text {
+                        id: shortabstractText
+                        text: shortabstract
+                        width: delegateRoot.availWidth * 0.7
+                        maximumLineCount: 3
+                        wrapMode: Text.Wrap
+                        elide: Text.ElideRight
+                        visible: Feed.dayMatches(dayFilter.currentDay, day)
+                    }
                 }
+
                 Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Text {
                     text: room

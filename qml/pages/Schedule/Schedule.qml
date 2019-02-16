@@ -15,6 +15,8 @@ ColumnLayout {
     ScheduleFilter {
         id: dayFilter
         width: window.width
+
+        listRef: schedule
     }
 
     ListView {

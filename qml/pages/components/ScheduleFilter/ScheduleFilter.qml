@@ -4,8 +4,9 @@ import QtQuick.Layouts 1.0
 
 Rectangle {
     id: scheduleFilterRoot
-    property string currentDay: ""
+    height: buttonRow.implicitHeight
 
+    property string currentDay: ""
     property var listRef: null
 
     Row {

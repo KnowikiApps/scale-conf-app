@@ -15,6 +15,7 @@ ColumnLayout {
     ScheduleFilter {
         id: dayFilter
         width: window.width
+        z:2
 
         listRef: schedule
     }
@@ -23,6 +24,7 @@ ColumnLayout {
         id: schedule
         width: window.width
         height: window.height - parent.spacing*1.75
+        anchors.top: dayFilter.bottom
         model: SignModel{}
 
         delegate: Rectangle {

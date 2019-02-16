@@ -14,12 +14,17 @@ ColumnLayout {
     ScheduleFilter {
         id: dayFilter
         width: window.width
+        z:2
+
+        listRef: mySchedule
     }
 
     ListView {
         id: mySchedule
         width: window.width
-        height: window.height
+        height: window.height - parent.spacing*1.75
+        anchors.top: dayFilter.bottom
+
         model: ListModel{
             id: scheduleListModel
             Component.onCompleted: DB.get_schedule_list(this);

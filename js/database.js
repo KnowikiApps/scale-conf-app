@@ -57,6 +57,10 @@ function record_exists_in_schedule_list(path) {
     return exists;
 }
 
+function set_proper_icon(path) {
+    return (!record_exists_in_schedule_list(path) ? "+" : "!");
+}
+
 /*
   Add a record to a database table
   @param - table_name - string with table name

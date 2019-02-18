@@ -85,7 +85,7 @@ ColumnLayout {
                 z: 1
                 anchors.fill: parent
                 onClicked: {
-                    NavHelper.nav_tray_push("qrc:/PresentationDetail.qml", {page: path});
+                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: path});
                 }
                 onPressAndHold: {
                     confirmDelete.open();

@@ -84,7 +84,7 @@ ColumnLayout {
                     text: Database.set_proper_icon(path)
                     enabled: !Database.record_exists_in_schedule_list(path)
                     onClicked: {
-                        Database.add_record("schedule_list",{time: time, day: Feed.parseDay(day), talkTitle: title, room: room, path: path})
+                        Database.add_record("schedule_list",{time: time, day: Feed.parseDay(day), talkTitle: Feed.remSingleTick(title), room: room, path: path})
                         addButton.text = Database.set_proper_icon(path)
                         addButton.enabled = !Database.record_exists_in_schedule_list(path)
                     }

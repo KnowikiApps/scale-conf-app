@@ -46,6 +46,10 @@ function get_feed() {
     doc.send();
 }
 
+function remSingleTick(str) {
+    return str.replace(/'/g, '');
+}
+
 function seenFirstOf(dayOfWeek) {
     return firstEventSeen[dayOfWeek];
 }

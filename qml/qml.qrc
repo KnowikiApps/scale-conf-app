@@ -21,5 +21,6 @@
         <file>pages/QrScan/QrScan.qml</file>
         <file>pages/Schedule/Schedule.qml</file>
         <file>pages/Schedule/SignModel.qml</file>
+        <file>pages/Speakers/Speakers.qml</file>
     </qresource>
 </RCC>

@@ -50,6 +50,11 @@ Drawer {
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml")
         }
         NavButton{
+            id: speakers
+            text: "Speakers"
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Speakers/Speakers.qml")
+        }
+        NavButton{
             id: qrScan
             text: "Scan Badge QR Code"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScan.qml")

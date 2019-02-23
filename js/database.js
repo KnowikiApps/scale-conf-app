@@ -135,6 +135,16 @@ function add_contact(info) {
     add_record("contacts", json_data);
 }
 
+// Remove unsafe characters for SQL query
+function sanitize(str) {
+    return str.replace(/'/g, "''").replace(/"/g, "\\\"");
+}
+
+// Add back in unsafe characters
+function unsanitize(str) {
+    return str.replace(/\'\'/g, "'").replace(/\\\"/g, '"');
+}
+
 function get_schedule_list(model) {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     db.transaction(function(tx) {

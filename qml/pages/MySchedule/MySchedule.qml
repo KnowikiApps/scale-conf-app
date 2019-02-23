@@ -75,7 +75,7 @@ ColumnLayout {
                     onClicked: {
                         confirmDelete.open();
                         confirmDelete.model = scheduleListModel;
-                        confirmDelete.talkTitle = talkTitleText.text;
+                        confirmDelete.talkTitle = DB.sanitize(talkTitleText.text);
                     }
                     visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }

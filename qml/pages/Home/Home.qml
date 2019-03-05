@@ -37,40 +37,41 @@ ColumnLayout {
         id: announcements
         width: window.width;
         height: window.height - banner.height
+        spacing: 5
         model: AnnouncementsModel{}
 
-        delegate: Rectangle {
+        delegate: Rectangle{
             id: delegateRoot
             width: announcements.width
-            height: shortabstractText.height
+            height: contentColumn.height
 
-            property int dividerHeight: delegateRoot.height - 10
-            property int availWidth: announcements.width - 22
+            property int availWidth: announcements.width
 
-            Row {
+            Column{
+                id: contentColumn
                 spacing: 5
                 Text {
-                    text: announcementId
-                    width: announcements.width * 0.10
-                    wrapMode: Text.Wrap
-                }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1}
-                Text {
+                    id: titleText
                     text: title
-                    width: availWidth * 0.30
+                    width: availWidth
                     wrapMode: Text.Wrap
+                    font.bold: true
+                    font.underline: true
+                    horizontalAlignment: Text.AlignJustify
+                    leftPadding: 10
+                    rightPadding: leftPadding
                 }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1}
                 Text {
                     id: shortabstractText
                     text: body
-                    width: availWidth * 0.60
-                    maximumLineCount: 3
+                    width: availWidth
                     wrapMode: Text.Wrap
+                    leftPadding: 10
+                    rightPadding: leftPadding
+                    horizontalAlignment: Text.AlignJustify
                 }
+                Rectangle {height: 1; color: "lightgray"; width: parent.width}
             }
         }
-
     }
-
 }

@@ -5,7 +5,7 @@ Mobile App for Southern California Linux Expo.
 Qt is a cross-platform software development kit written in C++. This project uses Qt Quick which allows us to write an application that can run on any desktop and mobile platform. You'll need to have Qt installed as well as the mobile SDKs in order to compile for mobile. Windows and Linux users can compile for Android and desktop only because iOS SDK is not available for those platforms. OSX users can compile for all platforms.
 
 ## Installing Qt
-You willl need to install Qt SDK and Qt Creator. This project uses Qt SDK version 5.8
+You willl need to install Qt SDK and Qt Creator. This project uses Qt SDK version 5.10.1
 
 ### For Windows
 http://doc.qt.io/qt-5/windows-support.html
@@ -33,11 +33,11 @@ Project settings are defined in a `.pro` file in the project root. Open the file
 ### Configuring the project
 Depending on what OS you're using, and if you have all of the dependencies, you will be prompted to choose a list of kits for compile and run.
 
-Qt Versioning is pretty specific, so it's important to use the correct Qt version. We're using version 5.8 for this project.
+Qt Versioning is pretty specific, so it's important to use the correct Qt version. We're using version 5.10.1 for this project.
 
 #### Android
 If you have installed the Android SDK and tools necessary, you should have an option that looks something like this:
-`Android for armeabi_v7a (GCC 4.9, Qt 5.8.0)`
+`Android for armeabi_v7a (GCC 4.9, Qt 5.10.1)`
 
 ##### SSL Support
 Qt Networking libraries (like the one we use to pull data from api endpoints) use OpenSSL, but Android no longer supports it. In order to get this to work you need to provide the binaries. They can be downloaded here:
@@ -51,13 +51,13 @@ http://doc.qt.io/qt-5/opensslsupport.html
 
 #### Desktop
 For most development work, you can get away with not using a mobile virtual device or simulator. The app should run basically the same as a desktop app. You should at least have this option, if you dont have any others. 
-`Desktop Qt 5.8.0 <compiler>`
+`Desktop Qt 5.10.1 <compiler>`
 
 #### iOS
 If you're using Mac OS, then you should be able to run the app on the iOS simulator or an actual iOS device.
 
-`iphonesimulator-clang Qt 5.8.0 for iOS3`
-`iphoneos-clang Qt 5.8.0 for iOS3`
+`iphonesimulator-clang Qt 5.10.1 for iOS3`
+`iphoneos-clang Qt 5.10.1 for iOS3`
 
 ### Building for iOS
 iOS devices require a lot of images for icons and launch screens. In the `ios` directory you'll find the SVG source images which need to be rendered to png before build. There is a python script that uses CairoSVG to render the png files and puts them in the assets catalog (which is just a directory).
@@ -118,28 +118,3 @@ https://github.com/ftylitak/qzxing
 Icons for this project are from this open source project:
 
 https://github.com/encharm/Font-Awesome-SVG-PNG
-
-# Intended Features
-
-The following is an incomplete list of features that need to be worked on.
-
-## In progress
-
-* [x] Read QR code from attendee badge and store
-* [x] Display the schedule
-* [x] Schedule builder to allow user to save items from schedule
-
-## To Do
-
-* [ ] Push capabilities
-	* [ ] alert users of schedule updates
-	* [ ] send direct message from organizers
-* [ ] Compile for Android
-* [ ] Compile for iOS
-* [ ] Exhibitor mode
-	* [ ] contacts exportable to csv
-* [ ] Map of venue and exhibit hall.
-
-## Ready to deploy
-
-* [x] Locally store schedule data on device for offline access

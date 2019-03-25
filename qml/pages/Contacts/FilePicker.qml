@@ -50,6 +50,7 @@ Item {
 	property string nameFilters: "*.*"
 
     function writeCsvFile(path){
+        console.log("writing csv file to: "+path);
         var request = new XMLHttpRequest();
         request.open("PUT", path+"/SCaLE-Contacts.csv", false);
         request.send(DB.get_contacts_csv());
@@ -90,6 +91,7 @@ Item {
         anchors.top: parent.top
         height: toolbarHeight
         color: Utils.backgroundColor()
+
         Button {
             id: button
             text: "Save"
@@ -111,8 +113,7 @@ Item {
 
 	FolderListModel {
 		id:  folderListModel
-		showDotAndDotDot: picker.showDotAndDotDot
-		showHidden: picker.showHidden
+        showDotAndDotDot: picker.showDotAndDotDot
 		showDirsFirst: picker.showDirsFirst
 		folder: picker.folder
 		nameFilters: picker.nameFilters
@@ -131,7 +132,7 @@ Item {
         }
 
 		OldControls.TableViewColumn {
-            title: qsTr("Select a folder to save your csv file to")
+            title: folderListModel.folder
 			role: "fileName"
 			resizable: true
 			delegate: fileDelegate

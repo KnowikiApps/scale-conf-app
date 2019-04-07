@@ -5,10 +5,23 @@ import QtQuick.Layouts 1.0
 import "qrc:/js/database.js" as DB
 import "qrc:/js/nav.js" as NavHelper
 
+import "../../components/modals"
+
 Rectangle {
     id: pgContacts
     width: window.width
     height: window.height
+
+    TextField{
+        id: fullText
+        visible: false
+        text:DB.get_contacts_csv()
+    }
+
+    CSVcopiedModal{
+        id: csvCopied
+        visible: false
+    }
 
     Row {
         id: buttonRow
@@ -18,8 +31,10 @@ Rectangle {
             id: exportButton
             text: "Export to CSV"
             onClicked: {
-                filePicker.visible = true;
-                visible = false;
+                fullText.selectAll();
+                fullText.copy();
+                console.log(fullText.text);
+                csvCopied.visible = true;
             }
             background: Rectangle {
                 color: "lightskyblue"
@@ -46,16 +61,6 @@ Rectangle {
         width: parent.width
         anchors.top: buttonRow.bottom
         anchors.bottom: parent.bottom
-
-        FilePicker {
-            id: filePicker
-            anchors.fill: parent
-            showDotAndDotDot: true
-            visible: false
-            onFileSaved: {
-                visible = false;
-            }
-        }
 
         model: ListModel {
             id: contactsModel
@@ -137,7 +142,6 @@ Rectangle {
                 }
                 onPressAndHold: {
                     console.log("row long press...");
-                    //TODO - add event to user schedule
                 }
             }
         }

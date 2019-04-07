@@ -8,8 +8,7 @@ QTPLUGIN+= qsqlite
 include(deployment.pri)
 
 SOURCES += \
-    cpp/main.cpp \
-    cpp/fileio.cpp
+    cpp/main.cpp
 
 DISTFILES += \
     qml/main.qml \
@@ -47,5 +46,4 @@ contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
         $$PWD/android/ssl-libs/armeabi-v7a/libssl.so
 }
 
-HEADERS += \
-    cpp/fileio.h
+HEADERS +=

@@ -3,30 +3,44 @@ import QtQuick 2.0
 
 Item {
     property string source: ""
+    property var json: null
 
     property ListModel model : ListModel { id: jsonModel }
 
+    onJsonChanged: updateJSONModel()
+
     Component.onCompleted: {
-            var xhr = new XMLHttpRequest;
-            xhr.open("GET", source);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE)
-                    json = xhr.responseText;
+        var xhr = new XMLHttpRequest;
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try{
+                    json = JSON.parse(xhr.responseText);
+                }catch(e){
+                    console.log(e.name + " - "+ e.message);
+                }
             }
-            xhr.send();
+        };
+
+        xhr.open("GET", source);
+        xhr.send();
+    }
+
+    function updateJSONModel(){
+        if (json === null){
+            console.log("json empty");
+            return;
         }
 
-    function updateJSONModel() {
-            jsonModel.clear();
+        jsonModel.clear();
 
-            if ( json === "" )
-                return;
+//        console.log(JSON.stringify(json["62"]));
+//        jsonModel.append(json["62"]);
+//        jsonModel.append(json["116"]);
+//        jsonModel.append(json["259"]);
 
-            var objectArray = JSON.parse;
-            for ( var key in objectArray ) {
-                var jo = objectArray[key];
-                jsonModel.append( jo );
-            }
+        for(var key in json){
+            jsonModel.append(json[key]);
         }
-
+    }
 }

@@ -10,6 +10,8 @@ ColumnLayout{
         width: window.width
         height: window.height
         model: speakerModel.model
+        cellWidth: width/2
+        cellHeight: cellWidth
 
         SpeakersModel{
             id: speakerModel
@@ -19,20 +21,30 @@ ColumnLayout{
             id: delegateRoot
             width: speakerList.cellWidth; height: speakerList.cellHeight
             color: 'red'
-            Column{
-                spacing: 10
-                Image{
-                    source: photo.src
-                    width: speakerList.cellWidth
-                    height: speakerList.cellHeight/2
-                    fillMode: Image.PreserveAspectCrop
-                }
-
-                Text{
-                    text: name
-                }
+            Image{
+                source: photo.src
+                width: speakerList.cellWidth
+                height: width
+                fillMode: Image.PreserveAspectCrop
             }
 
+            Rectangle{
+                width: speakerList.cellWidth * 0.5
+                height: width
+                anchors.bottom: delegateRoot.bottom
+                anchors.right: delegateRoot.right
+                color: 'blue'
+
+                Text{
+                    text: name.replace(" ", "\n")
+                    fontSizeMode: Text.Fit
+                    width: parent.width - (parent.width*0.20); height: width
+                    minimumPixelSize: 10
+                    font.pixelSize: 72
+                    horizontalAlignment: Text.AlignRight
+                    anchors.centerIn: parent
+                }
+            }
         }
     }
 }

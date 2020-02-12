@@ -36,6 +36,8 @@ ColumnLayout{
                 color: 'blue'
 
                 Text{
+                    FontLoader { id: daFont; source: "qrc:/fonts/AnonymousPro-Regular.ttf" }
+                    font.family: daFont.name
                     text: name.replace(" ", "\n")
                     fontSizeMode: Text.Fit
                     width: parent.width - (parent.width*0.20); height: width

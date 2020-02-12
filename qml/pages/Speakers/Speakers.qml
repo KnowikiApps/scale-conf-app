@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
 
+import "qrc:/js/utils.js" as Utils
+
 ColumnLayout{
     spacing: 50
 
@@ -20,7 +22,7 @@ ColumnLayout{
         delegate: Rectangle{
             id: delegateRoot
             width: speakerList.cellWidth; height: speakerList.cellHeight
-            color: 'red'
+
             Image{
                 source: photo.src
                 width: speakerList.cellWidth
@@ -29,14 +31,39 @@ ColumnLayout{
             }
 
             Rectangle{
+                property string boxColor: "#1D3261"
+                property string textColor: "#ffffff"
+
+                Component.onCompleted: {
+                    var rand = Utils.randomNumber(0, 4);
+                    console.log(rand);
+                    switch(rand){
+                    case 0:
+                        boxColor = "#E9F2F9";
+                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        break;
+                    case 1:
+                        boxColor = "#8CADC8";
+                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        break;
+                    case 2:
+                        boxColor = "#EB6C4B";
+                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        break;
+                    default:
+                        break;
+                    }
+                }
+
+                id: textBox
                 width: speakerList.cellWidth * 0.5
                 height: width
                 anchors.bottom: delegateRoot.bottom
                 anchors.right: delegateRoot.right
-                color: 'blue'
+                color: boxColor
 
                 Text{
-                    FontLoader { id: daFont; source: "qrc:/fonts/AnonymousPro-Regular.ttf" }
+                    FontLoader { id: daFont; source: "qrc:/fonts/AnonymousPro-Bold.ttf" }
                     font.family: daFont.name
                     text: name.replace(" ", "\n")
                     fontSizeMode: Text.Fit
@@ -45,6 +72,8 @@ ColumnLayout{
                     font.pixelSize: 72
                     horizontalAlignment: Text.AlignRight
                     anchors.centerIn: parent
+                    font.weight: Font.ExtraBold
+                    color: parent.textColor
                 }
             }
         }

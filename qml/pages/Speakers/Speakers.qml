@@ -1,20 +1,38 @@
 import QtQuick 2.0
-import QtWebView 1.1
+import QtQuick.Controls 2.1
+import QtQuick.Layouts 1.0
 
-WebView {
-    id: speakersPage
+ColumnLayout{
+    spacing: 50
 
-    width: window.width
-    height: window.height
-    url: "https://www.socallinuxexpo.org/scale/17x/speakers"
+    GridView{
+        id: speakerList
+        width: window.width
+        height: window.height
+        model: speakerModel.model
 
-    onLoadingChanged:{
-        runJavaScript("var nav = document.getElementById('navbar'); nav.parentNode.removeChild(nav)");
-        runJavaScript("var lowsec = document.querySelectorAll('div.region-sidebar-first')[1]; lowsec.parentNode.removeChild(lowsec)");
-        runJavaScript("var foot = document.querySelector('footer.footer'); foot.parentNode.removeChild(foot)");
+        SpeakersModel{
+            id: speakerModel
+        }
 
-        if(loadRequest.errorString){
-            console.error("Webview errorString() -> "+loadRequest.errorString);
+        delegate: Rectangle{
+            id: delegateRoot
+            width: speakerList.cellWidth; height: speakerList.cellHeight
+            color: 'red'
+            Column{
+                spacing: 10
+                Image{
+                    source: photo.src
+                    width: speakerList.cellWidth
+                    height: speakerList.cellHeight/2
+                    fillMode: Image.PreserveAspectCrop
+                }
+
+                Text{
+                    text: name
+                }
+            }
+
         }
     }
 }

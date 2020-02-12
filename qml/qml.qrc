@@ -24,5 +24,6 @@
         <file>pages/Speakers/Speakers.qml</file>
         <file>pages/SpecialEvents/SpecialEvents.qml</file>
         <file>components/modals/CSVcopiedModal.qml</file>
+        <file>pages/components/JSONListModel/JSONListModel.qml</file>
     </qresource>
 </RCC>

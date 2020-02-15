@@ -98,6 +98,7 @@ ColumnLayout{
                     anchors.centerIn: parent
                     font.weight: Font.ExtraBold
                     color: parent.textColor
+                    wrapMode: Text.WordWrap
                 }
             }
         }

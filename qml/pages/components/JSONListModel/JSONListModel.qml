@@ -34,11 +34,6 @@ Item {
 
         jsonModel.clear();
 
-//        console.log(JSON.stringify(json["62"]));
-//        jsonModel.append(json["62"]);
-//        jsonModel.append(json["116"]);
-//        jsonModel.append(json["259"]);
-
         for(var key in json){
             jsonModel.append(json[key]);
         }

@@ -5,7 +5,32 @@ import QtQuick.Layouts 1.0
 import "qrc:/js/utils.js" as Utils
 
 ColumnLayout{
-    spacing: 50
+    spacing: 0
+    FontLoader { id: sourceCodeProBlack; source: "qrc:/fonts/SourceCodePro-Black" }
+
+    Rectangle{
+        id: header
+        width: window.width
+        height: window.height * 0.05
+
+        Text{
+            text: "SPEAKERS"
+            font.family: sourceCodeProBlack.name
+            color: "#EB6C4B"
+
+            width: header.width*0.9
+            height: header.height*0.6
+            anchors.right: header.right
+            anchors.centerIn: parent
+            verticalAlignment: Text.AlignVCenter
+
+            fontSizeMode: Text.VerticalFit
+            minimumPixelSize: 10
+            font.pixelSize: 72
+            font.weight: Font.ExtraBold
+
+        }
+    }
 
     GridView{
         id: speakerList

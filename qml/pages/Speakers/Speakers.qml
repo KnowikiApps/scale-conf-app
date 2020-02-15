@@ -61,7 +61,6 @@ ColumnLayout{
 
                 Component.onCompleted: {
                     var rand = Utils.randomNumber(0, 4);
-                    console.log(rand);
                     switch(rand){
                     case 0:
                         boxColor = "#E9F2F9";

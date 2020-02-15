@@ -2,5 +2,6 @@
     <qresource prefix="/fonts">
         <file>AnonymousPro-Regular.ttf</file>
         <file>AnonymousPro-Bold.ttf</file>
+        <file>SourceCodePro-Black.ttf</file>
     </qresource>
 </RCC>

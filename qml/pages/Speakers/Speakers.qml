@@ -3,10 +3,11 @@ import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.0
 
 import "qrc:/js/utils.js" as Utils
+import "qrc:/js/nav.js" as NavHelper
 
 ColumnLayout{
     spacing: 0
-    FontLoader { id: sourceCodeProBlack; source: "qrc:/fonts/SourceCodePro-Black" }
+    FontLoader { id: sourceCodeProBlack; source: "qrc:/fonts/SourceCodePro-Black.ttf" }
 
     Rectangle{
         id: header
@@ -47,6 +48,23 @@ ColumnLayout{
         delegate: Rectangle{
             id: delegateRoot
             width: speakerList.cellWidth; height: speakerList.cellHeight
+
+            property var props: ({
+                                     _name: name,
+                                     _title: title,
+                                     _org: organization,
+                                     _pic: photo.src,
+                                     _bio: biography,
+                                     _website: website
+                                 })
+
+            MouseArea{
+                z: 1
+                anchors.fill: parent
+                onClicked: {
+                    NavHelper.nav_tray_push("qrc:/pages/Speakers/IndividualSpeaker.qml", props);
+                }
+            }
 
             Image{
                 source: photo.src

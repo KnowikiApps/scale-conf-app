@@ -2,13 +2,13 @@
 
 function parseDay(day) {
     if (day.indexOf("Thursday") >= 0)
-        return "Thursday";
+        return "thursday";
     else if (day.indexOf("Friday") >= 0)
-        return "Friday";
+        return "friday";
     else if (day.indexOf("Saturday") >= 0)
-        return "Saturday";
+        return "saturday";
     else if (day.indexOf("Sunday") >= 0)
-        return "Sunday";
+        return "sunday";
     else
         return "";
 }
@@ -66,6 +66,12 @@ function get_announcements() {
     doc.send();
 }
 
+function timeRange(startTime, endTime) {
+    var start = (new Date(startTime)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).substring(0, 5)
+    var end = (new Date(endTime)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).substring(0, 5)
+
+    return (start + "\n-\n" + end);
+}
 
 
 

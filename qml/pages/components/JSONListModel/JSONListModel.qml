@@ -4,6 +4,7 @@ import QtQuick 2.0
 Item {
     property string source: ""
     property var json: null
+    property string reqType: ""
 
     property ListModel model : ListModel { id: jsonModel }
 

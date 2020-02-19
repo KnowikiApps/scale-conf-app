@@ -119,7 +119,7 @@ ColumnLayout {
                     }
                     Text {
                         id: shortabstractText
-                        text: topic
+                        text: shortAbstract
                         width: delegateRoot.availWidth * 0.7
                         maximumLineCount: 3
                         wrapMode: Text.Wrap

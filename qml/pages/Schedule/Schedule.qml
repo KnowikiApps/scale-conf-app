@@ -1,5 +1,8 @@
 import QtQuick 2.0
+import QtQuick 2.14
+
 import QtQuick.Controls 2.1
+import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Layouts 1.0
 
@@ -11,6 +14,8 @@ import "qrc:/js/feed.js" as Feed
 import "qrc:/js/utils.js" as Utils
 
 ColumnLayout {
+    spacing: 4
+
     FontLoader {
         id: sourceCodeProBlack
         source: "qrc:/fonts/SourceCodePro-Black"
@@ -87,26 +92,35 @@ ColumnLayout {
 
         delegate: Rectangle {
             id: delegateRoot
-            width: schedule.width * 0.94
+            width: schedule.width * 1
+            color: "#e9f2f9"
 
             property bool rowVisible: Feed.dayMatches(dayFilter.currentDay, when.day)
             property int dividerHeight: rowVisible ? delegateRoot.height - (rowVisible * 10) : 0
             property int availWidth: schedule.width - 33 - addButton.width
             property int delegateHeight: Feed.heightOf(dayFilter.currentDay, when.day, shortabstractText.height + titleText.height)
 
-            height: delegateHeight + (rowVisible * 60)
+            height: delegateHeight + (rowVisible * 50)
 
+            Rectangle {id: divideRect; height: 8; color: "#ffffff"; width: schedule.width}
             Row {
                 id: delegateRow
-                spacing: 5
+                spacing: 10
+                anchors.top: divideRect.bottom
+                anchors.topMargin: 20
 
                 Text {
                     text: Feed.timeRange(when.startTime, when.endTime)
                     width: delegateRoot.availWidth * 0.15
                     wrapMode: Text.Wrap
                     visible: Feed.dayMatches(dayFilter.currentDay, when.day)
+                    color: "#8cadc8"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    topPadding: 1
+                    elide: Text.ElideRight
                 }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Column{
                     Text {
                         id: titleText
@@ -115,6 +129,7 @@ ColumnLayout {
                         maximumLineCount: 1
                         wrapMode: Text.Wrap
                         font.bold: true
+                        color: "#8cadc8"
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                     }
                     Text {
@@ -123,23 +138,31 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.7
                         maximumLineCount: 3
                         wrapMode: Text.Wrap
-                        elide: Text.ElideRight
+                        color: "#8cadc8"
+                        //elide: Text.ElideRight
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                     }
                 }
 
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Text {
                     text: location
                     width: delegateRoot.availWidth * 0.15
                     wrapMode: Text.Wrap
+                    color: "#8cadc8"
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignTop
+                    topPadding: ((delegateRoot.height - divideRect.height) / 5)
+                    //elide: Text.ElideRight
                     visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                 }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Button {
                     id: addButton
-                    width: height
                     text: Database.set_proper_icon(url)
+                    font.pointSize: 12
+                    font.bold: true
+
                     enabled: !Database.record_exists_in_schedule_list(url)
                     onClicked: {
                         Database.add_record("schedule_list",{time: time, day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
@@ -147,6 +170,28 @@ ColumnLayout {
                         addButton.enabled = !Database.record_exists_in_schedule_list(url)
                     }
                     visible: Feed.dayMatches(dayFilter.currentDay, when.day)
+
+                    contentItem: Text {
+                        text: addButton.text
+                        font: addButton.font
+                        //opacity: enabled ? 1.0 : 0.3
+                        //color: control.down ? "#17a81a" : "#21be2b"
+                        color: "#8cadc8"
+                        horizontalAlignment: Text.AlignRight
+                        verticalAlignment: Text.AlignVCenter
+                        topPadding:((delegateRoot.height - divideRect.height) / 8)
+                        elide: Text.ElideRight
+                    }
+
+                    background: Rectangle {
+                        //implicitWidth: 100
+                        //implicitHeight: 40
+                        //opacity: enabled ? 1 : 0.3
+                        //border.color: control.down ? "#17a81a" : "#21be2b"
+                        //border.width: 1
+                        color: "#e9f2f9"
+                        width: height
+                    }
                 }
             }
 

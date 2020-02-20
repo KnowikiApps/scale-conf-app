@@ -3,5 +3,8 @@
         <file>navicon.svg</file>
         <file>arrow-left.svg</file>
         <file>HomePageBanner.svg</file>
+	<file>SCaLE_icons-01_logo.svg</file>
+	<file>SCaLE_icons-02_home.svg</file>
+	<file>SCaLE_icons-03_menu-hamburger.svg</file>
     </qresource>
 </RCC>

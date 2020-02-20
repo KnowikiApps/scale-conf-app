@@ -114,7 +114,7 @@ ColumnLayout {
                     width: delegateRoot.availWidth * 0.15
                     wrapMode: Text.Wrap
                     visible: Feed.dayMatches(dayFilter.currentDay, when.day)
-                    color: "#8cadc8"
+                    color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     topPadding: 1
@@ -165,7 +165,7 @@ ColumnLayout {
 
                     enabled: !Database.record_exists_in_schedule_list(url)
                     onClicked: {
-                        Database.add_record("schedule_list",{time: time, day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
+                        Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
                         addButton.text = Database.set_proper_icon(url)
                         addButton.enabled = !Database.record_exists_in_schedule_list(url)
                     }
@@ -176,7 +176,7 @@ ColumnLayout {
                         font: addButton.font
                         //opacity: enabled ? 1.0 : 0.3
                         //color: control.down ? "#17a81a" : "#21be2b"
-                        color: "#8cadc8"
+                        color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignVCenter
                         topPadding:((delegateRoot.height - divideRect.height) / 8)
@@ -195,16 +195,16 @@ ColumnLayout {
                 }
             }
 
-            MouseArea{
-                z: 1
-                anchors.fill: parent
-                onClicked: {
-                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: url});
-                }
-                onPressAndHold: {
-                    Database.add_record("schedule_list", {time: time, talkTitle: title, room: location, path: url})
-                }
-            }
+//            MouseArea{
+//                z: 1
+//                anchors.fill: parent
+//                onClicked: {
+//                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: url});
+//                }
+//                onPressAndHold: {
+//                    Database.add_record("schedule_list", {time: time, day: Feed.parseDay(when.day), talkTitle: title, room: location, path: url})
+//                }
+//            }
 
         }
     }

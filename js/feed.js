@@ -14,7 +14,7 @@ function parseDay(day) {
 }
 
 function dayMatches(currentDay, day) {
-    if (currentDay === parseDay(day) || currentDay === "")
+    if (currentDay === parseDay(day) || currentDay === day || currentDay === "")
         return true;
     else
         return false;

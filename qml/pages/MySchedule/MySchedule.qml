@@ -51,7 +51,7 @@ ColumnLayout {
                     wrapMode: Text.Wrap
                     visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Text {
                     id: talkTitleText
                     text: talkTitle
@@ -60,14 +60,14 @@ ColumnLayout {
                     wrapMode: Text.Wrap
                     visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Text {
                     text: room
                     width: delegateRoot.availWidth * 0.15
                     wrapMode: Text.Wrap
                     visible: Feed.dayMatches(dayFilter.currentDay, day)
                 }
-                Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                 Button {
                     id: addButton
                     width: height

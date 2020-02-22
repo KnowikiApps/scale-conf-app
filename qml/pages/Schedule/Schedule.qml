@@ -131,6 +131,7 @@ ColumnLayout {
                         verticalAlignment: Text.AlignVCenter
                         topPadding: 1
                         elide: Text.ElideRight
+                        font.family: sourceCodeProBlack.name
                     }
                     //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                     Column{
@@ -140,8 +141,10 @@ ColumnLayout {
                             width: delegateRoot.availWidth * 0.7
                             maximumLineCount: 1
                             wrapMode: Text.Wrap
-                            font.bold: true
+                            font.weight: Font.Black
+                            font.pointSize: 10
                             color: "#8cadc8"
+                            font.family: sourceCodeProBlack.name
                             visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                         }
                         Text {
@@ -150,6 +153,7 @@ ColumnLayout {
                             width: delegateRoot.availWidth * 0.7
                             maximumLineCount: 3
                             wrapMode: Text.Wrap
+                            font.family: sourceCodeProBlack.name
                             color: "#8cadc8"
                             //elide: Text.ElideRight
                             visible: Feed.dayMatches(dayFilter.currentDay, when.day)
@@ -165,6 +169,7 @@ ColumnLayout {
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
                         topPadding: ((delegateRoot.height - divideRect.height) / 5)
+                        font.family: sourceCodeProBlack.name
                         //elide: Text.ElideRight
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                     }
@@ -174,6 +179,7 @@ ColumnLayout {
                         text: Database.set_proper_icon(url)
                         font.pointSize: 12
                         font.bold: true
+                        font.family: sourceCodeProBlack.name
 
                         enabled: !Database.record_exists_in_schedule_list(url)
                         onClicked: {

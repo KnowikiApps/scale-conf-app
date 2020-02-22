@@ -15,6 +15,11 @@ import "qrc:/js/feed.js" as Feed
 ColumnLayout {
     spacing: 4
 
+    FontLoader {
+        id: sourceCodeProBlack
+        source: "qrc:/fonts/SourceCodePro-Black"
+    }
+
     ScheduleFilter {
         id: dayFilter
         width: window.width
@@ -43,7 +48,6 @@ ColumnLayout {
             property int dividerHeight: rowVisible ? delegateRoot.height - (rowVisible * 10) : 0
             property int availWidth: mySchedule.width - 33 - deleteButton.width
             property int delegateHeight: Feed.heightOf(dayFilter.currentDay, day, talkTitleText.height + 32)
-            //property int delegateHeight: Feed.heightOf(dayFilter.currentDay, day, shortabstractText.height + titleText.height)
 
             height: delegateHeight + (rowVisible * 50)
 
@@ -77,6 +81,7 @@ ColumnLayout {
                         verticalAlignment: Text.AlignVCenter
                         topPadding: 1
                         elide: Text.ElideRight
+                        font.family: sourceCodeProBlack.name
                     }
                     //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                     Text {
@@ -85,7 +90,9 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.7
                         maximumLineCount: 4
                         wrapMode: Text.Wrap
-                        font.bold: true
+                        font.family: sourceCodeProBlack.name
+                        font.weight: Font.Black
+                        font.pointSize: 10
                         color: "#8cadc8"
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
                     }
@@ -95,17 +102,19 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
                         color: "#8cadc8"
+                        font.family: sourceCodeProBlack.name
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
-                        //topPadding: ((delegateRoot.height - divideRect.height) / 5)
+                        topPadding: ((delegateRoot.height - divideRect.height) / 6)
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
                     }
                     //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                     Button {
                         id: deleteButton
                         width: height
-                        font.pointSize: 16
+                        font.pointSize: 20
                         font.bold: true
+                        font.family: sourceCodeProBlack.name
                         text: "-"
                         onClicked: {
                             confirmDelete.open();

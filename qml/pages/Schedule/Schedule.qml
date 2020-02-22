@@ -102,99 +102,111 @@ ColumnLayout {
 
             height: delegateHeight + (rowVisible * 50)
 
-            Rectangle {id: divideRect; height: 8; color: "#ffffff"; width: schedule.width}
-            Row {
-                id: delegateRow
-                spacing: 10
-                anchors.top: divideRect.bottom
-                anchors.topMargin: 20
-
-                Text {
-                    text: Feed.timeRange(when.startTime, when.endTime)
-                    width: delegateRoot.availWidth * 0.15
-                    wrapMode: Text.Wrap
-                    visible: Feed.dayMatches(dayFilter.currentDay, when.day)
-                    color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    topPadding: 1
-                    elide: Text.ElideRight
+            MouseArea {
+                z: 1
+                height: delegateRoot.height
+                width: delegateRoot.width - addButton.width
+                onClicked: {
+                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: url});
                 }
-                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
-                Column{
+                onPressAndHold: {
+                    Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
+                }
+
+                Rectangle {id: divideRect; height: 8; color: "#ffffff"; width: schedule.width}
+
+                Row {
+                    id: delegateRow
+                    spacing: 10
+                    anchors.top: divideRect.bottom
+                    anchors.topMargin: 20
+
                     Text {
-                        id: titleText
-                        text: title
-                        width: delegateRoot.availWidth * 0.7
-                        maximumLineCount: 1
+                        text: Feed.timeRange(when.startTime, when.endTime)
+                        width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
-                        font.bold: true
-                        color: "#8cadc8"
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
+                        color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        topPadding: 1
+                        elide: Text.ElideRight
                     }
+                    //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                    Column{
+                        Text {
+                            id: titleText
+                            text: title
+                            width: delegateRoot.availWidth * 0.7
+                            maximumLineCount: 1
+                            wrapMode: Text.Wrap
+                            font.bold: true
+                            color: "#8cadc8"
+                            visible: Feed.dayMatches(dayFilter.currentDay, when.day)
+                        }
+                        Text {
+                            id: shortabstractText
+                            text: shortAbstract
+                            width: delegateRoot.availWidth * 0.7
+                            maximumLineCount: 3
+                            wrapMode: Text.Wrap
+                            color: "#8cadc8"
+                            //elide: Text.ElideRight
+                            visible: Feed.dayMatches(dayFilter.currentDay, when.day)
+                        }
+                    }
+
+                    //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
                     Text {
-                        id: shortabstractText
-                        text: shortAbstract
-                        width: delegateRoot.availWidth * 0.7
-                        maximumLineCount: 3
+                        text: location
+                        width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
                         color: "#8cadc8"
+                        horizontalAlignment: Text.AlignRight
+                        verticalAlignment: Text.AlignTop
+                        topPadding: ((delegateRoot.height - divideRect.height) / 5)
                         //elide: Text.ElideRight
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                     }
-                }
+                    //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+                    Button {
+                        id: addButton
+                        text: Database.set_proper_icon(url)
+                        font.pointSize: 12
+                        font.bold: true
 
-                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
-                Text {
-                    text: location
-                    width: delegateRoot.availWidth * 0.15
-                    wrapMode: Text.Wrap
-                    color: "#8cadc8"
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignTop
-                    topPadding: ((delegateRoot.height - divideRect.height) / 5)
-                    //elide: Text.ElideRight
-                    visible: Feed.dayMatches(dayFilter.currentDay, when.day)
-                }
-                //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
-                Button {
-                    id: addButton
-                    text: Database.set_proper_icon(url)
-                    font.pointSize: 12
-                    font.bold: true
+                        enabled: !Database.record_exists_in_schedule_list(url)
+                        onClicked: {
+                            Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
+                            addButton.text = Database.set_proper_icon(url)
+                            addButton.enabled = !Database.record_exists_in_schedule_list(url)
+                        }
+                        visible: Feed.dayMatches(dayFilter.currentDay, when.day)
 
-                    enabled: !Database.record_exists_in_schedule_list(url)
-                    onClicked: {
-                        Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
-                        addButton.text = Database.set_proper_icon(url)
-                        addButton.enabled = !Database.record_exists_in_schedule_list(url)
-                    }
-                    visible: Feed.dayMatches(dayFilter.currentDay, when.day)
+                        contentItem: Text {
+                            text: addButton.text
+                            font: addButton.font
+                            //opacity: enabled ? 1.0 : 0.3
+                            //color: control.down ? "#17a81a" : "#21be2b"
+                            color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
+                            horizontalAlignment: Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                            topPadding:((delegateRoot.height - divideRect.height) / 8)
+                            elide: Text.ElideRight
+                        }
 
-                    contentItem: Text {
-                        text: addButton.text
-                        font: addButton.font
-                        //opacity: enabled ? 1.0 : 0.3
-                        //color: control.down ? "#17a81a" : "#21be2b"
-                        color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
-                        horizontalAlignment: Text.AlignRight
-                        verticalAlignment: Text.AlignVCenter
-                        topPadding:((delegateRoot.height - divideRect.height) / 8)
-                        elide: Text.ElideRight
-                    }
-
-                    background: Rectangle {
-                        //implicitWidth: 100
-                        //implicitHeight: 40
-                        //opacity: enabled ? 1 : 0.3
-                        //border.color: control.down ? "#17a81a" : "#21be2b"
-                        //border.width: 1
-                        color: "#e9f2f9"
-                        width: height
+                        background: Rectangle {
+                            //implicitWidth: 100
+                            //implicitHeight: 40
+                            //opacity: enabled ? 1 : 0.3
+                            //border.color: control.down ? "#17a81a" : "#21be2b"
+                            //border.width: 1
+                            color: "#e9f2f9"
+                            width: height
+                        }
                     }
                 }
             }
-
 //            MouseArea{
 //                z: 1
 //                anchors.fill: parent

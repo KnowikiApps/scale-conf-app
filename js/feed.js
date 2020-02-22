@@ -21,7 +21,7 @@ function dayMatches(currentDay, day) {
 }
 
 function heightOf(currentDay, day, defaultHeight) {
-    if (currentDay === parseDay(day) || currentDay === "")
+    if (currentDay === parseDay(day) || currentDay === day || currentDay === "")
         return defaultHeight;
     else
         return 0;

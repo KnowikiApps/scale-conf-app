@@ -4,64 +4,68 @@ import QtQuick.Layouts 1.0
 import "qrc:/js/nav.js" as NavHelper
 
 Drawer {
+    id: navDrawer
     width: 0.5 * window.width
     height: window.height
+    //background: "#8cadc8"
 
     ColumnLayout{
-        spacing: 2
+        spacing: 0
 
-        Rectangle {
-            width: parent.width
-            height: width/3
-            Image {
-                id: banner
-                source: "qrc:/img/HomePageBanner.svg"
-                width: 123
-                height: parent.height
-                fillMode: Image.PreserveAspectFit
-                anchors.centerIn: parent
-            }
+//        Rectangle {
+//            width: parent.width
+//            height: width/3
+//            //color: "#8cadc8"
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
-            }
-        }
+//            Image {
+//                id: banner
+//                source: "qrc:/img/HomePageBanner.svg"
+//                width: 123
+//                height: parent.height
+//                fillMode: Image.PreserveAspectFit
+//                anchors.centerIn: parent
+//            }
+
+//            MouseArea {
+//                anchors.fill: parent
+//                onClicked: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
+//            }
+//        }
 
         NavButton{
             id: schedule
-            text: "Schedule"
+            buttonText: "Schedule"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Schedule/Schedule.qml")
         }
         NavButton {
             id: mySchedule
-            text: "My Schedule"
+            buttonText: "My Schedule"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/MySchedule/MySchedule.qml")
         }
 
         NavButton{
             id: contacts
-            text: "Contacts"
+            buttonText: "Contacts"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Contacts/Contacts.qml")
         }
         NavButton{
             id: exhibitors
-            text: "Exhibitors"
+            buttonText: "Exhibitors"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml")
         }
         NavButton{
             id: speakers
-            text: "Speakers"
+            buttonText: "Speakers"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Speakers/Speakers.qml")
         }
         NavButton{
             id: specialEvents
-            text: "Special Events"
+            buttonText: "Special Events"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/SpecialEvents/SpecialEvents.qml")
         }
         NavButton{
             id: qrScan
-            text: "Scan Badge QR Code"
+            buttonText: "Scan Badge QR Code"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScan.qml")
         }
     }

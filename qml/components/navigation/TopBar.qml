@@ -45,40 +45,48 @@ ToolBar{
             background: Image {source: "qrc:/img/arrow-left.svg"}
         }
 
-        Rectangle {
-            id: homeRect
-            width: window.width - 175
-            height: button_dimensions
-            color: "#8cadc8"
+        MouseArea {
             anchors.right: parent.right
+            width: button_dimensions
+            height: button_dimensions
+            onClicked: { pages.clear(); NavHelper.nav_tray_push('qrc:/pages/Home/Home.qml') }
+            z: 3
 
-            Image {
-                id: logoImage
-                anchors.left: homeRect.left
-                width: 150
+            Rectangle {
+                id: homeRect
+                width: window.width - 175
                 height: button_dimensions
-                source: "qrc:img/SCaLE_icons-01_logo.svg"
-                fillMode: Image.PreserveAspectFit
-            }
+                color: "#8cadc8"
+                anchors.right: parent.right
 
-            ToolButton {
-                anchors.left: logoImage.right
-                anchors.leftMargin: (homeRect.width - 150 - button_dimensions)
-                onClicked: pages.clear()
-                z: 2
-
-                background: Rectangle {
-                    color: "#8cadc8"
-                    radius: 7
-                    width: button_dimensions
+                Image {
+                    id: logoImage
+                    anchors.left: homeRect.left
+                    width: 150
                     height: button_dimensions
-                    z: 1
+                    source: "qrc:img/SCaLE_icons-01_logo.svg"
+                    fillMode: Image.PreserveAspectFit
+                }
 
-                    Image {
-                        source: "qrc:/img/SCaLE_icons-02_home.svg"
-                        fillMode: Image.PreserveAspectFit
+                ToolButton {
+                    anchors.left: logoImage.right
+                    anchors.leftMargin: (homeRect.width - 150 - button_dimensions)
+                    onClicked: pages.clear()
+                    z: 2
+
+                    background: Rectangle {
+                        color: "#8cadc8"
+                        radius: 7
                         width: button_dimensions
                         height: button_dimensions
+                        z: 1
+
+                        Image {
+                            source: "qrc:/img/SCaLE_icons-02_home.svg"
+                            fillMode: Image.PreserveAspectFit
+                            width: button_dimensions
+                            height: button_dimensions
+                        }
                     }
                 }
             }

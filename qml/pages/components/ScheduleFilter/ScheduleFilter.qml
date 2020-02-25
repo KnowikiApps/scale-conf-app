@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.0
 
 ColumnLayout {
     id: layout
-    FontLoader { id: sourceCodeProBlack; source: "qrc:/fonts/SourceCodePro-Black" }
+    FontLoader { id: sourceCodeProBlack; source: "qrc:/fonts/SourceCodePro-Black.ttf" }
 
     property string currentDay: ""
     property var listRef: null

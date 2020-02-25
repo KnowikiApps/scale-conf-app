@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick 2.14
+import QtQuick 2.8
 
 import QtQuick.Controls 2.1
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick.Controls 2.8
+import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
 
 import "../components/ScheduleFilter"
@@ -16,8 +16,18 @@ ColumnLayout {
     spacing: 4
 
     FontLoader {
+        id: anonymousProBold
+        source: "qrc:/fonts/AnonymousPro-Bold.ttf"
+    }
+
+    FontLoader {
+        id: anonymousProRegular
+        source: "qrc:/fonts/AnonymousPro-Regular.ttf"
+    }
+
+    FontLoader {
         id: sourceCodeProBlack
-        source: "qrc:/fonts/SourceCodePro-Black"
+        source: "qrc:/fonts/SourceCodePro-Black.ttf"
     }
 
     ScheduleFilter {
@@ -102,7 +112,7 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
                         color: "#8cadc8"
-                        font.family: sourceCodeProBlack.name
+                        font.family: anonymousProBold.name
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
                         topPadding: ((delegateRoot.height - divideRect.height) / 6)
@@ -114,7 +124,7 @@ ColumnLayout {
                         width: height
                         font.pointSize: 20
                         font.bold: true
-                        font.family: sourceCodeProBlack.name
+                        font.family: anonymousProBold.name
                         text: "-"
                         onClicked: {
                             confirmDelete.open();

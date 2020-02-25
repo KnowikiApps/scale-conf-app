@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick 2.14
+import QtQuick 2.8
 
 import QtQuick.Controls 2.1
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick.Controls 2.8
+import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
 
 import "../components/ScheduleFilter"
@@ -17,8 +17,18 @@ ColumnLayout {
     spacing: 4
 
     FontLoader {
+        id: anonymousProBold
+        source: "qrc:/fonts/AnonymousPro-Bold.ttf"
+    }
+
+    FontLoader {
+        id: anonymousProRegular
+        source: "qrc:/fonts/AnonymousPro-Regular.ttf"
+    }
+
+    FontLoader {
         id: sourceCodeProBlack
-        source: "qrc:/fonts/SourceCodePro-Black"
+        source: "qrc:/fonts/SourceCodePro-Black.ttf"
     }
 
     ScheduleFilter {
@@ -153,7 +163,8 @@ ColumnLayout {
                             width: delegateRoot.availWidth * 0.7
                             maximumLineCount: 3
                             wrapMode: Text.Wrap
-                            font.family: sourceCodeProBlack.name
+                            font.family: anonymousProRegular.name
+                            font.weight: Font.Normal
                             color: "#8cadc8"
                             //elide: Text.ElideRight
                             visible: Feed.dayMatches(dayFilter.currentDay, when.day)
@@ -169,7 +180,7 @@ ColumnLayout {
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
                         topPadding: ((delegateRoot.height - divideRect.height) / 5)
-                        font.family: sourceCodeProBlack.name
+                        font.family: anonymousProBold.name
                         //elide: Text.ElideRight
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                     }
@@ -177,10 +188,9 @@ ColumnLayout {
                     Button {
                         id: addButton
                         text: Database.set_proper_icon(url)
-                        font.pointSize: 12
+                        font.pointSize: 16
                         font.bold: true
-                        font.family: sourceCodeProBlack.name
-
+                        font.family: anonymousProBold.name
                         enabled: !Database.record_exists_in_schedule_list(url)
                         onClicked: {
                             Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})

@@ -10,7 +10,7 @@ Button {
 
     FontLoader {
         id: sourceCode
-        source: "qrc:/fonts/SourceCodePro-Black"
+        source: "qrc:/fonts/SourceCodePro-Black.ttf"
     }
 
     contentItem: RowLayout {

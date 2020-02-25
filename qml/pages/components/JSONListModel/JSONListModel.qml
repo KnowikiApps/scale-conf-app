@@ -4,6 +4,7 @@ import QtQuick 2.0
 Item {
     property string source: ""
     property var json: null
+    property string reqType: ""
 
     property ListModel model : ListModel { id: jsonModel }
 
@@ -15,7 +16,7 @@ Item {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 try{
-                    json = JSON.parse(xhr.responseText);
+                    json = JSON.parse(xhr.responseText.replace(/\"abstract\"\:/g, "\"shortAbstract\":"));
                 }catch(e){
                     console.log(e.name + " - "+ e.message);
                 }

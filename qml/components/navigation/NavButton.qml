@@ -17,7 +17,7 @@ Button {
         id: navButtonRoot
 
         Text {
-            anchors.left: navButtonRoot.left
+            Layout.alignment: Qt.AlignLeft
             color: "#eb6c4b"
             text: "*"
             font.family: sourceCode.name
@@ -28,7 +28,7 @@ Button {
         }
 
         Text {
-            anchors.right: navButtonRoot.right
+            Layout.alignment: Qt.AlignRight
             color: "#1d3261"
             text: buttonText
             font.family: sourceCode.name

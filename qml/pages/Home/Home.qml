@@ -42,6 +42,23 @@ ColumnLayout {
         cellHeight: cellWidth
         model: AnnouncementsModel{}
 
+        header: Rectangle{
+            visible: !speakerList.model.count
+
+            Text{
+                text: "No Announcements Yet!"
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.family: sourceCodeProBlack.name
+                color: "#EB6C4B"
+                width: speakerList.width
+                font.weight: Font.ExtraBold
+                fontSizeMode: Text.HorizontalFit
+                minimumPixelSize: 10;
+                font.pixelSize: 72
+            }
+        }
+
         delegate: Rectangle{
             id: delegateRoot
             width: speakerList.cellWidth; height: speakerList.cellHeight

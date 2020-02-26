@@ -12,26 +12,6 @@ Drawer {
     ColumnLayout{
         spacing: 0
 
-//        Rectangle {
-//            width: parent.width
-//            height: width/3
-//            //color: "#8cadc8"
-
-//            Image {
-//                id: banner
-//                source: "qrc:/img/HomePageBanner.svg"
-//                width: 123
-//                height: parent.height
-//                fillMode: Image.PreserveAspectFit
-//                anchors.centerIn: parent
-//            }
-
-//            MouseArea {
-//                anchors.fill: parent
-//                onClicked: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
-//            }
-//        }
-
         NavButton{
             id: schedule
             buttonText: "Schedule"

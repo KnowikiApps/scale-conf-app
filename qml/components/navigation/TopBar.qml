@@ -5,6 +5,10 @@ import "qrc:/js/nav.js" as NavHelper
 
 ToolBar{
     id: toolBar
+    background: Rectangle {
+        anchors.fill: parent
+        color: "#ffffff"
+    }
 
     property real button_dimensions: window.height * 0.05
 
@@ -33,6 +37,7 @@ ToolBar{
 
         //back button
         ToolButton{
+            id: backButton
             anchors.left: navMenuButton.right
             anchors.leftMargin: 25
             //only show if there are pages in the stackview
@@ -54,23 +59,23 @@ ToolBar{
 
             Rectangle {
                 id: homeRect
-                width: window.width - 175
+                width: window.width * 0.65
                 height: button_dimensions
                 color: "#8cadc8"
+                anchors.left: backButton.left
                 anchors.right: parent.right
 
                 Image {
                     id: logoImage
                     anchors.left: homeRect.left
-                    width: 150
+                    sourceSize.width: homeRect.width * 0.89
                     height: button_dimensions
                     source: "qrc:img/SCaLE_icons-01_logo.svg"
                     fillMode: Image.PreserveAspectFit
                 }
 
                 ToolButton {
-                    anchors.left: logoImage.right
-                    anchors.leftMargin: (homeRect.width - 150 - button_dimensions)
+                    anchors.right: parent.right
                     onClicked: pages.clear()
                     z: 2
 

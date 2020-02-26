@@ -85,7 +85,7 @@ ColumnLayout {
                     text: title
                     width: parent.width - (parent.width*0.20)//; height: width/2
                     wrapMode: Text.WordWrap
-                    font.pointSize: 12
+                    font.pointSize: (window.width * 0.024)
                     font.weight: Font.ExtraBold
                     font.family: srcFont.name
                     color: textBox.textColor
@@ -98,7 +98,7 @@ ColumnLayout {
                     wrapMode: Text.WordWrap
                     anchors.top: titleText.bottom
                     font.family: daFont.name
-                    font.pointSize: 11
+                    font.pointSize: (window.width * 0.022)
                     horizontalAlignment: Text.AlignLeft
                 }
             }

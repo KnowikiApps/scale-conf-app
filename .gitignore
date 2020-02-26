@@ -6,4 +6,3 @@ apps
 local.properties
 *.gradle
 gradlew.bat
-android_openssl

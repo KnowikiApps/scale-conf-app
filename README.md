@@ -4,6 +4,11 @@ Mobile App for Southern California Linux Expo.
 # Getting Started
 Qt is a cross-platform software development kit written in C++. This project uses Qt Quick which allows us to write an application that can run on any desktop and mobile platform. You'll need to have Qt installed as well as the mobile SDKs in order to compile for mobile. Windows and Linux users can compile for Android and desktop only because iOS SDK is not available for those platforms. OSX users can compile for all platforms.
 
+Clone the repo and update submodules:
+
+    git clone https://github.com/KnowikiApps/scale-conf-app.git
+    git submodule update --init
+
 ## Installing Qt
 You willl need to install Qt SDK and Qt Creator. This project uses Qt SDK version 5.10.1
 

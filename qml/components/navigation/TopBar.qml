@@ -52,12 +52,10 @@ ToolBar{
 
         Rectangle {
             id: homeRect
-            anchors.left: backButton.left
-            anchors.leftMargin: 100
-            width: window.width * 0.59
+            anchors.right: parent.right
+            width: window.width * 0.5
             height: button_dimensions
             color: "#8cadc8"
-            Layout.fillWidth: true
 
             Image {
                 id: logoImage
@@ -69,25 +67,25 @@ ToolBar{
             }
         }
 
-        ToolButton {
-            anchors.left: homeRect.right
-            anchors.top: homeRect.top
-            onClicked: console.log('clicked')
-            z: 2
+//        ToolButton {
+//            anchors.left: homeRect.right
+//            anchors.top: homeRect.top
+//            onClicked: console.log('clicked')
+//            z: 2
 
-            background: Rectangle {
-                color: "#8cadc8"
-                width: button_dimensions
-                height: button_dimensions
-                z: 1
+//            background: Rectangle {
+//                color: "#8cadc8"
+//                width: button_dimensions
+//                height: button_dimensions
+//                z: 1
 
-                Image {
-                    source: "qrc:/img/SCaLE_icons-02_home.svg"
-                    fillMode: Image.PreserveAspectFit
-                    width: button_dimensions
-                    height: button_dimensions
-                }
-            }
-        }
+//                Image {
+//                    source: "qrc:/img/SCaLE_icons-02_home.svg"
+//                    fillMode: Image.PreserveAspectFit
+//                    width: button_dimensions
+//                    height: button_dimensions
+//                }
+//            }
+//        }
     }
 }

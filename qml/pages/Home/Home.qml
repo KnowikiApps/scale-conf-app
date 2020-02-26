@@ -2,75 +2,105 @@ import QtQuick 2.9
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Window 2.2
+import "qrc:/js/utils.js" as Utils
+import "qrc:/js/nav.js" as NavHelper
 
 ColumnLayout {
-    spacing: 50
+    spacing: 0
 
-    Rectangle {
+    FontLoader { id: sourceCodeProBlack; source: "qrc:/fonts/SourceCodePro-Black.ttf" }
+
+    Rectangle{
+        id: header
         width: window.width
-        height: width/3
-        Image {
-            id: banner
-            source: "qrc:/img/HomePageBanner.svg"
-            height: parent.height
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
-            anchors.top: parent.top
-        }
-        Rectangle {
-            width: parent.width
-            color: "lightgray"
-            height: announcementsText.height
-            anchors.top: banner.bottom
+        height: window.height * 0.05
 
-            Text {
-                id: announcementsText
-                width: parent.width
-                text: "Announcements"
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 20
-            }
+        Text{
+            text: "ANNOUNCEMENTS"
+            font.family: sourceCodeProBlack.name
+            color: "#EB6C4B"
+
+            width: header.width*0.9
+            height: header.height*0.6
+            anchors.right: header.right
+            anchors.centerIn: parent
+            verticalAlignment: Text.AlignVCenter
+
+            fontSizeMode: Text.VerticalFit
+            minimumPixelSize: 10
+            font.pixelSize: 72
+            font.weight: Font.ExtraBold
+
         }
     }
 
-    ListView {
-        id: announcements
-        width: window.width;
-        height: window.height - banner.height
-        spacing: 5
+    GridView{
+        id: speakerList
+        width: window.width
+        height: window.height
+        cellWidth: width/2
+        cellHeight: cellWidth
         model: AnnouncementsModel{}
 
         delegate: Rectangle{
             id: delegateRoot
-            width: announcements.width
-            height: contentColumn.height
+            width: speakerList.cellWidth; height: speakerList.cellHeight
 
-            property int availWidth: announcements.width
+            Rectangle{
+                property string boxColor: "#1D3261"
+                property string textColor: "#ffffff"
 
-            Column{
-                id: contentColumn
-                spacing: 5
+                Component.onCompleted: {
+                    var rand = Utils.randomNumber(0, 4);
+                    switch(rand){
+                    case 0:
+                        boxColor = "#E9F2F9";
+                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        break;
+                    case 1:
+                        boxColor = "#8CADC8";
+                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        break;
+                    case 2:
+                        boxColor = "#EB6C4B";
+                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        break;
+                    default:
+                        break;
+                    }
+                }
+
+                id: textBox
+                width: speakerList.cellWidth
+                height: width
+                anchors.bottom: delegateRoot.bottom
+                anchors.right: delegateRoot.right
+                color: boxColor
+
+                FontLoader { id: srcFont; source: "qrc:/fonts/SourceCodePro-Black.ttf" }
+                FontLoader { id: daFont; source: "qrc:/fonts/AnonymousPro-Bold.ttf" }
+
                 Text {
                     id: titleText
                     text: title
-                    width: availWidth
-                    wrapMode: Text.Wrap
-                    font.bold: true
-                    font.underline: true
-                    horizontalAlignment: Text.AlignJustify
-                    leftPadding: 10
-                    rightPadding: leftPadding
+                    width: parent.width - (parent.width*0.20)//; height: width/2
+                    wrapMode: Text.WordWrap
+                    font.pointSize: 12
+                    font.weight: Font.ExtraBold
+                    font.family: srcFont.name
+                    color: textBox.textColor
                 }
                 Text {
                     id: shortabstractText
                     text: body
-                    width: availWidth
-                    wrapMode: Text.Wrap
-                    leftPadding: 10
-                    rightPadding: leftPadding
-                    horizontalAlignment: Text.AlignJustify
+                    color: textBox.textColor
+                    width: parent.width - (parent.width*0.20)//; height: width
+                    wrapMode: Text.WordWrap
+                    anchors.top: titleText.bottom
+                    font.family: daFont.name
+                    font.pointSize: 11
+                    horizontalAlignment: Text.AlignLeft
                 }
-                Rectangle {height: 1; color: "lightgray"; width: parent.width}
             }
         }
     }

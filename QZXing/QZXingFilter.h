@@ -21,7 +21,7 @@
 #include <QAbstractVideoFilter>
 #include <QDebug>
 #include <QFuture>
-#include <QZXing.h>
+#include "QZXing.h"
 
 ///
 /// References:
@@ -44,11 +44,6 @@ struct SimpleVideoFrame
         : size{0,0}
         , pixelFormat{QVideoFrame::Format_Invalid}
     {}
-
-    SimpleVideoFrame(QVideoFrame & frame)
-    {
-        copyData(frame);
-    }
 
     void copyData(QVideoFrame & frame)
     {

@@ -86,7 +86,7 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
-                        color: "#8cadc8"
+                        color: "#eb6c4b"
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         topPadding: 1
@@ -136,7 +136,7 @@ ColumnLayout {
                         contentItem: Text {
                             text: deleteButton.text
                             font: deleteButton.font
-                            color: "#8cadc8"
+                            color: "#eb6c4b"
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
                             elide: Text.ElideRight

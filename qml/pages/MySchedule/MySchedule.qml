@@ -86,14 +86,14 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
-                        color: "#8cadc8"
+                        color: "#eb6c4b"
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         topPadding: 1
                         elide: Text.ElideRight
                         font.family: sourceCodeProBlack.name
                     }
-                    //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+
                     Text {
                         id: talkTitleText
                         text: talkTitle
@@ -106,7 +106,7 @@ ColumnLayout {
                         color: "#8cadc8"
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
                     }
-                    //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+
                     Text {
                         text: room
                         width: delegateRoot.availWidth * 0.15
@@ -118,7 +118,7 @@ ColumnLayout {
                         topPadding: ((delegateRoot.height - divideRect.height) / 6)
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
                     }
-                    //Rectangle {height: dividerHeight; color: "lightgray"; width: 1; visible: rowVisible}
+
                     Button {
                         id: deleteButton
                         width: height
@@ -136,41 +136,19 @@ ColumnLayout {
                         contentItem: Text {
                             text: deleteButton.text
                             font: deleteButton.font
-                            //opacity: enabled ? 1.0 : 0.3
-                            //color: control.down ? "#17a81a" : "#21be2b"
-                            color: "#8cadc8"
+                            color: "#eb6c4b"
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
-                            //topPadding:((delegateRoot.height - divideRect.height) / 8)
                             elide: Text.ElideRight
                         }
 
                         background: Rectangle {
-                            //implicitWidth: 100
-                            //implicitHeight: 40
-                            //opacity: enabled ? 1 : 0.3
-                            //border.color: control.down ? "#17a81a" : "#21be2b"
-                            //border.width: 1
                             color: "#e9f2f9"
                             width: height
                         }
                     }
                 }
             }
-
-//            MouseArea{
-//                z: 1
-//                anchors.left: parent.left
-//                anchors.top: parent.top
-//                anchors.bottom: parent.bottom
-//                anchors.right: deleteButton.left
-//                onClicked: {
-//                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: path});
-//                }
-//                onPressAndHold: {
-//                    confirmDelete.open();
-//                }
-//            }
         }
     }
 }

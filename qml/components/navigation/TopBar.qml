@@ -5,6 +5,10 @@ import "qrc:/js/nav.js" as NavHelper
 
 ToolBar{
     id: toolBar
+    background: Rectangle {
+        anchors.fill: parent
+        color: "#ffffff"
+    }
 
     property real button_dimensions: window.height * 0.05
 
@@ -33,6 +37,7 @@ ToolBar{
 
         //back button
         ToolButton{
+            id: backButton
             anchors.left: navMenuButton.right
             anchors.leftMargin: 25
             //only show if there are pages in the stackview
@@ -45,49 +50,42 @@ ToolBar{
             background: Image {source: "qrc:/img/arrow-left.svg"}
         }
 
-        MouseArea {
-            anchors.right: parent.right
-            width: button_dimensions
+        Rectangle {
+            id: homeRect
+            anchors.left: backButton.left
+            anchors.leftMargin: 100
+            width: window.width * 0.59
             height: button_dimensions
-            onClicked: { pages.clear(); NavHelper.nav_tray_push('qrc:/pages/Home/Home.qml') }
-            z: 3
+            color: "#8cadc8"
+            Layout.fillWidth: true
 
-            Rectangle {
-                id: homeRect
-                width: window.width - 175
+            Image {
+                id: logoImage
+                anchors.left: homeRect.left
+                sourceSize.width: homeRect.width * 0.89
                 height: button_dimensions
+                source: "qrc:img/SCaLE_icons-01_logo.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        ToolButton {
+            anchors.left: homeRect.right
+            anchors.top: homeRect.top
+            onClicked: console.log('clicked')
+            z: 2
+
+            background: Rectangle {
                 color: "#8cadc8"
-                anchors.right: parent.right
+                width: button_dimensions
+                height: button_dimensions
+                z: 1
 
                 Image {
-                    id: logoImage
-                    anchors.left: homeRect.left
-                    width: 150
-                    height: button_dimensions
-                    source: "qrc:img/SCaLE_icons-01_logo.svg"
+                    source: "qrc:/img/SCaLE_icons-02_home.svg"
                     fillMode: Image.PreserveAspectFit
-                }
-
-                ToolButton {
-                    anchors.left: logoImage.right
-                    anchors.leftMargin: (homeRect.width - 150 - button_dimensions)
-                    onClicked: pages.clear()
-                    z: 2
-
-                    background: Rectangle {
-                        color: "#8cadc8"
-                        radius: 7
-                        width: button_dimensions
-                        height: button_dimensions
-                        z: 1
-
-                        Image {
-                            source: "qrc:/img/SCaLE_icons-02_home.svg"
-                            fillMode: Image.PreserveAspectFit
-                            width: button_dimensions
-                            height: button_dimensions
-                        }
-                    }
+                    width: button_dimensions
+                    height: button_dimensions
                 }
             }
         }

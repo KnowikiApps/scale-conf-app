@@ -19,7 +19,7 @@ ColumnLayout {
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
-            width: 125
+            width: window.width/4
             background: Rectangle {
                 color: (thursdayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
             }
@@ -36,7 +36,7 @@ ColumnLayout {
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
-            width: 125
+            width: window.width/4
             background: Rectangle {
                 color: (fridayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
             }
@@ -53,7 +53,7 @@ ColumnLayout {
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
-            width: 125
+            width: window.width/4
             background: Rectangle {
                 color: (saturdayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
             }
@@ -70,7 +70,7 @@ ColumnLayout {
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
-            width: 125
+            width: window.width/4
             background: Rectangle {
                 color: (sundayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
             }

@@ -20,9 +20,12 @@
         <file>pages/MySchedule/MySchedule.qml</file>
         <file>pages/QrScan/QrScan.qml</file>
         <file>pages/Schedule/Schedule.qml</file>
-        <file>pages/Schedule/SignModel.qml</file>
         <file>pages/Speakers/Speakers.qml</file>
         <file>pages/SpecialEvents/SpecialEvents.qml</file>
         <file>components/modals/CSVcopiedModal.qml</file>
+        <file>pages/components/JSONListModel/JSONListModel.qml</file>
+        <file>pages/Speakers/SpeakersModel.qml</file>
+        <file>pages/Speakers/IndividualSpeaker.qml</file>
+        <file>pages/Schedule/SignModel.qml</file>
     </qresource>
 </RCC>

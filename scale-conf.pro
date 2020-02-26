@@ -28,7 +28,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     qml/qml.qrc \
     js/js.qrc \
-    img/img.qrc
+    img/img.qrc \
+    fonts/fonts.qrc
 
 include(QZXing/QZXing.pri)
 

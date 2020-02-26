@@ -58,7 +58,7 @@ function record_exists_in_schedule_list(path) {
 }
 
 function set_proper_icon(path) {
-    return (!record_exists_in_schedule_list(path) ? "+" : "!");
+    return (!record_exists_in_schedule_list(path) ? "+" : "\u2713");
 }
 
 /*
@@ -145,19 +145,62 @@ function unsanitize(str) {
     return str.replace(/\'\'/g, "'").replace(/\\\"/g, '"');
 }
 
+function militaryTime(time) {
+    var milTime = +time.split("\n-\n")[0].replace(":", "");
+    milTime += ((milTime >= 100 && milTime <= 800) ? 1200 : 0);
+    return milTime;
+}
+
 function get_schedule_list(model) {
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     db.transaction(function(tx) {
         var results = tx.executeSql("SELECT * FROM schedule_list");
+        var thursdayEvents = [];//results.rows.filter(function(evt) { return evt.day === 'thursday' });
+        var fridayEvents = [];//results.rows.filter(function(evt) { return evt.day === 'friday' });
+        var saturdayEvents = [];//results.rows.filter(function(evt) { return evt.day === 'saturday' });
+        var sundayEvents = [];//results.rows.filter(function(evt) { return evt.day === 'sunday' });
 
-        for (var i = 0; i < results.rows.length; ++i) {
+        for (var c = 0; c < results.rows.length; ++c) {
+            if (results.rows.item(c).day === 'thursday') {
+                thursdayEvents.push(results.rows.item(c));
+            }
+            else if (results.rows.item(c).day === 'friday') {
+                fridayEvents.push(results.rows.item(c));
+            }
+            else if (results.rows.item(c).day === 'saturday') {
+                saturdayEvents.push(results.rows.item(c));
+            }
+            else if (results.rows.item(c).day === 'sunday') {
+                sundayEvents.push(results.rows.item(c));
+            }
+        }
+
+        thursdayEvents.sort(function(a, b) {
+            return (militaryTime(a.time) - militaryTime(b.time));
+        });
+
+        fridayEvents.sort(function(a, b) {
+            return (militaryTime(a.time) - militaryTime(b.time));
+        });
+
+        saturdayEvents.sort(function(a, b) {
+            return (militaryTime(a.time) - militaryTime(b.time));
+        });
+
+        sundayEvents.sort(function(a, b) {
+            return (militaryTime(a.time) - militaryTime(b.time));
+        });
+
+        var allEvents = thursdayEvents.concat(fridayEvents).concat(saturdayEvents).concat(sundayEvents);
+
+        for (var i = 0; i < allEvents.length; ++i) {
             model.append({
-                             id: results.rows.item(i).rowid,
-                             time: results.rows.item(i).time,
-                             day: results.rows.item(i).day,
-                             talkTitle: results.rows.item(i).talkTitle,
-                             room: results.rows.item(i).room,
-                             path: results.rows.item(i).path,
+                             id: allEvents[i].rowid,
+                             time: allEvents[i].time,
+                             day: allEvents[i].day,
+                             talkTitle: allEvents[i].talkTitle,
+                             room: allEvents[i].room,
+                             path: allEvents[i].path,
                          });
         }
     });

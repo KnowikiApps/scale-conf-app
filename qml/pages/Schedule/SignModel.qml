@@ -2,7 +2,26 @@ import QtQuick 2.0
 import QtQuick.XmlListModel 2.0
 import "qrc:/js/feed.js" as Feed
 import "qrc:/js/database.js" as DB
+import '../components/JSONListModel'
 
+Item {
+    property string day: ""
+
+    JSONListModel {
+        id: jsonModel
+        source: "http://scale.designcollaborate.com:3000/events/" + day
+    }
+
+    function setDay(currentDay) {
+        day = currentDay
+    }
+
+    function getModelID() {
+        return jsonModel;
+    }
+}
+
+/*
 XmlListModel{
     id: model
     source:"https://www.socallinuxexpo.org/scale/17x/sign.xml"
@@ -59,3 +78,4 @@ XmlListModel{
         }
     }
 }
+*/

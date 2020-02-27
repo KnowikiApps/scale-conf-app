@@ -8,8 +8,12 @@ Drawer {
     width: 0.5 * window.width
     height: window.height
     //background: "#8cadc8"
+    background: Rectangle{
+        color: "transparent"
+    }
 
     ColumnLayout{
+        id: drawerLayout
         spacing: 0
 
         NavButton{

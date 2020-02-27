@@ -38,8 +38,7 @@ ToolBar{
         //back button
         ToolButton{
             id: backButton
-            anchors.left: navMenuButton.right
-            anchors.leftMargin: 25
+            Layout.alignment: Qt.AlignLeft
             //only show if there are pages in the stackview
             enabled: pages.depth > 1
             visible: enabled
@@ -52,7 +51,7 @@ ToolBar{
 
         Rectangle {
             id: homeRect
-            anchors.right: parent.right
+            Layout.alignment: Qt.AlignRight
             width: window.width * 0.5
             height: button_dimensions
             color: "#8cadc8"

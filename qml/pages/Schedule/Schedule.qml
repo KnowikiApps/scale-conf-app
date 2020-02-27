@@ -45,7 +45,7 @@ ColumnLayout {
         id: schedule
         width: window.width
         height: window.height - parent.spacing*1.75
-        anchors.top: dayFilter.bottom
+//        anchors.top: dayFilter.bottom
         model: signModel.getModelID().model
 
         delegate: Rectangle {

@@ -3,8 +3,14 @@
         <file>navicon.svg</file>
         <file>arrow-left.svg</file>
         <file>HomePageBanner.svg</file>
-	<file>SCaLE_icons-01_logo.svg</file>
-	<file>SCaLE_icons-02_home.svg</file>
-	<file>SCaLE_icons-03_menu-hamburger.svg</file>
+        <file>SCaLE_icons-01_logo.svg</file>
+        <file>SCaLE_icons-02_home.svg</file>
+        <file>SCaLE_icons-03_menu-hamburger.svg</file>
+        <file>SCaLE_placeholders_speakers_penguin-02.svg</file>
+        <file>SCaLE_placeholders_speakers_penguin.svg</file>
+        <file>SCaLE_placeholders_speakers_robot-01.svg</file>
+        <file>SCaLE_placeholders_speakers_robot-02.svg</file>
+        <file>SCaLE_placeholders_speakers_robot-03.svg</file>
+        <file>SCaLE_placeholders_speakers_robot-04.svg</file>
     </qresource>
 </RCC>

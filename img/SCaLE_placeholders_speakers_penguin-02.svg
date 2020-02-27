@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>SCaLE_placeholders_speakers_penguin-02</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SCaLE_placeholders_speakers_penguin-02">
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="100" height="100"></rect>
+            <g transform="translate(24.000000, 9.000000)" id="Shape" fill-rule="nonzero">
+                <path d="M52.93,66.35 C52.93,80.96 41.1,83 26.5,83 C11.9,83 0.06,80.96 0.06,66.35 C0.06,60.65 -0.1,51.78 3.41,39.87 C4.4,36.53 9.28,30.09 10.14,26.89 C14.06,12.31 15.73,0.74 26.5,0.74 C38.54,0.74 39.57,12.61 43.15,26.54 C44.03,29.97 48.94,36.62 49.95,40.15 C53.32,52.02 52.93,60.53 52.93,66.35 Z" stroke="#FFFFFF" fill="#CFCECE"></path>
+                <path d="M45.87,54.83 C45.87,66.9 37.2,79.08 26.5,79.08 C15.8,79.08 7.12,66.9 7.12,54.83 C7.12,48.86 10.96,36.04 13.76,24.61 C16.07,15.17 17.75,6.68 22.53,3.77 C23.66,3.08 24.96,5.32 26.49,5.32 C27.86,5.32 29.05,2.93 30.11,3.35 C36,5.68 37.51,14.08 39.71,23.63 C42.4,35.3 45.87,48.69 45.87,54.83 Z" fill="#FFFFFF"></path>
+                <polygon fill="#CFCECE" points="30.27 13 26.31 18.21 22.35 13 26.31 11.19"></polygon>
+                <path d="M25.41,11.2 C25.41,12.6 24.28,13.73 22.88,13.73 C21.49,13.73 20.35,12.6 20.35,11.2 C20.35,9.8 21.48,8.67 22.88,8.67 C24.28,8.66 25.41,9.8 25.41,11.2 Z" stroke="#FFFFFF" fill="#CFCECE"></path>
+                <path d="M32.29,11.2 C32.29,12.6 31.16,13.73 29.76,13.73 C28.36,13.73 27.23,12.6 27.23,11.2 C27.23,9.8 28.37,8.67 29.76,8.67 C31.16,8.66 32.29,9.8 32.29,11.2 Z" stroke="#FFFFFF" fill="#CFCECE"></path>
+            </g>
+        </g>
+    </g>
+</svg>

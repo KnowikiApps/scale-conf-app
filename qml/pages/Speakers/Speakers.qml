@@ -48,6 +48,7 @@ ColumnLayout{
         delegate: Rectangle{
             id: delegateRoot
             width: speakerList.cellWidth; height: speakerList.cellHeight
+            color: 'white'
 
             property var props: ({
                                      _name: name,
@@ -61,16 +62,40 @@ ColumnLayout{
             MouseArea{
                 z: 1
                 anchors.fill: parent
+                enabled: parent.props ? true : false
                 onClicked: {
                     NavHelper.nav_tray_push("qrc:/pages/Speakers/IndividualSpeaker.qml", props);
                 }
             }
 
             Image{
-                source: photo.src
+                source: setImgSrc()
+
                 width: speakerList.cellWidth
                 height: width
                 fillMode: Image.PreserveAspectCrop
+
+                function setImgSrc(){
+                    try{
+                        return photo.src;
+                    }catch(e){
+                        var rand = Utils.randomNumber(0,5);
+                        switch(rand){
+                        case 0:
+                            return "qrc:/img/SCaLE_placeholders_speakers_penguin-02.svg";
+                        case 1:
+                            return "qrc:/img/SCaLE_placeholders_speakers_penguin.svg";
+                        case 2:
+                            return "qrc:/img/SCaLE_placeholders_speakers_robot-01.svg";
+                        case 3:
+                            return "qrc:/img/SCaLE_placeholders_speakers_robot-02.svg";
+                        case 4:
+                            return "qrc:/img/SCaLE_placeholders_speakers_robot-03.svg";
+                        case 5:
+                            return "qrc:/img/SCaLE_placeholders_speakers_robot-04.svg";
+                        }
+                    }
+                }
             }
 
             Rectangle{

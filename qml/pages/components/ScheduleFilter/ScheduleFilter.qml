@@ -15,7 +15,7 @@ ColumnLayout {
 
         TabButton {
             id: thursdayButton
-            text: "<font color=\"#ffffff\">THURSDAY</font>"
+            text: "<font color=\"#1D3261\">THURSDAY</font>"
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
@@ -32,7 +32,7 @@ ColumnLayout {
         }
         TabButton {
             id: fridayButton
-            text: "<font color=\"#ffffff\">FRIDAY</font>"
+            text: "<font color=\"#1D3261\">FRIDAY</font>"
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
@@ -49,7 +49,7 @@ ColumnLayout {
         }
         TabButton {
             id: saturdayButton
-            text: "<font color=\"#ffffff\">SATURDAY</font>"
+            text: "<font color=\"#1D3261\">SATURDAY</font>"
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold
@@ -66,7 +66,7 @@ ColumnLayout {
         }
         TabButton {
             id: sundayButton
-            text: "<font color=\"#ffffff\">SUNDAY</font>"
+            text: "<font color=\"#1D3261\">SUNDAY</font>"
             font.family: sourceCodeProBlack.name
             font.pointSize: 12
             font.weight: Font.Bold

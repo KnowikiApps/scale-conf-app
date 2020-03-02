@@ -11,6 +11,7 @@ ToolBar{
     }
 
     property real button_dimensions: window.height * 0.05
+    property bool hideNavBtn: false
 
     RowLayout {
         anchors.fill: parent
@@ -18,6 +19,7 @@ ToolBar{
         //show nav menu
         ToolButton {
             id: navMenuButton
+            visible: !toolBar.hideNavBtn
             onClicked: menu.open()
             implicitHeight: button_dimensions
             implicitWidth: button_dimensions * 1.2
@@ -42,7 +44,10 @@ ToolBar{
             //only show if there are pages in the stackview
             enabled: pages.depth > 1
             visible: enabled
-            onClicked: pages.pop()
+            onClicked: {
+                pages.pop();
+                toolBar.hideNavBtn = false;
+            }
             implicitHeight: button_dimensions
             implicitWidth: button_dimensions
             width: button_dimensions

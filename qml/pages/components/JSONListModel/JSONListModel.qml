@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import "qrc:/js/database.js" as DB
+
 
 Item {
     property string source: ""
@@ -20,6 +22,8 @@ Item {
                 }catch(e){
                     console.log(e.name + " - "+ e.message);
                 }
+            }else{
+                json = JSON.parse(DB.get_json(source.replace("http://scale.designcollaborate.com:3000/", '').replace("/", '')));
             }
         };
 
@@ -38,5 +42,8 @@ Item {
         for(var key in json){
             jsonModel.append(json[key]);
         }
+
+        //sync json data to the local database
+        DB.add_json(JSON.stringify(json), source.replace("http://scale.designcollaborate.com:3000/", '').replace("/", ''));
     }
 }

@@ -6,7 +6,7 @@ WebView {
 
     width: window.width
     height: window.height
-    url: "https://www.socallinuxexpo.org/scale/17x/events"
+    url: "https://www.socallinuxexpo.org/scale/18x/events"
 
     onLoadingChanged:{
         runJavaScript("var nav = document.getElementById('navbar'); nav.parentNode.removeChild(nav)");

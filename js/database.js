@@ -15,6 +15,8 @@ function create_tables(){
                 "contacts(" + table_defaults + ", badge TEXT UNIQUE, first TEXT, last TEXT, email TEXT, title TEXT, company TEXT, phone TEXT, zip TEXT)",
                 "announcements(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, xml_data TEXT UNIQUE)",
                 "schedule_list(" + table_defaults + ", time TEXT, day TEXT, talkTitle TEXT, room TEXT, path TEXT)",
+                "events(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, json_data TEXT UNIQUE)",
+                "speakers(" + table_defaults + ", updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, json_data TEXT UNIQUE)",
             ];
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
     try{
@@ -36,6 +38,17 @@ function add_xml(xml_data, table_name){
         })
     }catch(err){
         console.log("add_xml() -> " + err);
+    };
+}
+
+function add_json(json_data, table_name){
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    try{
+        db.transaction(function(tx){
+            tx.executeSql("INSERT INTO `"+ table_name + "`(`json_data`) VALUES (?)", [json_data]);
+        })
+    }catch(err){
+        console.log("add_json() -> " + err);
     };
 }
 
@@ -114,6 +127,19 @@ function get_xml(table) {
         return xml.rows.item(0).xml_data;
     }catch(err){
         console.log("get_xml() -> " + err);
+    };
+}
+
+function get_json(table) {
+    var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    try{
+        var json;
+        db.transaction(function(tx){
+            json = tx.executeSql("SELECT * FROM "+ table + " ORDER BY id DESC LIMIT 1");
+        });
+        return json.rows.item(0).json_data;
+    }catch(err){
+        console.log("get_json() -> " + err);
     };
 }
 

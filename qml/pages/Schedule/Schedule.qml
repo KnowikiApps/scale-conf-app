@@ -85,7 +85,7 @@ ColumnLayout {
                         width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
-                        color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
+                        color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         topPadding: 1
@@ -102,7 +102,7 @@ ColumnLayout {
                             wrapMode: Text.Wrap
                             font.weight: Font.Black
                             font.pointSize: 10
-                            color: "#8cadc8"
+                            color: "#1D3261"
                             font.family: sourceCodeProBlack.name
                             visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                         }
@@ -114,7 +114,7 @@ ColumnLayout {
                             wrapMode: Text.Wrap
                             font.family: anonymousProRegular.name
                             font.weight: Font.Normal
-                            color: "#8cadc8"
+                            color: "#1D3261"
                             visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                         }
                     }
@@ -123,7 +123,7 @@ ColumnLayout {
                         text: location
                         width: delegateRoot.availWidth * 0.15
                         wrapMode: Text.Wrap
-                        color: "#8cadc8"
+                        color: "#1D3261"
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
                         topPadding: ((delegateRoot.height - divideRect.height) / 5)
@@ -141,8 +141,8 @@ ColumnLayout {
                         onClicked: {
                             Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})
                             addButton.text = Database.set_proper_icon(url)
-                            addButtonText.color = (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
-                            timeText.color = (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
+                            addButtonText.color = (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
+                            timeText.color = (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                             addButton.enabled = !Database.record_exists_in_schedule_list(url)
                         }
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
@@ -151,7 +151,7 @@ ColumnLayout {
                             id: addButtonText
                             text: addButton.text
                             font: addButton.font
-                            color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#8cadc8")
+                            color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
                             topPadding:((delegateRoot.height - divideRect.height) / 8)

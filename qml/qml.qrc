@@ -27,5 +27,6 @@
         <file>pages/Speakers/SpeakersModel.qml</file>
         <file>pages/Speakers/IndividualSpeaker.qml</file>
         <file>pages/Schedule/SignModel.qml</file>
+        <file>pages/CampusMap/CampusMap.qml</file>
     </qresource>
 </RCC>

@@ -81,6 +81,9 @@ function set_proper_icon(path) {
 */
 function add_record(table_name, json_data){
     var db = connect_db("ScalConf", "1.0", "Scale Conference App", 1000000);
+    var keys = Object.keys(json_data);
+    var columns = "('" + keys.join("','") + "')";
+    var placeholders = '(' + Array.apply(null, Array(keys.length)).map(String.prototype.valueOf,"?").join(',') + ')';
 
     try{
 
@@ -88,8 +91,8 @@ function add_record(table_name, json_data){
             savedAlreadyModal.open();
         else {
             db.transaction(function(tx){
-                tx.executeSql("INSERT INTO " + table_name + " " + get_sql(json_data));
-                console.log("INSERT INTO " + table_name + " " + get_sql(json_data));
+                tx.executeSql("INSERT INTO " + table_name + " " + columns + " VALUES " + placeholders, Object.values(json_data));
+                console.log("INSERT INTO " + table_name + " " + columns + " VALUES (" + Object.values(json_data).join(', ') + ")");
             })
 
             addedModal.open();
@@ -98,23 +101,6 @@ function add_record(table_name, json_data){
         console.log("add_record() -> " + err);
         throw err; //pass error on to component for handling
     };
-}
-
-/*
-  Helper function for turning a json object into columns and values syntax.
-  JSON should be formated like: column_name: "value"
-*/
-function get_sql(json_object){
-    var cols = "(";
-    var vals = "VALUES (";
-    for(var x in json_object){
-        cols = cols.concat("'", x, "', ");
-        vals = vals.concat("'", json_object[x], "', ");
-    }
-
-    cols = cols.slice(0, cols.length - 2) + ") ";
-    vals = vals.slice(0, vals.length - 2) + ")";
-    return cols + vals;
 }
 
 function get_xml(table) {

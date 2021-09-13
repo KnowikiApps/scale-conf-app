@@ -47,7 +47,7 @@ If you have installed the Android SDK and tools necessary, you should have an op
 ##### SSL Support
 Qt Networking libraries (like the one we use to pull data from api endpoints) use OpenSSL, but Android no longer supports it. In order to get this to work you need to provide the binaries. They can be downloaded here:
 
-https://indy.fulgan.com/SSL/OpenSSL%201.0.2g%20Android.zip
+https://github.com/KDAB/android_openssl
 
 unzip the contents into `$PROJECT_ROOT/android/ssl-libs`
 

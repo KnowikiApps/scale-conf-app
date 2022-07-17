@@ -12,6 +12,9 @@ SOURCES += \
     cpp/main.cpp
 
 DISTFILES += \
+    android/build.gradle \
+    android/gradle.properties \
+    android/gradlew.bat \
     qml/main.qml \
     js/database.js \
     android/AndroidManifest.xml \

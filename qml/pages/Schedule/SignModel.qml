@@ -9,7 +9,7 @@ Item {
 
     JSONListModel {
         id: jsonModel
-        source: "http://scale.designcollaborate.com:3000/events/" + day
+        source: "https://socal-linux-expo-backend.herokuapp.com/events/" + day
     }
 
     function setDay(currentDay) {

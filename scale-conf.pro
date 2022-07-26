@@ -34,8 +34,8 @@ RESOURCES += \
 
 include(QZXing/QZXing.pri)
 
-include(android_openssl/openssl.pri)
+#include(android_openssl/openssl.pri)
 
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+#ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 HEADERS +=

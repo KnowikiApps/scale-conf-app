@@ -9,7 +9,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>SCaLE Conference App By Knowiki Apps</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.knowikiapps.scale</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

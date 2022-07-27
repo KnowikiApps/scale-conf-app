@@ -12,6 +12,9 @@ SOURCES += \
     cpp/main.cpp
 
 DISTFILES += \
+    android/build.gradle \
+    android/gradle.properties \
+    android/gradlew.bat \
     qml/main.qml \
     js/database.js \
     android/AndroidManifest.xml \
@@ -38,4 +41,12 @@ include(QZXing/QZXing.pri)
 
 #ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
+ANDROID_MIN_SDK_VERSION = 30
+ANDROID_TARGET_SDK_VERSION = 30
+ANDROID_VERSION_CODE = 191
+ANDROID_VERSION_NAME = "1.9.1"
+ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
+
 HEADERS +=
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

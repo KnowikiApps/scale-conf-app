@@ -17,7 +17,6 @@ DISTFILES += \
     android/gradlew.bat \
     qml/main.qml \
     js/database.js \
-    android/AndroidManifest.xml \
     android/gradle/wrapper/gradle-wrapper.jar \
     android/gradlew \
     android/res/values/libs.xml \
@@ -37,16 +36,17 @@ RESOURCES += \
 
 include(QZXing/QZXing.pri)
 
-#include(android_openssl/openssl.pri)
-
-#ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-
-ANDROID_MIN_SDK_VERSION = 30
+ANDROID_MIN_SDK_VERSION = 29
 ANDROID_TARGET_SDK_VERSION = 30
-ANDROID_VERSION_CODE = 191
-ANDROID_VERSION_NAME = "1.9.1"
+ANDROID_VERSION_CODE = 192
+ANDROID_VERSION_NAME = "1.9.2"
 ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+ANDROID_PERMISSIONS += android.permission.INTERNET
+ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
+ANDROID_PERMISSIONS += android.permission.CAMERA
 
 HEADERS +=
 
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+android: include(/Users/derek/Library/Android/sdk/android_openssl/openssl.pri)

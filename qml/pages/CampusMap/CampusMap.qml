@@ -10,7 +10,7 @@ Item {
         Image {
             id: map
             anchors.fill: parent
-            source: "https://1kvji02qicdj3gx383wkmt91-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2014/08/pasadena-convention-center-map.jpg"
+            source: "https://emarketing360.com/Hilton/CA/HLAX/assets/sections/content-lower.gif"
 
             fillMode: Image.PreserveAspectFit
         }

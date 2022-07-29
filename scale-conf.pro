@@ -44,10 +44,10 @@ HEADERS +=
 android:{
     include(/Users/derek/Library/Android/sdk/android_openssl/openssl.pri)
 
-    ANDROID_MIN_SDK_VERSION = 29
+    ANDROID_MIN_SDK_VERSION = 27
     ANDROID_TARGET_SDK_VERSION = 30
-    ANDROID_VERSION_CODE = 192
-    ANDROID_VERSION_NAME = "1.9.2"
+    ANDROID_VERSION_CODE = 193
+    ANDROID_VERSION_NAME = "1.9.3"
     ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     ANDROID_PERMISSIONS += android.permission.INTERNET

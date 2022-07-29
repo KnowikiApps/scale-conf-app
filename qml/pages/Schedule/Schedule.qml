@@ -44,8 +44,9 @@ ColumnLayout {
     ListView {
         id: schedule
         width: window.width
-        height: window.height - parent.spacing*1.75
+        height: window.height - dayFilter.height - window.header.height
         anchors.top: dayFilter.bottom
+        anchors.bottom: window.bottom
         model: signModel.getModelID().model
 
         delegate: Rectangle {

@@ -36,17 +36,21 @@ RESOURCES += \
 
 include(QZXing/QZXing.pri)
 
-ANDROID_MIN_SDK_VERSION = 29
-ANDROID_TARGET_SDK_VERSION = 30
-ANDROID_VERSION_CODE = 192
-ANDROID_VERSION_NAME = "1.9.2"
-ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
-ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-ANDROID_PERMISSIONS += android.permission.INTERNET
-ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
-ANDROID_PERMISSIONS += android.permission.CAMERA
+
 
 HEADERS +=
 
 
-android: include(/Users/derek/Library/Android/sdk/android_openssl/openssl.pri)
+android:{
+    include(/Users/derek/Library/Android/sdk/android_openssl/openssl.pri)
+
+    ANDROID_MIN_SDK_VERSION = 29
+    ANDROID_TARGET_SDK_VERSION = 30
+    ANDROID_VERSION_CODE = 192
+    ANDROID_VERSION_NAME = "1.9.2"
+    ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
+    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+    ANDROID_PERMISSIONS += android.permission.INTERNET
+    ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
+    ANDROID_PERMISSIONS += android.permission.CAMERA
+}

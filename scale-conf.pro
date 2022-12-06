@@ -4,6 +4,8 @@ CONFIG += c++11 qzxing_multimedia
 
 QTPLUGIN+= qsqlite
 
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050F00
+
 # Default rules for deployment.
 include(deployment.pri)
 
@@ -34,7 +36,7 @@ RESOURCES += \
     img/img.qrc \
     fonts/fonts.qrc
 
-include(QZXing/QZXing.pri)
+include(./QZXing/QZXing.pri)
 
 
 
@@ -42,7 +44,7 @@ HEADERS +=
 
 
 android:{
-    include(/Users/derek/Library/Android/sdk/android_openssl/openssl.pri)
+    include(./android_openssl/openssl.pri)
 
     ANDROID_MIN_SDK_VERSION = 29
     ANDROID_TARGET_SDK_VERSION = 30

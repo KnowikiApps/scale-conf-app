@@ -4,8 +4,6 @@ CONFIG += c++11 qzxing_multimedia
 
 QTPLUGIN+= qsqlite
 
-DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050F00
-
 # Default rules for deployment.
 include(deployment.pri)
 

@@ -45,11 +45,7 @@ If you have installed the Android SDK and tools necessary, you should have an op
 `Android for armeabi_v7a (GCC 4.9, Qt 5.10.1)`
 
 ##### SSL Support
-Qt Networking libraries (like the one we use to pull data from api endpoints) use OpenSSL, but Android no longer supports it. In order to get this to work you need to provide the binaries. They can be downloaded here:
-
-https://indy.fulgan.com/SSL/OpenSSL%201.0.2g%20Android.zip
-
-unzip the contents into `$PROJECT_ROOT/android/ssl-libs`
+Qt Networking libraries (like the one we use to pull data from api endpoints) use OpenSSL, but Android no longer supports it. In order to get this to work you need to provide the binaries. They are included with the git submodule from the convenience repository https://github.com/KDAB/android_openssl
 
 This is the official Qt Article on the topic:
 http://doc.qt.io/qt-5/opensslsupport.html

@@ -6,6 +6,8 @@ import QtQuick.Controls 2.8
 import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
 
+import QtGraphicalEffects 1.12
+
 import "../components/ScheduleFilter"
 
 import "qrc:/js/nav.js" as NavHelper
@@ -33,8 +35,16 @@ ColumnLayout {
 
     ScheduleFilter {
         id: dayFilter
-        z: 2
+        anchors.top: parent.top
         listRef: schedule
+
+        layer.enabled: true
+        layer.effect: DropShadow{
+            transparentBorder: true
+            horizontalOffset: 0
+            verticalOffset: 4
+            radius: 8
+        }
     }
 
     SignModel {
@@ -44,8 +54,9 @@ ColumnLayout {
     ListView {
         id: schedule
         width: window.width
-        height: window.height - parent.spacing*1.75
-//        anchors.top: dayFilter.bottom
+        height: window.height - dayFilter.height - window.header.height
+        anchors.top: dayFilter.bottom
+        anchors.bottom: window.bottom
         model: signModel.getModelID().model
 
         delegate: Rectangle {

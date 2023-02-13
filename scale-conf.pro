@@ -12,17 +12,18 @@ SOURCES += \
     cpp/main.cpp
 
 DISTFILES += \
+    android/AndroidManifest.xml \
     android/build.gradle \
     android/gradle.properties \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
     android/gradlew.bat \
+    android/res/values/libs.xml \
     qml/main.qml \
     js/database.js \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradlew \
     android/res/values/libs.xml \
     android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -34,7 +35,7 @@ RESOURCES += \
     img/img.qrc \
     fonts/fonts.qrc
 
-include(QZXing/QZXing.pri)
+include(./QZXing/QZXing.pri)
 
 
 
@@ -42,7 +43,7 @@ HEADERS +=
 
 
 android:{
-    include(/Users/derek/Library/Android/sdk/android_openssl/openssl.pri)
+    include(./android_openssl/openssl.pri)
 
     ANDROID_MIN_SDK_VERSION = 27
     ANDROID_TARGET_SDK_VERSION = 30

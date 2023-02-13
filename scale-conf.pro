@@ -53,4 +53,6 @@ android:{
     ANDROID_PERMISSIONS += android.permission.INTERNET
     ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
     ANDROID_PERMISSIONS += android.permission.CAMERA
+
+    ICON = $$PWD/android/img/google-play-store/ic_launcher.png
 }

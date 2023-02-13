@@ -7,13 +7,13 @@ Item {
         width: window.width
         height: window.height
 
-        Image {
-            id: map
-            anchors.fill: parent
-            source: "https://emarketing360.com/Hilton/CA/HLAX/assets/sections/content-lower.gif"
+//        Image {
+//            id: map
+//            anchors.fill: parent
+//            source: "https://emarketing360.com/Hilton/CA/HLAX/assets/sections/content-lower.gif"
 
-            fillMode: Image.PreserveAspectFit
-        }
+//            fillMode: Image.PreserveAspectFit
+//        }
 
         MouseArea{
             anchors.fill: parent

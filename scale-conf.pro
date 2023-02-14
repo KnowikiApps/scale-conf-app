@@ -46,9 +46,9 @@ android:{
     include(./android_openssl/openssl.pri)
 
     ANDROID_MIN_SDK_VERSION = 27
-    ANDROID_TARGET_SDK_VERSION = 30
-    ANDROID_VERSION_CODE = 193
-    ANDROID_VERSION_NAME = "1.9.3"
+    ANDROID_TARGET_SDK_VERSION = 31
+    ANDROID_VERSION_CODE = 1100
+    ANDROID_VERSION_NAME = "1.10.0"
     ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     ANDROID_PERMISSIONS += android.permission.INTERNET

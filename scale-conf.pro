@@ -13,12 +13,21 @@ SOURCES += \
 
 DISTFILES += \
     android/AndroidManifest.xml \
+    android/AndroidManifest.xml \
+    android/build.gradle \
+    android/build.gradle \
     android/build.gradle \
     android/gradle.properties \
+    android/gradle.properties \
+    android/gradle/wrapper/gradle-wrapper.jar \
     android/gradle/wrapper/gradle-wrapper.jar \
     android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
     android/gradlew \
     android/gradlew.bat \
+    android/gradlew.bat \
+    android/res/values/libs.xml \
     android/res/values/libs.xml \
     qml/main.qml \
     js/database.js \
@@ -38,8 +47,16 @@ RESOURCES += \
 include(./QZXing/QZXing.pri)
 
 
-
 HEADERS +=
+
+
+#ShareUtils - Sharing related functionality
+HEADERS += shareutils.h
+
+SOURCES += shareutils.cpp
+
+# END ShareUtils block
+
 
 
 android:{
@@ -56,4 +73,9 @@ android:{
     ANDROID_PERMISSIONS += android.permission.CAMERA
 
     ICON = $$PWD/android/img/google-play-store/ic_launcher.png
+
+    QT += androidextras
+    OTHER_FILES += android/src/com/lasconic/QShareUtils.java
+    SOURCES += android/androidshareutils.cpp
+    HEADERS += android/androidshareutils.h
 }

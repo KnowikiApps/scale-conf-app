@@ -7,10 +7,16 @@ import "qrc:/js/nav.js" as NavHelper
 
 import "../../components/modals"
 
+import com.lasconic 1.0
+
 Rectangle {
     id: pgContacts
     width: window.width
     height: window.height
+
+    ShareUtils {
+        id: shareUtils
+    }
 
     TextField{
         id: fullText
@@ -47,6 +53,17 @@ Rectangle {
             id: scanButton
             text: "Scan Badge"
             onClicked: NavHelper.nav_tray_push("qrc:/PgQrScan.qml")
+            background: Rectangle {
+                color: "lightskyblue"
+                border.color: "black"
+            }
+            padding: 10
+        }
+
+        Button {
+            id: shareContextText
+            text: "Share Contacts"
+            onClicked: shareUtils.shareJustText(DB.get_contacts_csv())
             background: Rectangle {
                 color: "lightskyblue"
                 border.color: "black"

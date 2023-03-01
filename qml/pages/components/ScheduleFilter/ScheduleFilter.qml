@@ -22,7 +22,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (thursdayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 0 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "thursday";
@@ -39,7 +39,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (fridayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 1 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "friday";
@@ -56,7 +56,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (saturdayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 2 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "saturday";
@@ -73,7 +73,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (sundayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 3 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "sunday";

@@ -1,44 +1,25 @@
 import QtQuick 2.0
+import QtWebView 1.1
 
-Item {
+WebView {
+    id: campusMap
 
-    Rectangle{
-        id: container
-        width: window.width
-        height: window.height
+    width: window.width
+    height: window.height
+    url: "https://www.visitpasadena.com/convention-center/planners/facility-map/"
 
-        Image {
-            id: map
-            anchors.fill: parent
-            source: "https://emarketing360.com/Hilton/CA/HLAX/assets/sections/content-lower.gif"
+    onLoadingChanged:{
+        runJavaScript("document.querySelector('h1').style.padding='20px 0 0 0'");
+        runJavaScript("document.querySelector('header.page-header').remove()");
+        runJavaScript("document.querySelector('header.area-header').remove()");
+        runJavaScript("document.querySelector('footer.page-footer').remove()");
+        runJavaScript("document.querySelector('.page__header').remove()");
+        runJavaScript("document.querySelector('.list--social').remove()");
+        runJavaScript("document.querySelector('#signup-msg').remove()");
+        runJavaScript("document.querySelectorAll('.btn--arrow').forEach(elem => elem.remove())");
 
-            fillMode: Image.PreserveAspectFit
-        }
-
-        MouseArea{
-            anchors.fill: parent
-            drag.target: container
-            drag.axis: Drag.XAndYAxis
-
-            onDoubleClicked: {
-                container.x = 0;
-                container.y = 0;
-                map.scale = 1;
-            }
-        }
-
-
-        PinchArea{
-            anchors.fill: parent
-            pinch.target: map
-            pinch.minimumRotation: -360
-            pinch.maximumRotation: 360
-            pinch.minimumScale: 0.1
-            pinch.maximumScale: 10
-            pinch.dragAxis: Pinch.XAndYAxis
+        if(loadRequest.errorString){
+            console.error("Webview errorString() -> "+loadRequest.errorString);
         }
     }
-
-
-
 }

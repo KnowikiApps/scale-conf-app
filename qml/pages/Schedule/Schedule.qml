@@ -99,7 +99,7 @@ ColumnLayout {
                         color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-                        topPadding: 1
+//                        topPadding: 1
                         elide: Text.ElideRight
                         font.family: sourceCodeProBlack.name
                     }
@@ -137,7 +137,7 @@ ColumnLayout {
                         color: "#1D3261"
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
-                        topPadding: ((delegateRoot.height - divideRect.height) / 5)
+//                        topPadding: ((delegateRoot.height - divideRect.height) / 5)
                         font.family: anonymousProBold.name
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
                     }
@@ -165,7 +165,7 @@ ColumnLayout {
                             color: (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
-                            topPadding:((delegateRoot.height - divideRect.height) / 8)
+//                            topPadding:((delegateRoot.height - divideRect.height) / 8)
                             elide: Text.ElideRight
                         }
 

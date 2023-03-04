@@ -17,6 +17,12 @@ Drawer {
         spacing: 0
 
         NavButton{
+            id: announcements
+            buttonText: "Announcements"
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Announcements/Announcements.qml")
+        }
+
+        NavButton{
             id: schedule
             buttonText: "Schedule"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Schedule/Schedule.qml")

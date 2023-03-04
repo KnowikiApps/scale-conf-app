@@ -47,13 +47,13 @@ android:{
 
     ANDROID_MIN_SDK_VERSION = 27
     ANDROID_TARGET_SDK_VERSION = 31
-    ANDROID_VERSION_CODE = 1100
-    ANDROID_VERSION_NAME = "1.10.0"
+    ANDROID_VERSION_CODE = 1110
+    ANDROID_VERSION_NAME = "1.11.0"
     ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
     ANDROID_PERMISSIONS += android.permission.INTERNET
     ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
     ANDROID_PERMISSIONS += android.permission.CAMERA
 
-    ICON = $$PWD/android/img/google-play-store/ic_launcher.png
+#    ICON = $$PWD/android/img/google-play-store/ic_launcher.png
 }

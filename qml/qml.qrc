@@ -14,8 +14,6 @@
         <file>pages/Contacts/Contacts.qml</file>
         <file>pages/Contacts/FilePicker.qml</file>
         <file>pages/Exhibitors/Exhibitors.qml</file>
-        <file>pages/Home/AnnouncementsModel.qml</file>
-        <file>pages/Home/Home.qml</file>
         <file>pages/Messages/Messages.qml</file>
         <file>pages/MySchedule/MySchedule.qml</file>
         <file>pages/QrScan/QrScan.qml</file>
@@ -28,5 +26,8 @@
         <file>pages/Speakers/IndividualSpeaker.qml</file>
         <file>pages/Schedule/SignModel.qml</file>
         <file>pages/CampusMap/CampusMap.qml</file>
+        <file>pages/Announcements/AnnouncementsModel.qml</file>
+        <file>pages/Announcements/Announcements.qml</file>
+        <file>pages/Home/Home.qml</file>
     </qresource>
 </RCC>

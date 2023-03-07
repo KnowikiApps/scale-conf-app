@@ -62,7 +62,7 @@ function get_announcements() {
         }
     }
 
-    doc.open("GET", "https://www.socallinuxexpo.org/announcementappdata/18x");
+    doc.open("GET", "https://www.socallinuxexpo.org/announcementappdata/20x");
     doc.send();
 }
 

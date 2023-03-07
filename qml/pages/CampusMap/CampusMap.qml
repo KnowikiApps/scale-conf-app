@@ -8,6 +8,9 @@ WebView {
     height: window.height
     url: "https://www.visitpasadena.com/convention-center/planners/facility-map/"
 
+    // Used to move the WebView when the drawer is opened due to https://doc.qt.io/qt-5/qtwebview-index.html#Limitations
+    x: window.width * window.drawerPosition
+
     onLoadingChanged:{
         runJavaScript("document.querySelector('h1').style.padding='20px 0 0 0'");
         runJavaScript("document.querySelector('header.page-header').remove()");

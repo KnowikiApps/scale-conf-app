@@ -56,7 +56,7 @@ Drawer {
         NavButton{
             id: qrScan
             buttonText: "Scan Badge QR Code"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScan.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScanLoader.qml")
         }
         NavButton{
             id: campusMap

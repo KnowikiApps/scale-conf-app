@@ -26,8 +26,8 @@ Item {
                     break;
                 case 1:
                     console.log("Home - Ready - The XML data has been loaded into the model.");
-                    for(var i = 0; i < aModel.count; i++) {
-                        dbIds.push(aModel.get(i).announcementId)
+                    for(var i = 0; i < readAnnouncementsModel.count; i++) {
+                        dbIds.push(readAnnouncementsModel.get(i).announcementId)
                     }
                     break;
                 case 2:

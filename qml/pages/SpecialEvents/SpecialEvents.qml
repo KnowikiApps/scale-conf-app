@@ -8,6 +8,9 @@ WebView {
     height: window.height
     url: "https://www.socallinuxexpo.org/scale/20x/events"
 
+    // Used to move the WebView when the drawer is opened due to https://doc.qt.io/qt-5/qtwebview-index.html#Limitations
+    x: window.width * window.drawerPosition
+
     onLoadingChanged:{
         runJavaScript("var nav = document.getElementById('navbar'); nav.parentNode.removeChild(nav)");
         runJavaScript("var lowsec = document.querySelectorAll('div.region-sidebar-first')[1]; lowsec.parentNode.removeChild(lowsec)");

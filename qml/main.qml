@@ -16,6 +16,8 @@ ApplicationWindow {
     width: 500
     height: 700
 
+    property alias drawerPosition: menu.position
+
     //run app startup code
     Component.onCompleted: Initializer.startup()
 

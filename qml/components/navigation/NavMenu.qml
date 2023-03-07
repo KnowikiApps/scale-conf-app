@@ -40,10 +40,7 @@ Drawer {
         NavButton{
             id: exhibitors
             buttonText: "Exhibitors"
-            onClicked: {
-                NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml");
-                topBar.hideNavBtn = true;
-            }
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml")
         }
         NavButton{
             id: speakers
@@ -53,10 +50,7 @@ Drawer {
         NavButton{
             id: specialEvents
             buttonText: "Special Events"
-            onClicked: {
-                NavHelper.nav_tray_push("qrc:/pages/SpecialEvents/SpecialEvents.qml");
-                topBar.hideNavBtn = true;
-            }
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/SpecialEvents/SpecialEvents.qml")
         }
         NavButton{
             id: qrScan

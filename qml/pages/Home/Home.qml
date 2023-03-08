@@ -72,7 +72,7 @@ ColumnLayout {
                     switch(rand){
                     case 0:
                         boxColor = "#E9F2F9";
-                        textColor = Utils.randomNumber(0, 9) % 2 ? "#ffffff" : "#1d3561";
+                        textColor = "#1d3561";
                         break;
                     case 1:
                         boxColor = "#8CADC8";

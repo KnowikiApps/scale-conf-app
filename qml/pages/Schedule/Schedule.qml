@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick 2.8
 
-import QtQuick.Controls 2.1
+import QtQuick.Controls 2.15
 import QtQuick.Controls 2.8
 import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
@@ -59,6 +59,18 @@ ColumnLayout {
         anchors.bottom: window.bottom
         model: signModel.getModelID().model
 
+        Text {
+            id: loadingText
+            width: parent.width
+            height: parent.height
+            text: "Loading..."
+            color: "#1D3261"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.family: sourceCodeProBlack.name
+            font.pointSize: 13
+        }
+
         delegate: Rectangle {
             id: delegateRoot
             width: schedule.width * 1
@@ -70,6 +82,12 @@ ColumnLayout {
             property int delegateHeight: Feed.heightOf(dayFilter.currentDay, when.day, shortabstractText.height + titleText.height)
 
             height: delegateHeight + (rowVisible * 50)
+
+            ListView.onAdd: {
+                if(loadingText.visible) {
+                    loadingText.visible = false
+                }
+            }
 
             MouseArea {
                 z: 1

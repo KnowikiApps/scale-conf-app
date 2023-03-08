@@ -28,5 +28,6 @@
         <file>pages/Speakers/IndividualSpeaker.qml</file>
         <file>pages/Schedule/SignModel.qml</file>
         <file>pages/CampusMap/CampusMap.qml</file>
+        <file>pages/QrScan/QrScanLoader.qml</file>
     </qresource>
 </RCC>

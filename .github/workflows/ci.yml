@@ -1,0 +1,14 @@
+name: Continuous Integraiton
+
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+
+jobs:
+  androidapp:
+  - name: Install Qt
+    uses: jurplel/install-qt-action@v3.1.0
+    target: android
+    modules: qtwebview qtmultimedia qml-qtwebview qtsvg qml-qtquick-dialogs qml-qtquick-layouts qml-qtquick-controls qml-qtquick-xmllistmodel

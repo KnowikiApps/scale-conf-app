@@ -1,14 +1,47 @@
+# test
+
 name: Continuous Integraiton
 
 on:
+  push:
+    branches: master
   pull_request:
-    branches:
-      - master
-      - main
+    branches: master
 
 jobs:
-  androidapp:
-  - name: Install Qt
-    uses: jurplel/install-qt-action@v3.1.0
-    target: android
-    modules: qtwebview qtmultimedia qml-qtwebview qtsvg qml-qtquick-dialogs qml-qtquick-layouts qml-qtquick-controls qml-qtquick-xmllistmodel
+  android_build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8.0.362+9'
+        distribution: adopt-openj9
+
+# shouldn't be needed for builds... I think?
+#    - name: Setup Android SDK
+#     uses: android-actions/setup-android@v2
+
+    - name: Install Android Qt
+      uses: jurplel/install-qt-action@v3.1.0
+      with:
+        target: android
+        modules: 'qtcharts qtdatavis3d qtnetworkauth qtquick3d qtquicktimeline qtscript'
+        archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia'
+    - name: Install Desktop Qt Tools
+      uses: jurplel/install-qt-action@v3.1.0
+      with:
+        target: desktop
+        tools: 'tools_ninja tools_generic tools_qtcreator tools_cmake'
+
+    - name: Build
+      run: |-
+        git submodule update --init
+        qmake scale-conf.pro
+        cd android/img
+        pip install -r requirements.txt
+        python3 render-images.py
+        cd ../..
+        make -j 4

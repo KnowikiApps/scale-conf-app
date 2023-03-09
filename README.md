@@ -1,4 +1,8 @@
+
 # SCaLE Mobile App
+
+[![Continuous Integraiton](https://github.com/KnowikiApps/scale-conf-app/actions/workflows/ci.yml/badge.svg)](https://github.com/KnowikiApps/scale-conf-app/actions/workflows/ci.yml)
+
 Mobile App for Southern California Linux Expo.
 
 # Getting Started

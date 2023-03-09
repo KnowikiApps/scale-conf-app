@@ -30,10 +30,26 @@ jobs:
         archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia qtdeclarative'
     - name: Build
       run: |-
+        # initialize openssl
         git submodule update --init
-        qmake scale-conf.pro
+        
+        # Render icons for android
         cd android/img
         pip install -r requirements.txt
         python3 render-images.py
         cd ../..
+
+        mkdir build
+        cd build
+        qmake ../scale-conf.pro -spec android-clang \
+          CONFIG+=qtquickcompiler \
+          'ANDROID_ABIS=armeabi-v7a arm64-v8a x86 x86_64'
+        make qmake_all
         make -j 4
+        make INSTALL_ROOT=./android-build install
+
+        # Currently does not work
+        #
+        #androiddeployqt --input ./android-scale-conf-deployment-settings.json \
+        #  --output ./android-build --android-platform android-33 \
+        #  --jdk /usr/lib/jvm/java-11-openjdk-amd64 --gradle --release

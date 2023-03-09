@@ -1,5 +1,3 @@
-# test
-
 name: Continuous Integraiton
 
 on:
@@ -29,13 +27,7 @@ jobs:
       with:
         target: android
         modules: 'qtcharts qtdatavis3d qtnetworkauth qtquick3d qtquicktimeline qtscript'
-        archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia'
-    - name: Install Desktop Qt Tools
-      uses: jurplel/install-qt-action@v3.1.0
-      with:
-        target: desktop
-        tools: 'tools_ninja tools_generic tools_qtcreator tools_cmake'
-
+        archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia qtdeclarative'
     - name: Build
       run: |-
         git submodule update --init

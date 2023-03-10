@@ -39,9 +39,9 @@ jobs:
           "build-tools;32.0.0" "platforms;android-32" \
           "build-tools;33.0.0" "platforms;android-33" \
           "ndk;22.1.7171670" \
-          "ndk;23.2.8568313"
+          "ndk;23.2.8568313" "ndk;25.2.9519653" "ndk;24.0.8215888"
 
-        sdkmanager --uninstall "ndk;25.2.9519653" "ndk;24.0.8215888"
+          #sdkmanager --uninstall "ndk;25.2.9519653" "ndk;24.0.8215888"
 
     - name: Install Android Qt
       uses: jurplel/install-qt-action@v3.1.0
@@ -57,7 +57,7 @@ jobs:
 
     - name: Log tools
       run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
+        #export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         echo "DEBUG: environment -->"
         env
 
@@ -86,7 +86,7 @@ jobs:
 
     - name: Build Android binaries
       run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
+        #export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         BUILD_DIR=$GITHUB_WORKSPACE/../build
         INSTALL_ROOT=$BUILD_DIR/android-build
 
@@ -101,7 +101,7 @@ jobs:
 
     - name: Package Android release (APK)
       run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
+        #export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         BUILD_DIR=$GITHUB_WORKSPACE/../build
         INSTALL_ROOT=$BUILD_DIR/android-build
         cd $BUILD_DIR

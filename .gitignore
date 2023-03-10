@@ -3,7 +3,7 @@
 *.ab
 *.tar
 apps
+.gradle
 local.properties
-*.gradle
 gradlew.bat
 .DS_Store

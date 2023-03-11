@@ -17,6 +17,11 @@ Drawer {
         spacing: 0
 
         NavButton{
+            id: announcements
+            buttonText: "Announcements"
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
+        }
+        NavButton{
             id: schedule
             buttonText: "Schedule"
             onClicked: NavHelper.nav_tray_push("qrc:/pages/Schedule/Schedule.qml")
@@ -35,10 +40,7 @@ Drawer {
         NavButton{
             id: exhibitors
             buttonText: "Exhibitors"
-            onClicked: {
-                NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml");
-                topBar.hideNavBtn = true;
-            }
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml")
         }
         NavButton{
             id: speakers
@@ -48,15 +50,12 @@ Drawer {
         NavButton{
             id: specialEvents
             buttonText: "Special Events"
-            onClicked: {
-                NavHelper.nav_tray_push("qrc:/pages/SpecialEvents/SpecialEvents.qml");
-                topBar.hideNavBtn = true;
-            }
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/SpecialEvents/SpecialEvents.qml")
         }
         NavButton{
             id: qrScan
             buttonText: "Scan Badge QR Code"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScan.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScanLoader.qml")
         }
         NavButton{
             id: campusMap

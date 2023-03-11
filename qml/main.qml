@@ -16,6 +16,8 @@ ApplicationWindow {
     width: 500
     height: 700
 
+    property alias drawerPosition: menu.position
+
     //run app startup code
     Component.onCompleted: Initializer.startup()
 
@@ -28,7 +30,6 @@ ApplicationWindow {
     //declare the page manager
     StackView{
         id:pages
-//        initialItem: "qrc:/PgHome.qml"
         Component.onCompleted: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
     }
 

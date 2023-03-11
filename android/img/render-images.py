@@ -8,6 +8,7 @@ import os, errno
 appIcon = cairosvg.svg2svg(bytestring=open("AppIcon.svg").read().encode('utf-8'))
 
 # render for 48x48
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=48.0/20.0)
 icon_dir = "mdpi/"
 os.makedirs(icon_dir, exist_ok=True)
 cairosvg.svg2png(bytestring=appIcon, write_to=icon_dir+"ic_launcher.png")

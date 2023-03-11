@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.1
 import QtQuick 2.8
 
 import QtQuick.Controls 2.1
@@ -89,7 +89,7 @@ ColumnLayout {
                         color: "#eb6c4b"
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-                        topPadding: 1
+//                        topPadding: 1
                         elide: Text.ElideRight
                         font.family: sourceCodeProBlack.name
                     }
@@ -115,7 +115,7 @@ ColumnLayout {
                         font.family: anonymousProBold.name
                         horizontalAlignment: Text.AlignRight
                         verticalAlignment: Text.AlignTop
-                        topPadding: ((delegateRoot.height - divideRect.height) / 6)
+//                        topPadding: ((delegateRoot.height - divideRect.height) / 6)
                         visible: Feed.dayMatches(dayFilter.currentDay, day)
                     }
 

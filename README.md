@@ -1,4 +1,8 @@
+
 # SCaLE Mobile App
+
+[![Continuous Integraiton](https://github.com/KnowikiApps/scale-conf-app/actions/workflows/ci.yml/badge.svg)](https://github.com/KnowikiApps/scale-conf-app/actions/workflows/ci.yml)
+
 Mobile App for Southern California Linux Expo.
 
 # Getting Started
@@ -10,7 +14,7 @@ Clone the repo and update submodules:
     git submodule update --init
 
 ## Installing Qt
-You willl need to install Qt SDK and Qt Creator. This project uses Qt SDK version 5.10.1
+You willl need to install Qt SDK and Qt Creator. This project uses Qt SDK version 5.15.x LTS
 
 ### For Windows
 http://doc.qt.io/qt-5/windows-support.html
@@ -38,11 +42,11 @@ Project settings are defined in a `.pro` file in the project root. Open the file
 ### Configuring the project
 Depending on what OS you're using, and if you have all of the dependencies, you will be prompted to choose a list of kits for compile and run.
 
-Qt Versioning is pretty specific, so it's important to use the correct Qt version. We're using version 5.10.1 for this project.
+Qt Versioning is pretty specific, so it's important to use the correct Qt version. We're using version 5.15.2 for this project.
 
 #### Android
 If you have installed the Android SDK and tools necessary, you should have an option that looks something like this:
-`Android for armeabi_v7a (GCC 4.9, Qt 5.10.1)`
+`Android for armeabi_v7a (GCC 4.9, Qt 5.x.x)`
 
 ##### SSL Support
 Qt Networking libraries (like the one we use to pull data from api endpoints) use OpenSSL, but Android no longer supports it. In order to get this to work you need to provide the binaries. They are included with the git submodule from the convenience repository https://github.com/KDAB/android_openssl
@@ -52,13 +56,13 @@ http://doc.qt.io/qt-5/opensslsupport.html
 
 #### Desktop
 For most development work, you can get away with not using a mobile virtual device or simulator. The app should run basically the same as a desktop app. You should at least have this option, if you dont have any others. 
-`Desktop Qt 5.10.1 <compiler>`
+`Desktop Qt 5.x.x <compiler>`
 
 #### iOS
 If you're using Mac OS, then you should be able to run the app on the iOS simulator or an actual iOS device.
 
-`iphonesimulator-clang Qt 5.10.1 for iOS3`
-`iphoneos-clang Qt 5.10.1 for iOS3`
+`iphonesimulator-clang Qt 5.x.x for iOS3`
+`iphoneos-clang Qt 5.x.x for iOS3`
 
 ### Building for iOS
 iOS devices require a lot of images for icons and launch screens. In the `ios` directory you'll find the SVG source images which need to be rendered to png before build. There is a python script that uses CairoSVG to render the png files and puts them in the assets catalog (which is just a directory).

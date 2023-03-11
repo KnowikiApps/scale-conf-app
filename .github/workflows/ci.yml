@@ -1,0 +1,55 @@
+name: Continuous Integraiton
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:
+  android_build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8.0.362+9'
+        distribution: adopt-openj9
+
+# shouldn't be needed for builds... I think?
+#    - name: Setup Android SDK
+#     uses: android-actions/setup-android@v2
+
+    - name: Install Android Qt
+      uses: jurplel/install-qt-action@v3.1.0
+      with:
+        target: android
+        modules: 'qtcharts qtdatavis3d qtnetworkauth qtquick3d qtquicktimeline qtscript'
+        archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia qtdeclarative'
+    - name: Build
+      run: |-
+        # initialize openssl
+        git submodule update --init
+        
+        # Render icons for android
+        cd android/img
+        pip install -r requirements.txt
+        python3 render-images.py
+        cd ../..
+
+        mkdir build
+        cd build
+        qmake ../scale-conf.pro -spec android-clang \
+          CONFIG+=qtquickcompiler \
+          'ANDROID_ABIS=armeabi-v7a arm64-v8a x86 x86_64'
+        make qmake_all
+        make -j 4
+        make INSTALL_ROOT=./android-build install
+
+        # Currently does not work
+        #
+        #androiddeployqt --input ./android-scale-conf-deployment-settings.json \
+        #  --output ./android-build --android-platform android-33 \
+        #  --jdk /usr/lib/jvm/java-11-openjdk-amd64 --gradle --release

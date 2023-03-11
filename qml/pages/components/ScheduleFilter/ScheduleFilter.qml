@@ -22,7 +22,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (thursdayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 0 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "thursday";
@@ -39,7 +39,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (fridayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 1 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "friday";
@@ -56,7 +56,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (saturdayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 2 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "saturday";
@@ -73,7 +73,7 @@ ColumnLayout {
             font.weight: Font.Bold
             width: window.width/4
             background: Rectangle {
-                color: (sundayButton.activeFocus ? "#eb6c4b" : "#e9f2f9")
+                color: (bar.currentIndex == 3 ? "#eb6c4b" : "#e9f2f9")
             }
             onClicked: {
                 layout.currentDay = "sunday";
@@ -84,81 +84,3 @@ ColumnLayout {
         }
     }
 }
-
-/*
-Rectangle {
-    id: scheduleFilterRoot
-    height: buttonRow.implicitHeight
-
-    property string currentDay: ""
-    property var listRef: null
-
-    Row {
-        id: buttonRow
-        spacing: 5
-        Button {
-            width: (parent.parent.width * 0.25) - 3.75
-            text: "Thursday"
-            onClicked: {
-                parent.parent.currentDay = "Thursday";
-                if(listRef){
-                    parent.parent.listRef.positionViewAtBeginning();
-                }
-            }
-            background: Rectangle {
-                color: (scheduleFilterRoot.currentDay === "Thursday") ? "white" : "lightskyblue"
-                border.color: "black"
-            }
-            padding: 12
-        }
-
-        Button {
-            width: (parent.parent.width * 0.25) - 3.75
-            text: "Friday"
-            onClicked: {
-                parent.parent.currentDay = "Friday";
-                if(listRef){
-                    parent.parent.listRef.positionViewAtBeginning();
-                }
-            }
-            background: Rectangle {
-                color: (scheduleFilterRoot.currentDay === "Friday") ? "white" : "lightskyblue"
-                border.color: "black"
-            }
-            padding: 12
-        }
-
-        Button {
-            width: (parent.parent.width * 0.25) - 3.75
-            text: "Saturday"
-            onClicked: {
-                parent.parent.currentDay = "Saturday";
-                if(listRef){
-                    parent.parent.listRef.positionViewAtBeginning();
-                }
-            }
-            background: Rectangle {
-                color: (scheduleFilterRoot.currentDay === "Saturday") ? "white" : "lightskyblue"
-                border.color: "black"
-            }
-            padding: 12
-        }
-
-        Button {
-            width: (parent.parent.width * 0.25) - 3.75
-            text: "Sunday"
-            onClicked: {
-                parent.parent.currentDay = "Sunday";
-                if(listRef){
-                    parent.parent.listRef.positionViewAtBeginning();
-                }
-            }
-            background: Rectangle {
-                color: (scheduleFilterRoot.currentDay === "Sunday") ? "white" : "lightskyblue"
-                border.color: "black"
-            }
-            padding: 12
-        }
-    }
-}
-*/

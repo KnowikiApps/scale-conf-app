@@ -114,10 +114,6 @@ jobs:
           --android-platform android-33 \
           --gradle \
           --release
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        path: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/
     - name: Sign Android release
       uses: r0adkll/sign-android-release@v1
       with:
@@ -131,3 +127,7 @@ jobs:
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
         # The password for the key
         #keyPassword: ${{ secrets.KEY_PASSWORD }}
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/

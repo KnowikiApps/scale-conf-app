@@ -118,7 +118,7 @@ jobs:
       uses: r0adkll/sign-android-release@v1
       with:
         # The directory to find your release to sign
-        releaseDirectory: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/
+        releaseDirectory: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/*.apk
         # The key used to sign your release in base64 encoded format
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         # The key alias

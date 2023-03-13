@@ -118,3 +118,16 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         path: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/
+    - name: Sign Android release
+      uses: r0adkll/sign-android-release@v1
+      with:
+        # The directory to find your release to sign
+        releaseDirectory: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/
+        # The key used to sign your release in base64 encoded format
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        # The key alias
+        alias: ${{ secrets.ALIAS }}
+        # The password to the keystore
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        # The password for the key
+        #keyPassword: ${{ secrets.KEY_PASSWORD }}

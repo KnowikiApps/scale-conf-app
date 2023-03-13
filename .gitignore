@@ -7,3 +7,4 @@ local.properties
 *.gradle
 gradlew.bat
 .DS_Store
+*.swp

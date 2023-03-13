@@ -104,10 +104,9 @@ jobs:
         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         BUILD_DIR=$GITHUB_WORKSPACE/../build
         INSTALL_ROOT=$BUILD_DIR/android-build
-	echo "$INSTALL_ROOT"
         cd $BUILD_DIR
 
-        echo "Running deploy"
+        echo "Running deploy to-> ${INSTALL_ROOT}"
         #make apk
         androiddeployqt \
           --input $BUILD_DIR/android-scale-conf-deployment-settings.json \

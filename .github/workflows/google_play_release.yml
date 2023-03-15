@@ -96,14 +96,21 @@ jobs:
         INSTALL_ROOT=$BUILD_DIR/android-build
         cd $BUILD_DIR
         echo "Running deploy to-> ${INSTALL_ROOT}"
-        #make apk
+        
         androiddeployqt \
+          --aab \
           --input $BUILD_DIR/android-scale-conf-deployment-settings.json \
           --output $INSTALL_ROOT \
           --android-platform android-33 \
           --gradle \
-          --release \
-          --aab
+          --release
+          
+          
+          
+          
+          
+          
+          
 #     - name: Sign Android release
 #       uses: r0adkll/sign-android-release@v1
 #       with:

@@ -105,6 +105,9 @@ jobs:
           --android-platform android-33 \
           --gradle \
           --release
+    - name: Print artifacts
+      run: |-
+        tree /home/runner/work/scale-conf-app/build/android-build/build/outputs
           
           
           

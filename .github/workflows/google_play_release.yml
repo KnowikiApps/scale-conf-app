@@ -98,9 +98,10 @@ jobs:
         echo "Running deploy to-> ${INSTALL_ROOT}"
         
         androiddeployqt \
-          --aab \
           --input $BUILD_DIR/android-scale-conf-deployment-settings.json \
           --output $INSTALL_ROOT \
+          --aab \
+          --apk \
           --android-platform android-33 \
           --gradle \
           --release

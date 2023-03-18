@@ -1,4 +1,4 @@
-name: Continuous Integraiton
+name: Google Play Release
 
 on:
   push:
@@ -40,9 +40,7 @@ jobs:
           "build-tools;33.0.0" "platforms;android-33" \
           "ndk;22.1.7171670" \
           "ndk;23.2.8568313"
-
         sdkmanager --uninstall "ndk;25.2.9519653" "ndk;24.0.8215888"
-
     - name: Install Android Qt
       uses: jurplel/install-qt-action@v3.1.0
       with:
@@ -60,7 +58,6 @@ jobs:
         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         echo "DEBUG: environment -->"
         env
-
         echo "DEBUG: tools -->"
         which qmake
         which make
@@ -68,28 +65,22 @@ jobs:
         which java
         which androiddeployqt
         which gradle
-
         echo "DEBUG: QT platform plugins -->"
         ls $Qt5_Dir/plugins/platforms/
-
         echo "DEBUG: SDK platforms -->"
         ls $ANDROID_SDK_ROOT/platforms
-
         echo "DEBUG: NDKs -->"
         ls $ANDROID_SDK_ROOT/ndk
-
     - name: Render Android icons
       run: |-
         cd $GITHUB_WORKSPACE/android/img
         pip install -r requirements.txt
         python3 render-images.py
-
     - name: Build Android binaries
       run: |-
         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         BUILD_DIR=$GITHUB_WORKSPACE/../build
         INSTALL_ROOT=$BUILD_DIR/android-build
-
         mkdir $BUILD_DIR
         cd $BUILD_DIR
         qmake $GITHUB_WORKSPACE/scale-conf.pro -spec android-clang \
@@ -98,19 +89,19 @@ jobs:
         make qmake_all
         make -j 4
         make INSTALL_ROOT=$INSTALL_ROOT install
-
-    - name: Package Android release (APK)
+    - name: Package Android release (AAB)
       run: |-
         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         BUILD_DIR=$GITHUB_WORKSPACE/../build
         INSTALL_ROOT=$BUILD_DIR/android-build
         cd $BUILD_DIR
-
         echo "Running deploy to-> ${INSTALL_ROOT}"
-        #make apk
+        
         androiddeployqt \
           --input $BUILD_DIR/android-scale-conf-deployment-settings.json \
           --output $INSTALL_ROOT \
+          --aab \
+          --apk \
           --android-platform android-33 \
           --gradle \
           --release
@@ -118,7 +109,7 @@ jobs:
       uses: r0adkll/sign-android-release@v1
       with:
         # The directory to find your release to sign
-        releaseDirectory: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/
+        releaseDirectory: /home/runner/work/scale-conf-app/build/android-build//build/outputs/bundle/release/
         # The key used to sign your release in base64 encoded format
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         # The key alias
@@ -127,7 +118,10 @@ jobs:
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
         # The password for the key
         #keyPassword: ${{ secrets.KEY_PASSWORD }}
+    - name: Print artifacts
+      run: |-
+        tree /home/runner/work/scale-conf-app/build/android-build/build/outputs
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        path: /home/runner/work/scale-conf-app/build/android-build//build/outputs/apk/release/*.apk
+        path: /home/runner/work/scale-conf-app/build/android-build//build/outputs/bundle/release/*.aab

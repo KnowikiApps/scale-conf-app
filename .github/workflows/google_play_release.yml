@@ -1,8 +1,5 @@
 name: Google Play Release
 
-env:
-  GITHUB_WORKSPACE: /home/runner/work/scale-conf-app
-
 on:
   push:
     branches: pipeline-android-aab-release
@@ -94,7 +91,7 @@ jobs:
         make INSTALL_ROOT=$INSTALL_ROOT install
     - name: Print install root
       run: |-
-        tree $INSTALL_ROOT
+        tree /
 
 
 

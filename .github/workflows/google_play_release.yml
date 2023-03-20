@@ -8,7 +8,10 @@ jobs:
   android_build:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout source code
     - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
 
     - name: Set up JDK
       uses: actions/setup-java@v3
@@ -48,8 +51,8 @@ jobs:
         modules: 'qtcharts qtdatavis3d qtnetworkauth qtquick3d qtquicktimeline qtscript'
         archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia qtdeclarative'
 
-    - name: Setup openssl
-      run: git submodule update --init
+#     - name: Setup openssl
+#       run: git submodule update --init
 
     - name: Log tools
       run: |-

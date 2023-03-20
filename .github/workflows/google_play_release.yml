@@ -87,9 +87,9 @@ jobs:
         make qmake_all
         make -j 4
         make INSTALL_ROOT=$INSTALL_ROOT install
-    - name: Print build dir
+    - name: Print install root
       run: |-
-        tree $BUILD_DIR
+        tree $INSTALL_ROOT
 
 
 

@@ -91,7 +91,7 @@ jobs:
         make INSTALL_ROOT=$INSTALL_ROOT install
     - name: Print install root
       run: |-
-        tree -d $GITHUB_WORKSPACE
+        tree -d $GITHUB_WORKSPACE/build
 
 
 

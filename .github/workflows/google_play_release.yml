@@ -1,5 +1,8 @@
 name: Google Play Release
 
+env:
+  GITHUB_WORKSPACE: /home/runner/work/scale-conf-app
+
 on:
   push:
     branches: pipeline-android-aab-release

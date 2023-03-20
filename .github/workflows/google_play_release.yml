@@ -137,10 +137,11 @@ jobs:
     - name: Print dir post-signing
       run: |-
         tree $GITHUB_WORKSPACE/build/android-build/build/outputs
-        
-        
-        
-#     - name: Upload a Build Artifact
-#       uses: actions/upload-artifact@v3.1.2
-#       with:
-#         path: /home/runner/work/scale-conf-app/build/android-build//build/outputs/bundle/release/*.aab
+    - name: Upload AAB
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
+    - name: Upload APK
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/*.apk

@@ -89,9 +89,9 @@ jobs:
         make qmake_all
         make -j 4
         make INSTALL_ROOT=$INSTALL_ROOT install
-    - name: Print install root
+    - name: Print build dir
       run: |-
-        tree -d $GITHUB_WORKSPACE/build
+        tree $GITHUB_WORKSPACE/build
 
 
 

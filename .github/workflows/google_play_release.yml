@@ -2,9 +2,7 @@ name: Google Play Release
 
 on:
   push:
-    branches: master
-  pull_request:
-    branches: master
+    branches: pipeline-android-aab-release
 
 jobs:
   android_build:

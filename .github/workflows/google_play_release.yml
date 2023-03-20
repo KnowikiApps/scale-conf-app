@@ -87,7 +87,7 @@ jobs:
         make qmake_all
         make -j 4
         make INSTALL_ROOT=$INSTALL_ROOT install
-    - name: Package Android release (AAB)
+    - name: Package Android releases
       run: |-
         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
         BUILD_DIR=$GITHUB_WORKSPACE/build
@@ -103,26 +103,28 @@ jobs:
           --android-platform android-33 \
           --gradle \
           --release
-    - name: Print build dir
+    - name: Print dir pre-signing
+      run: |-
+        tree $GITHUB_WORKSPACE/build/android-build/build/outputs
+    - name: Sign Android release (aab)
+      uses: r0adkll/sign-android-release@v1
+      with:
+        # The directory to find your release to sign
+        releaseDirectory: $GITHUB_WORKSPACE/build/android-build/build/outputs/bundle/release/
+        # The key used to sign your release in base64 encoded format
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        # The key alias
+        alias: ${{ secrets.ALIAS }}
+        # The password to the keystore
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        # The password for the key
+        #keyPassword: ${{ secrets.KEY_PASSWORD }}
+    - name: Print dir post-signing
       run: |-
         tree $GITHUB_WORKSPACE/build/android-build/build/outputs
         
-#     - name: Sign Android release
-#       uses: r0adkll/sign-android-release@v1
-#       with:
-#         # The directory to find your release to sign
-#         releaseDirectory: /home/runner/work/scale-conf-app/build/android-build//build/outputs/bundle/release/
-#         # The key used to sign your release in base64 encoded format
-#         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-#         # The key alias
-#         alias: ${{ secrets.ALIAS }}
-#         # The password to the keystore
-#         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-#         # The password for the key
-#         #keyPassword: ${{ secrets.KEY_PASSWORD }}
-#     - name: Print artifacts
-#       run: |-
-#         tree /home/runner/work/scale-conf-app/build/android-build/build/outputs
+        
+        
 #     - name: Upload a Build Artifact
 #       uses: actions/upload-artifact@v3.1.2
 #       with:

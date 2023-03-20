@@ -105,7 +105,7 @@ jobs:
           --release
     - name: Print build dir
       run: |-
-        tree $GITHUB_WORKSPACE/build/android-build
+        tree $GITHUB_WORKSPACE/build/android-build/build/outputs
         
 #     - name: Sign Android release
 #       uses: r0adkll/sign-android-release@v1

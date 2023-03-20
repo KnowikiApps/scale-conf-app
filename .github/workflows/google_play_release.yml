@@ -77,7 +77,7 @@ jobs:
     - name: Build Android binaries
       run: |-
         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
-        BUILD_DIR=$GITHUB_WORKSPACE/../build
+        BUILD_DIR=$GITHUB_WORKSPACE/build
         INSTALL_ROOT=$BUILD_DIR/android-build
         mkdir $BUILD_DIR
         cd $BUILD_DIR

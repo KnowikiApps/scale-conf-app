@@ -5,7 +5,7 @@ on:
     branches: pipeline-android-aab-release
 
 jobs:
-  android_build:
+  android_build_release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

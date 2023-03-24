@@ -17,18 +17,6 @@ Rectangle {
     width: window.width
     height: window.height
 
-    function saveFile(fileUrl, text) {
-        const request = new XMLHttpRequest();
-        request.open("PUT", fileUrl, false);
-        if (text === "") {
-            request.send("SAMPLE DATA");
-        } else {
-            request.send(text);
-        }
-
-        return request.status;
-    }
-
     ShareUtils {
         id: shareUtils
     }

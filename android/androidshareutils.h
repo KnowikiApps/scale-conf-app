@@ -31,6 +31,8 @@ public:
     AndroidShareUtils(QQuickItem* parent = 0);
     void share(const QString &text, const QUrl &url) override;
     void shareJustText(const QString &text) override;
+    void writeFile(const QString &vals) override;
+
 
 };
 

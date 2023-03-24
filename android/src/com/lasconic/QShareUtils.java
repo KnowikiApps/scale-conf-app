@@ -28,6 +28,13 @@ import java.lang.String;
 import android.content.Intent;
 import android.util.Log;
 
+
+
+import androidx.core.content.FileProvider;
+import android.content.Context;
+import java.io.File;
+import android.net.Uri;
+
 public class QShareUtils
 {
     protected QShareUtils()
@@ -54,4 +61,28 @@ public class QShareUtils
         sendIntent.setType("text/plain");
         QtNative.activity().startActivity(sendIntent);
     }
+
+    public static void shareFile(String filepath)
+      {
+        if(QtNative.activity() == null)
+          return;
+
+        File newFile = new File(filepath);
+
+
+        if(!newFile.exists())
+          return;
+
+
+        Uri contentUri = FileProvider.getUriForFile(QtNative.activity(), "com.knowikiapps.SCaLE.fileprovider", newFile);
+
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "Share CSV File");
+        intent.putExtra(Intent.EXTRA_STREAM, contentUri);
+        intent.setType("text/csv");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        QtNative.activity().startActivity(intent);
+        }
 }

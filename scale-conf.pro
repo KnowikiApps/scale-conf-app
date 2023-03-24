@@ -9,6 +9,7 @@ include(deployment.pri)
 
 
 SOURCES += \
+    contactexporter.cpp \
     cpp/main.cpp
 
 DISTFILES += \
@@ -47,7 +48,8 @@ RESOURCES += \
 include(./QZXing/QZXing.pri)
 
 
-HEADERS +=
+HEADERS += \
+    contactexporter.h
 
 
 #ShareUtils - Sharing related functionality

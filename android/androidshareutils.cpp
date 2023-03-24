@@ -23,6 +23,9 @@
 
 #include <QtAndroidExtras/QAndroidJniObject>
 
+#include "contactexporter.h"
+
+
 AndroidShareUtils::AndroidShareUtils(QQuickItem* parent) : PlatformShareUtils(parent)
 {
 
@@ -43,6 +46,15 @@ void AndroidShareUtils::shareJustText(const QString &text)
     QAndroidJniObject jsText = QAndroidJniObject::fromString(text);
     QAndroidJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
                                        "shareJustText",
+                                       "(Ljava/lang/String;)V",
+                                       jsText.object<jstring>());
+}
+
+void AndroidShareUtils::writeFile(const QString &vals) {
+    lowLevelWriter(vals);
+    QAndroidJniObject jsText = QAndroidJniObject::fromString(getFilePath());
+    QAndroidJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
+                                       "shareFile",
                                        "(Ljava/lang/String;)V",
                                        jsText.object<jstring>());
 }

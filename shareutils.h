@@ -32,6 +32,7 @@ public:
     virtual ~PlatformShareUtils() {}
     virtual void share(const QString &text, const QUrl &url){ qDebug() << text << url; }
     virtual void shareJustText(const QString &text){ qDebug() << text; }
+    virtual void writeFile(const QString &vals){ qDebug() << "Android only for the moment: " << vals;}
 };
 
 class ShareUtils : public QQuickItem
@@ -42,6 +43,7 @@ public:
     explicit ShareUtils(QQuickItem *parent = 0);
     Q_INVOKABLE void share(const QString &text, const QUrl &url);
     Q_INVOKABLE void shareJustText(const QString &text);
+    Q_INVOKABLE void writeFile(const QString &vals);
 };
 
 #endif //SHAREUTILS_H

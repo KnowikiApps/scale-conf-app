@@ -51,3 +51,8 @@ void ShareUtils::shareJustText(const QString &text)
 {
     _pShareUtils->shareJustText(text);
 }
+
+void ShareUtils::writeFile(const QString &vals)
+{
+    _pShareUtils->writeFile(vals);
+}

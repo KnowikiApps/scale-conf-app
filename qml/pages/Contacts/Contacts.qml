@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import Qt.labs.platform 1.1
 
 import "qrc:/js/database.js" as DB
 import "qrc:/js/nav.js" as NavHelper
@@ -9,10 +10,24 @@ import "../../components/modals"
 
 import com.lasconic 1.0
 
+
+
 Rectangle {
     id: pgContacts
     width: window.width
     height: window.height
+
+    function saveFile(fileUrl, text) {
+        const request = new XMLHttpRequest();
+        request.open("PUT", fileUrl, false);
+        if (text === "") {
+            request.send("SAMPLE DATA");
+        } else {
+            request.send(text);
+        }
+
+        return request.status;
+    }
 
     ShareUtils {
         id: shareUtils
@@ -62,8 +77,19 @@ Rectangle {
 
         Button {
             id: shareContextText
-            text: "Share Contacts"
+            text: "Share Contacts text"
             onClicked: shareUtils.shareJustText(DB.get_contacts_csv())
+            background: Rectangle {
+                color: "lightskyblue"
+                border.color: "black"
+            }
+            padding: 10
+        }
+
+        Button {
+            id: printLocations
+            text: "Share Contacts.csv"
+            onClicked: shareUtils.writeFile(DB.get_contacts_csv());
             background: Rectangle {
                 color: "lightskyblue"
                 border.color: "black"

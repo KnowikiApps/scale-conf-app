@@ -6,9 +6,7 @@
 #include <QDebug>
 #include <QDir>
 
-
-
-void lowLevelWriter(const QString &vals) {
+void writeStringToFile(const QString &vals) {
 
     auto path {QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/csv/"};
 

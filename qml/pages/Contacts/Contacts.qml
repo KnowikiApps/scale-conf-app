@@ -77,7 +77,7 @@ Rectangle {
         Button {
             id: printLocations
             text: "Share Contacts.csv"
-            onClicked: shareUtils.writeFile(DB.get_contacts_csv());
+            onClicked: shareUtils.shareTextAsFile(DB.get_contacts_csv());
             background: Rectangle {
                 color: "lightskyblue"
                 border.color: "black"

@@ -50,8 +50,8 @@ void AndroidShareUtils::shareJustText(const QString &text)
                                        jsText.object<jstring>());
 }
 
-void AndroidShareUtils::writeFile(const QString &vals) {
-    lowLevelWriter(vals);
+void AndroidShareUtils::shareTextAsFile(const QString &vals) {
+    writeStringToFile(vals);
     QAndroidJniObject jsText = QAndroidJniObject::fromString(getFilePath());
     QAndroidJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
                                        "shareFile",

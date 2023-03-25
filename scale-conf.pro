@@ -80,4 +80,5 @@ android:{
     OTHER_FILES += android/src/com/lasconic/QShareUtils.java
     SOURCES += android/androidshareutils.cpp
     HEADERS += android/androidshareutils.h
+    OTHER_FILES += android/res/xml/filepaths.xml
 }

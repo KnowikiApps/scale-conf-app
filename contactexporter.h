@@ -4,9 +4,8 @@
 #include <QString>
 
 
-
 QString getFilePath(); // returns the file path
 
-void lowLevelWriter(const QString &vals);
+void writeStringToFile(const QString &vals);
 
 #endif // CONTACTEXPORTER_H

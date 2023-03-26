@@ -89,59 +89,63 @@ jobs:
         make qmake_all
         make -j 4
         make INSTALL_ROOT=$INSTALL_ROOT install
-    - name: Package Android releases
-      run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
-        BUILD_DIR=$GITHUB_WORKSPACE/build
-        INSTALL_ROOT=$BUILD_DIR/android-build
-        cd $BUILD_DIR
-        echo "Running deploy to-> ${INSTALL_ROOT}"
+    - name: Upload Android artifacts
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: $$GITHUB_WORKSPACE/build/*
+#     - name: Package Android releases
+#       run: |-
+#         export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
+#         BUILD_DIR=$GITHUB_WORKSPACE/build
+#         INSTALL_ROOT=$BUILD_DIR/android-build
+#         cd $BUILD_DIR
+#         echo "Running deploy to-> ${INSTALL_ROOT}"
         
-        androiddeployqt \
-          --input $BUILD_DIR/android-scale-conf-deployment-settings.json \
-          --output $INSTALL_ROOT \
-          --aab \
-          --apk \
-          --android-platform android-33 \
-          --gradle \
-          --release
-    - name: Print dir pre-signing
-      run: |-
-        tree $GITHUB_WORKSPACE/build/android-build/build/outputs
-    - name: Sign Android release (aab)
-      uses: r0adkll/sign-android-release@v1
-      with:
-        # The directory to find your release to sign
-        releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/
-        # The key used to sign your release in base64 encoded format
-        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-        # The key alias
-        alias: ${{ secrets.ALIAS }}
-        # The password to the keystore
-        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-        # The password for the key
-        #keyPassword: ${{ secrets.KEY_PASSWORD }}
-    - name: Sign Android release (apk)
-      uses: r0adkll/sign-android-release@v1
-      with:
-        # The directory to find your release to sign
-        releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/
-        # The key used to sign your release in base64 encoded format
-        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-        # The key alias
-        alias: ${{ secrets.ALIAS }}
-        # The password to the keystore
-        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-        # The password for the key
-        #keyPassword: ${{ secrets.KEY_PASSWORD }}
-    - name: Print dir post-signing
-      run: |-
-        tree $GITHUB_WORKSPACE/build/android-build/build/outputs
-    - name: Upload AAB
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
-    - name: Upload APK
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        path: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/*.apk
+#         androiddeployqt \
+#           --input $BUILD_DIR/android-scale-conf-deployment-settings.json \
+#           --output $INSTALL_ROOT \
+#           --aab \
+#           --apk \
+#           --android-platform android-33 \
+#           --gradle \
+#           --release
+#     - name: Print dir pre-signing
+#       run: |-
+#         tree $GITHUB_WORKSPACE/build/android-build/build/outputs
+#     - name: Sign Android release (aab)
+#       uses: r0adkll/sign-android-release@v1
+#       with:
+#         # The directory to find your release to sign
+#         releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/
+#         # The key used to sign your release in base64 encoded format
+#         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+#         # The key alias
+#         alias: ${{ secrets.ALIAS }}
+#         # The password to the keystore
+#         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+#         # The password for the key
+#         #keyPassword: ${{ secrets.KEY_PASSWORD }}
+#     - name: Sign Android release (apk)
+#       uses: r0adkll/sign-android-release@v1
+#       with:
+#         # The directory to find your release to sign
+#         releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/
+#         # The key used to sign your release in base64 encoded format
+#         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+#         # The key alias
+#         alias: ${{ secrets.ALIAS }}
+#         # The password to the keystore
+#         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+#         # The password for the key
+#         #keyPassword: ${{ secrets.KEY_PASSWORD }}
+#     - name: Print dir post-signing
+#       run: |-
+#         tree $GITHUB_WORKSPACE/build/android-build/build/outputs
+#     - name: Upload AAB
+#       uses: actions/upload-artifact@v3.1.2
+#       with:
+#         path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
+#     - name: Upload APK
+#       uses: actions/upload-artifact@v3.1.2
+#       with:
+#         path: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/*.apk

@@ -4,7 +4,7 @@
 import cairosvg
 import os, errno, pathlib
 
-
+print("*****Rendering Android icons*****")
 
 # We are in the android/img folder. Get the path to android/res
 RES_PATH = os.path.join(pathlib.Path(__file__).parent.parent, 'res')
@@ -59,3 +59,5 @@ cairosvg.svg2png(bytestring=appIcon, write_to=icon_dir+"icon.png")
 # Feature Graphic
 featureGraphic = cairosvg.svg2svg(bytestring=open("FeatureGraphic.svg").read().encode('utf-8'))
 cairosvg.svg2png(bytestring=featureGraphic, write_to="feature_graphic.png")
+
+print("*****Done rendering Android icons*****")

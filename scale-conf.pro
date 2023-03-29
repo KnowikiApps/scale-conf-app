@@ -14,26 +14,15 @@ SOURCES += \
 
 DISTFILES += \
     android/AndroidManifest.xml \
-    android/AndroidManifest.xml \
-    android/build.gradle \
-    android/build.gradle \
     android/build.gradle \
     android/gradle.properties \
-    android/gradle.properties \
     android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew \
     android/gradlew \
     android/gradlew.bat \
-    android/gradlew.bat \
-    android/res/values/libs.xml \
     android/res/values/libs.xml \
     qml/main.qml \
     js/database.js \
     android/res/values/libs.xml \
-    android/build.gradle \
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

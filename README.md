@@ -90,7 +90,15 @@ cd android/img/
 ```bash
 python3 render-images.py
 ```
+# (EXPERIMENTAL) Android Docker Container
 
+Currently there is a project underway to containerize the Android build environement. It is being hosted on Docker hub here:
+
+https://hub.docker.com/r/knowikiapps/scale-conf/tags
+
+The container can be run using this command:
+
+`docker run -it --rm knowikiapps/scale-conf:android-build-env`
 
 # Qt Documentation
 

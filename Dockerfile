@@ -6,3 +6,5 @@ RUN apt update
 RUN apt-get --assume-yes install qtbase5-dev qt5-qmake
 #Java setup
 RUN apt-get --assume-yes install default-jre
+#Android SDK
+RUN apt-get --assume-yes install android-sdk

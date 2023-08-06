@@ -1,10 +1,11 @@
 FROM ubuntu:22.04
 LABEL description="This is a custom Docker Image for building android version"
+ARG DEBIAN_FRONTEND=noninteractive
 #ubuntu setup
-RUN apt update
-RUN apt-get --assume-yes install wget make
+RUN apt-get update
+RUN apt-get --assume-yes install wget make build-essential
 #Qt setup
-RUN apt-get --assume-yes install qtbase5-dev qt5-qmake qtchooser qtbase5-dev-tools
+RUN apt-get --assume-yes install qtbase5-dev qt5-qmake qtchooser qtbase5-dev-tools qtdeclarative5-dev libqt5svg5-dev qml-module-qtwebview qtmultimedia5-dev libqt5webview5 libqt5webview5-dev
 #Java setup
 RUN apt-get --assume-yes install default-jre
 #Android SDK
@@ -23,3 +24,4 @@ ENV PATH=$ANDROID_HOME/platform-tools/:$PATH
 RUN yes | sdkmanager --update
 RUN yes | sdkmanager --licenses
 RUN sdkmanager --install "platform-tools" "build-tools;33.0.0" "platforms;android-33" "ndk;22.1.7171670"
+WORKDIR /

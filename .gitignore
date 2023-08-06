@@ -8,3 +8,9 @@ android/.gradle/*
 gradlew.bat
 .DS_Store
 *.swp
+# Docker Build environment
+build
+.qmake.stash
+Makefile
+js_js_qmlcache.qrc
+qml_qml_qmlcache.qrc

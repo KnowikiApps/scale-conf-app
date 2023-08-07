@@ -24,4 +24,5 @@ ENV PATH=$ANDROID_HOME/platform-tools/:$PATH
 RUN yes | sdkmanager --update
 RUN yes | sdkmanager --licenses
 RUN sdkmanager --install "platform-tools" "build-tools;33.0.0" "platforms;android-33" "ndk;22.1.7171670"
+RUN mkdir -p /work/build
 WORKDIR /

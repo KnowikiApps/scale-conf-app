@@ -1,4 +1,5 @@
 DESTDIR = /work/build
+QT.core.disabled_features+=thread force_asserts static
 
 QT += qml quick svg webview
 
@@ -23,9 +24,9 @@ DISTFILES += \
     android/res/values/libs.xml \
     android/build.gradle \
 
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+#qnx: target.path = /tmp/$${TARGET}/bin
+#else: unix:!android: target.path = /opt/$${TARGET}/bin
+#!isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
     qml/qml.qrc \
@@ -34,24 +35,20 @@ RESOURCES += \
     fonts/fonts.qrc
 
 include(./QZXing/QZXing.pri)
+include(./android_openssl/openssl.pri)
 
 
+ANDROID_ABIS='armeabi-v7a arm64-v8a x86 x86_64'
+ANDROID_MIN_SDK_VERSION = 27
+ANDROID_TARGET_SDK_VERSION = 31
+ANDROID_VERSION_CODE = 1131
+ANDROID_VERSION_NAME = "1.13.1"
+ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+ANDROID_PERMISSIONS += android.permission.INTERNET
+ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
+ANDROID_PERMISSIONS += android.permission.CAMERA
 
 HEADERS +=
 
 
-android:{
-    include(./android_openssl/openssl.pri)
-
-    ANDROID_MIN_SDK_VERSION = 27
-    ANDROID_TARGET_SDK_VERSION = 31
-    ANDROID_VERSION_CODE = 1131
-    ANDROID_VERSION_NAME = "1.13.1"
-    ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"
-    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-    ANDROID_PERMISSIONS += android.permission.INTERNET
-    ANDROID_PERMISSIONS += android.permission.ACCESS_NETWORK_STATE
-    ANDROID_PERMISSIONS += android.permission.CAMERA
-
-#    ICON = $$PWD/android/img/google-play-store/ic_launcher.png
-}

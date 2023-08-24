@@ -42,7 +42,7 @@ include(./QZXing/QZXing.pri)
 HEADERS +=
 
 
-android:{
+android{
     include(./android_openssl/openssl.pri)
 
     ANDROID_MIN_SDK_VERSION = 27

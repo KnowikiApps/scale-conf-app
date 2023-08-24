@@ -1,28 +1,18 @@
-FROM ubuntu:22.04
-LABEL description="This is a custom Docker Image for building android version"
+FROM debian:latest
+
+# Before
 ARG DEBIAN_FRONTEND=noninteractive
-#ubuntu setup
-RUN apt-get update
-RUN apt-get --assume-yes install wget make build-essential
-#Qt setup
-RUN apt-get --assume-yes install qtbase5-dev qt5-qmake qtchooser qtbase5-dev-tools qtdeclarative5-dev libqt5svg5-dev qml-module-qtwebview qtmultimedia5-dev libqt5webview5 libqt5webview5-dev
-#Java setup
-RUN apt-get --assume-yes install default-jre
-#Android SDK
-RUN apt-get --assume-yes install android-sdk
-RUN mkdir -p /android/sdk/cmdline-tools/tools
-WORKDIR /android
-RUN wget https://dl.google.com/android/repository/commandlinetools-linux-9123335_latest.zip
-RUN unzip commandlinetools-linux-9123335_latest.zip
-RUN pwd
-RUN ls -l
-RUN mv -i /android/cmdline-tools/* /android/sdk/cmdline-tools/tools
-ENV ANDROID_HOME=/android/sdk
-ENV PATH=$ANDROID_HOME/cmdline-tools/tools/bin/:$PATH
-ENV PATH=$ANDROID_HOME/emulator/:$PATH
-ENV PATH=$ANDROID_HOME/platform-tools/:$PATH
-RUN yes | sdkmanager --update
-RUN yes | sdkmanager --licenses
-RUN sdkmanager --install "platform-tools" "build-tools;33.0.0" "platforms;android-33" "ndk;22.1.7171670"
-RUN mkdir -p /work/build
 WORKDIR /
+
+RUN apt-get update
+
+# Qt
+RUN apt-get install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+
+# Java
+RUN apt-get install -y default-jre sdkmanager
+
+# Android
+RUN apt-get install -y android-sdk android-sdk-build-tools
+ENV ANDROID_HOME=/usr/lib/android-sdk
+RUN sdkmanager "cmdline-tools;latest" "platforms;android-31" "platform-tools"

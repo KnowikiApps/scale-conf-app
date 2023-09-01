@@ -1,18 +1,22 @@
 FROM debian:latest
 
+# Required Build args
+ARG EMAIL
+ARG PW
+
 # Before
 ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /
 
+# Debian
 RUN apt-get update
+RUN apt-get install -y wget qtcreator libxcb-xinerama0
 
-# Qt
-RUN apt-get install -y qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5svg5* libqt5webview5-dev qtmultimedia5-dev libqt5multimedia5-plugins qml-module-qtquick-dialogs qml-module-qtmultimedia qml-module-qtquick-xmllistmodel qml-module-qtwebview qml-module-qtquick-layouts qml-module-qtquick-controls qml-module-qtquick-controls2
+# Qt6
+RUN wget https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-unified-linux-x64-4.6.1-online.run
+RUN chmod +x qt-unified-linux-x64-4.6.1-online.run
+RUN ./qt-unified-linux-x64-4.6.1-online.run --root /Qt --accept-licenses --confirm-command --accept-messages install qt.qt6.650.gcc_64 --email "${EMAIL}" --pw "${PW}" --accept-obligations
 
-# Java
-RUN apt-get install -y default-jre sdkmanager
-
-# Android
-RUN apt-get install -y android-sdk android-sdk-build-tools
-ENV ANDROID_HOME=/usr/lib/android-sdk
-RUN sdkmanager "cmdline-tools;latest" "platforms;android-31" "platform-tools"
+# Qt5
+WORKDIR /Qt
+RUN ./Tools/sdktool/libexec/qtcreator/sdktool addQt --id qt.qt5.5152.android --name "Qt 5.15.2 for Android" --type Qt4ProjectManager.QtVersion.Android --qmake /Qt/6.5.0/gcc_64/bin/qmake

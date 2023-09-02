@@ -24,6 +24,7 @@ RUN unzip commandlinetools-linux-10406996_latest.zip -d /usr/lib/android-sdk/
 
 ENV PATH="/usr/lib/android-sdk/cmdline-tools/bin:$PATH"
 ENV ANDROID_SDK_ROOT=/usr/lib/android-sdk
+ENV ANDROID_NDK_ROOT=/usr/lib/android-sdk/ndk
 RUN yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT --update
 RUN yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
 RUN sdkmanager --sdk_root=$ANDROID_SDK_ROOT --install "cmdline-tools;latest" "platform-tools" "platforms;android-29" "build-tools;29.0.2" "ndk;21.3.6528147"

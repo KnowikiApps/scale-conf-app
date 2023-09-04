@@ -1,8 +1,14 @@
-DESTDIR = /work/build
-
 QT += qml quick svg webview
 
 CONFIG += c++11 qzxing_multimedia qtquickcompiler
+
+CONFIG += release warn_on
+
+release:DESTDIR = /work/build
+release:OBJECTS_DIR = /work/build
+release:MOC_DIR = /work/build
+release:RCC_DIR = /work/build
+release:UI_DIR = /work/build
 
 QTPLUGIN+= qsqlite
 
@@ -49,6 +55,16 @@ RESOURCES += \
 for(var, $$list($$enumerate_vars())) {
     message($$var "-> " $$eval($$var))
 }
+
+# qmake vars to investigate
+#QMAKE_CXX.LIBDIRS
+#ANDROID_SDK_BUILD_TOOLS_REVISION
+#NDK_ROOT
+#QMAKE_DEFAULT_INCDIRS
+#TARGET=scale-conf-app
+#BASENAME=33.0.0
+#ANDROID_SDK_ROOT
+#ANDROID_EXTRA_LIBS
 
 
 

@@ -12,7 +12,7 @@ release:UI_DIR = /work/build
 
 QTPLUGIN+= qsqlite
 
-ANDROID_ABIS='armeabi-v7a arm64-v8a x86 x86_64'
+ANDROID_ABIS += armeabi-v7a arm64-v8a x86 x86_64
 ANDROID_MIN_SDK_VERSION = 27
 ANDROID_TARGET_SDK_VERSION = 31
 ANDROID_VERSION_CODE = 1131
@@ -52,9 +52,9 @@ RESOURCES += \
     fonts/fonts.qrc
 
 # print all qmake vars for debugging purposes
-for(var, $$list($$enumerate_vars())) {
-    message($$var "-> " $$eval($$var))
-}
+#for(var, $$list($$enumerate_vars())) {
+#    message($$var "-> " $$eval($$var))
+#}
 
 # qmake vars to investigate
 #QMAKE_CXX.LIBDIRS

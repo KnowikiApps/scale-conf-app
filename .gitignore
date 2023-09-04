@@ -15,3 +15,4 @@ build
 Makefile
 js_js_qmlcache.qrc
 qml_qml_qmlcache.qrc
+android-scale-conf-docker-deployment-settings.json

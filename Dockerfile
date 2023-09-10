@@ -12,10 +12,14 @@ WORKDIR /
 RUN apt-get update
 RUN apt-get install -y wget qtcreator libxcb-xinerama0
 
-# Qt6
+# Qt5.15.2
 RUN wget https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-unified-linux-x64-4.6.1-online.run
 RUN chmod +x qt-unified-linux-x64-4.6.1-online.run
 RUN ./qt-unified-linux-x64-4.6.1-online.run --root /Qt --accept-licenses --confirm-command --accept-messages install qt.qt5.5152.android --email "${EMAIL}" --pw "${PW}" --accept-obligations
+
+# JDK 20
+RUN wget https://download.java.net/java/GA/jdk20.0.2/6e380f22cbe7469fa75fb448bd903d8e/9/GPL/openjdk-20.0.2_linux-x64_bin.tar.gz
+RUN tar xvf openjdk-20.0.2_linux-x64_bin.tar.gzw
 
 # Android SDK and tools
 RUN apt-get install -y android-sdk

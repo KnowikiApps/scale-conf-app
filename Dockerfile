@@ -19,7 +19,7 @@ RUN ./qt-unified-linux-x64-4.6.1-online.run --root /Qt --accept-licenses --confi
 
 # JDK 20
 RUN wget https://download.java.net/java/GA/jdk20.0.2/6e380f22cbe7469fa75fb448bd903d8e/9/GPL/openjdk-20.0.2_linux-x64_bin.tar.gz
-RUN tar xvf openjdk-20.0.2_linux-x64_bin.tar.gzw
+RUN tar xvf openjdk-20.0.2_linux-x64_bin.tar.gz
 
 # Android SDK and tools
 RUN apt-get install -y android-sdk

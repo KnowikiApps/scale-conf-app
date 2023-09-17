@@ -9,13 +9,16 @@ ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /
 
 # Debian
+RUN dpkg --add-architecture i386
 RUN apt-get update
-RUN apt-get install -y wget qtcreator libxcb-xinerama0
+RUN apt-get install -y wget qtcreator libxcb-xinerama0 libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386
+RUN apt-get autoclean && apt-get clean
 
 # Qt5.15.2
 RUN wget https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-unified-linux-x64-4.6.1-online.run
 RUN chmod +x qt-unified-linux-x64-4.6.1-online.run
 RUN ./qt-unified-linux-x64-4.6.1-online.run --root /Qt --accept-licenses --confirm-command --accept-messages install qt.qt5.5152.android --email "${EMAIL}" --pw "${PW}" --accept-obligations
+
 
 # JDK 20
 RUN wget https://download.java.net/java/GA/jdk20.0.2/6e380f22cbe7469fa75fb448bd903d8e/9/GPL/openjdk-20.0.2_linux-x64_bin.tar.gz

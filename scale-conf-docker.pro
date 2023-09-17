@@ -12,9 +12,9 @@ release:UI_DIR = /work/build
 
 QTPLUGIN+= qsqlite
 
-ANDROID_ABIS += armeabi-v7a
+#ANDROID_ABIS += armeabi-v7a
 #ANDROID_ABIS += arm64-v8a
-#ANDROID_ABIS += x86
+ANDROID_ABIS += x86
 #ANDROID_ABIS += x86_64
 ANDROID_MIN_SDK_VERSION = 27
 ANDROID_TARGET_SDK_VERSION = 31
@@ -54,20 +54,6 @@ RESOURCES += \
     img/img.qrc \
     fonts/fonts.qrc
 
-# print all qmake vars for debugging purposes
-#for(var, $$list($$enumerate_vars())) {
-#    message($$var "-> " $$eval($$var))
-#}
-
-# qmake vars to investigate
-#QMAKE_CXX.LIBDIRS
-#ANDROID_SDK_BUILD_TOOLS_REVISION
-#NDK_ROOT
-#QMAKE_DEFAULT_INCDIRS
-#TARGET=scale-conf-app
-#BASENAME=33.0.0
-#ANDROID_SDK_ROOT
-#ANDROID_EXTRA_LIBS
 
 
 

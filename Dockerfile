@@ -25,7 +25,7 @@ RUN wget https://download.java.net/java/GA/jdk20.0.2/6e380f22cbe7469fa75fb448bd9
 RUN tar xvf openjdk-20.0.2_linux-x64_bin.tar.gz
 
 # Android SDK and tools
-RUN apt-get install -y android-sdk
+RUN apt-get install -y android-sdk python3-cairosvg
 RUN wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip
 RUN unzip commandlinetools-linux-10406996_latest.zip -d /usr/lib/android-sdk/
 

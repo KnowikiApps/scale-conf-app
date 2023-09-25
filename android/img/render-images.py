@@ -13,14 +13,14 @@ RES_PATH = os.path.join(pathlib.Path(__file__).parent.parent, 'res')
 # import source svg at 20x20px original size
 appIcon = cairosvg.svg2svg(bytestring=open("AppIcon.svg").read().encode('utf-8'))
 
-# render for 32x32
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=32.0/20.0)
+# render for 36x36
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=36.0/20.0)
 icon_dir = os.path.join(RES_PATH, "drawable-ldpi")
 os.makedirs(icon_dir, exist_ok=True)
 cairosvg.svg2png(bytestring=appIcon, write_to=os.path.join(icon_dir,"icon.png"))
 
 # render for 48x48
-appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=48.0/20.0)
+appIcon = cairosvg.svg2svg(bytestring=appIcon, scale=48.0/36.0)
 icon_dir = os.path.join(RES_PATH, "drawable-mdpi")
 os.makedirs(icon_dir, exist_ok=True)
 cairosvg.svg2png(bytestring=appIcon, write_to=os.path.join(icon_dir,"icon.png"))

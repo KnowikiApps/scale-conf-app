@@ -6,6 +6,8 @@ jobs:
   android_build_release:
     runs-on: ubuntu-latest
     steps:
+    - name: Print dir
+      run: ls -lR $GITHUB_WORKSPACE
     - name: Check out repo for build
       uses: actions/checkout@v3
       with:
@@ -16,8 +18,6 @@ jobs:
         image: knowikiapps/scale-conf:android-build-env-v0.3
         options: -v ${{ github.workspace }}:/work
         run: cd /work && ./build-android.sh
-    - name: Print dir pre-signing
-      run: ls -lR $GITHUB_WORKSPACE/build/android-build/build/outputs
     - name: Sign Android release (aab)
       uses: r0adkll/sign-android-release@v1
       with:

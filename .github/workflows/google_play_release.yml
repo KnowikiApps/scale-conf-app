@@ -23,7 +23,7 @@ jobs:
     - name: change owner
       run: chown -R runner:docker $GITHUB_WORKSPACE/
     - name: Print dir after chown
-      run: ls -lR $GITHUB_WORKSPACE/
+      run: sudo ls -lR $GITHUB_WORKSPACE/
     # - name: Sign Android release (aab)
     #   uses: r0adkll/sign-android-release@v1
     #   with:

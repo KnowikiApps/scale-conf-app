@@ -5,8 +5,6 @@ on:
 jobs:
   android_build_release:
     runs-on: ubuntu-latest
-    container:
-      options: --user 1001
     steps:
     - name: Check out repo for build
       uses: actions/checkout@v3
@@ -22,7 +20,7 @@ jobs:
       run: |-
         tree $GITHUB_WORKSPACE/build/android-build/build/outputs
     - name: Sign Android release (aab)
-      uses: r0adkll/sign-android-release@v1
+      uses: Tlaster/android-sign@v1.2.2
       with:
         # The directory to find your release to sign
         releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/

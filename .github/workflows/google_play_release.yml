@@ -17,43 +17,43 @@ jobs:
 # on:
 #   push:
 #     branches: util-container-android-build-env
-# jobs:
-#   android_build_release:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Check out repo for build
-#       uses: actions/checkout@v3
-#       with:
-#         submodules: 'recursive'
-#     - name: Print dir before build
-#       run: ls -lR $GITHUB_WORKSPACE/
-#     - name: build in custom container
-#       uses: addnab/docker-run-action@v3
-#       with:
-#         image: knowikiapps/scale-conf:android-build-env-v0.3
-#         options: -v ${{ github.workspace }}:/work
-#         run: cd /work && ./build-android.sh
-#     - name: Print dir after build
-#       run: ls -lR $GITHUB_WORKSPACE/
-#     - name: change owner
-#       run: sudo chown -R runner:docker $GITHUB_WORKSPACE/
-#     - name: Print dir after chown
-#       run: ls -lR $GITHUB_WORKSPACE/
-#     - name: Sign Android release (aab)
-#       uses: r0adkll/sign-android-release@v1
-#       with:
-#         # The directory to find your release to sign
-#         releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/
-#         # The key used to sign your release in base64 encoded format
-#         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-#         alias: ${{ secrets.ALIAS }}
-#         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-#         keyPassword: ${{ secrets.KEY_PASSWORD }}
-#     - name: Upload AAB artifact
-#       uses: actions/upload-artifact@v3.1.2
-#       with:
-#         path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
-#     - name: Upload APK artifact
-#       uses: actions/upload-artifact@v3.1.2
-#       with:
-#         path: ${{ github.workspace }}/build/android-build/build/outputs/apk/debug/*.apk
+jobs:
+  android_build_release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo for build
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - name: Print dir before build
+      run: ls -lR $GITHUB_WORKSPACE/
+    - name: build in custom container
+      uses: addnab/docker-run-action@v3
+      with:
+        image: knowikiapps/scale-conf:android-build-env-v0.3
+        options: -v ${{ github.workspace }}:/work
+        run: cd /work && ./build-android.sh -t ${{ env.RELEASE_VERSION }}
+    - name: Print dir after build
+      run: ls -lR $GITHUB_WORKSPACE/
+    - name: change owner
+      run: sudo chown -R runner:docker $GITHUB_WORKSPACE/
+    - name: Print dir after chown
+      run: ls -lR $GITHUB_WORKSPACE/
+    - name: Sign Android release (aab)
+      uses: r0adkll/sign-android-release@v1
+      with:
+        # The directory to find your release to sign
+        releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/
+        # The key used to sign your release in base64 encoded format
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+    - name: Upload AAB artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: ${{ github.workspace }}/build/android-build/build/outputs/apk/debug/*.apk

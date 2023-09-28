@@ -17,7 +17,7 @@ jobs:
         options: -v ${{ github.workspace }}:/work
         run: cd /work && ./build-android.sh
     - name: Print dir pre-signing
-      run: ls -a $GITHUB_WORKSPACE/build/android-build/build/outputs
+      run: ls -lR $GITHUB_WORKSPACE/build/android-build/build/outputs
     - name: Sign Android release (aab)
       uses: r0adkll/sign-android-release@v1
       with:

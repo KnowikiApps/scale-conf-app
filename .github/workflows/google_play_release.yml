@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Print dir
-      run: ls -lR $GITHUB_WORKSPACE/build/
+      run: ls -lR $GITHUB_WORKSPACE/
     - name: Check out repo for build
       uses: actions/checkout@v3
       with:

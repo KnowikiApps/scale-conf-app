@@ -5,6 +5,8 @@ on:
 jobs:
   android_build_release:
     runs-on: ubuntu-latest
+    container:
+      options: --user 1001
     steps:
     - name: Check out repo for build
       uses: actions/checkout@v3

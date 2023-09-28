@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+# process command line arguments
+while getopts t:h flag
+do
+    case "${flag}" in
+        t) tag=${OPTARG};;
+	h) echo "-t optional android app version tag v#.#.#"
+    esac
+done
+
+version_name=${tag:1}
+version_code=${version_name//.}
+
+echo "ANDROID_VERSION_CODE->${version_code}"
+echo "ANDROID_VERSION_NAME->${version_name}"
+
 BUILD_DIR='build'
 
 # Generate the photos using the render script
@@ -26,5 +41,5 @@ fi
 # /Qt/5.15.2/android/bin/androiddeployqt --input /work/build/android-scale-conf-docker-deployment-settings.json --output /work/build/android-build --android-platform android-31 --jdk /jdk-20.0.2/bin --gradle --verbose | tee > /work/build/output_androiddeployqt.txt
 
 cd "$BUILD_DIR"
-/Qt/5.15.2/android/bin/qmake CONFIG+=debug CONFIG+=qml_debug CONFIG+=qtquickcompiler /work/scale-conf.pro
+/Qt/5.15.2/android/bin/qmake CONFIG+=debug CONFIG+=qml_debug CONFIG+=qtquickcompiler ANDROID_VERSION_CODE=$version_code ANDROID_VERSION_NAME=$version_name /work/scale-conf.pro
 make aab

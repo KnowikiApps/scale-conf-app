@@ -1,9 +1,7 @@
 name: Google Play Release
-
 on:
   push:
     branches: util-container-android-build-env
-
 jobs:
   android_build_release:
     runs-on: ubuntu-latest

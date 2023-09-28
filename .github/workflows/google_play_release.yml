@@ -2,7 +2,7 @@ name: Google Play Release
 
 on:
   push:
-    branches: pipeline-android-aab-release
+    branches: util-container-android-build-env
 
 jobs:
   android_build_release:
@@ -11,137 +11,47 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: 'recursive'
-
-    - name: Set up JDK
-      uses: actions/setup-java@v3
+    - uses: addnab/docker-run-action@v3
       with:
-        java-version: 11
-        distribution: temurin
-
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-
-      # NOTE NOTE NOTE NOTE!!!!!!!!
-      # NDK's 24 and 25 call llvm wrong:
-      # https://bugreports.qt.io/browse/QTBUG-104580
-      #
-      # And NDK 23 can't build release builds (they fail to strip
-      # debug symbols):
-      # https://github.com/NativeScript/android/issues/1659
-      #
-      # So we MUST use NDK22
-    - name: Install additional Android components
-      run: |-
-        sdkmanager \
-          "build-tools;28.0.3" "platforms;android-28" \
-          "build-tools;30.0.3" "platforms;android-30" \
-          "build-tools;31.0.0" "platforms;android-31" \
-          "build-tools;32.0.0" "platforms;android-32" \
-          "build-tools;33.0.0" "platforms;android-33" \
-          "ndk;22.1.7171670" \
-          "ndk;23.2.8568313"
-        sdkmanager --uninstall "ndk;25.2.9519653" "ndk;24.0.8215888"
-    - name: Install Android Qt
-      uses: jurplel/install-qt-action@v3.1.0
-      with:
-        host: linux
-        target: android
-        arch: android
-        modules: 'qtcharts qtdatavis3d qtnetworkauth qtquick3d qtquicktimeline qtscript'
-        archives: 'qtbase qtsvg qtxmlpatterns qtwebview qtquickcontrols2 qtmultimedia qtdeclarative'
-
-#     - name: Setup openssl
-#       run: git submodule update --init
-
-    - name: Log tools
-      run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
-        echo "DEBUG: environment -->"
-        env
-        echo "DEBUG: tools -->"
-        which qmake
-        which make
-        which sdkmanager
-        which java
-        which androiddeployqt
-        which gradle
-        echo "DEBUG: QT platform plugins -->"
-        ls $Qt5_Dir/plugins/platforms/
-        echo "DEBUG: SDK platforms -->"
-        ls $ANDROID_SDK_ROOT/platforms
-        echo "DEBUG: NDKs -->"
-        ls $ANDROID_SDK_ROOT/ndk
-    - name: Render Android icons
-      run: |-
-        cd $GITHUB_WORKSPACE/android/img
-        pip install -r requirements.txt
-        python3 render-images.py
-    - name: Build Android binaries
-      run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
-        BUILD_DIR=$GITHUB_WORKSPACE/build
-        echo $BUILD_DIR
-        INSTALL_ROOT=$BUILD_DIR/android-build
-        echo $INSTALL_ROOT
-        mkdir $BUILD_DIR
-        cd $BUILD_DIR
-        qmake $GITHUB_WORKSPACE/scale-conf.pro -spec android-clang ANDROID_ABIS='armeabi-v7a arm64-v8a x86 x86_64'
-        make qmake_all
-        make -j 4
-        make INSTALL_ROOT=$INSTALL_ROOT install
-    - name: Package Android releases
-      run: |-
-        export ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/22.1.7171670
-        BUILD_DIR=$GITHUB_WORKSPACE/build
-        INSTALL_ROOT=$BUILD_DIR/android-build
-        cd $BUILD_DIR
-        echo "Running deploy to-> ${INSTALL_ROOT}"
-        
-        androiddeployqt \
-          --input $BUILD_DIR/android-scale-conf-deployment-settings.json \
-          --output $INSTALL_ROOT \
-          --aab \
-          --apk \
-          --android-platform android-33 \
-          --gradle \
-          --release
-    - name: Print dir pre-signing
-      run: |-
-        tree $GITHUB_WORKSPACE/build/android-build/build/outputs
-    - name: Sign Android release (aab)
-      uses: r0adkll/sign-android-release@v1
-      with:
-        # The directory to find your release to sign
-        releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/
-        # The key used to sign your release in base64 encoded format
-        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-        # The key alias
-        alias: ${{ secrets.ALIAS }}
-        # The password to the keystore
-        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-        # The password for the key
-        #keyPassword: ${{ secrets.KEY_PASSWORD }}
-    - name: Sign Android release (apk)
-      uses: r0adkll/sign-android-release@v1
-      with:
-        # The directory to find your release to sign
-        releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/
-        # The key used to sign your release in base64 encoded format
-        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-        # The key alias
-        alias: ${{ secrets.ALIAS }}
-        # The password to the keystore
-        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-        # The password for the key
-        #keyPassword: ${{ secrets.KEY_PASSWORD }}
-    - name: Print dir post-signing
-      run: |-
-        tree $GITHUB_WORKSPACE/build/android-build/build/outputs
-    - name: Upload AAB
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
-    - name: Upload APK
-      uses: actions/upload-artifact@v3.1.2
+        image: knowikiapps/scale-conf:android-build-env-v0.3
+        run: cd /work && ./build-android.sh
+    # - name: Print dir pre-signing
+    #   run: |-
+    #     tree $GITHUB_WORKSPACE/build/android-build/build/outputs
+    # - name: Sign Android release (aab)
+    #   uses: r0adkll/sign-android-release@v1
+    #   with:
+    #     # The directory to find your release to sign
+    #     releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/
+    #     # The key used to sign your release in base64 encoded format
+    #     signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+    #     # The key alias
+    #     alias: ${{ secrets.ALIAS }}
+    #     # The password to the keystore
+    #     keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+    #     # The password for the key
+    #     #keyPassword: ${{ secrets.KEY_PASSWORD }}
+    # - name: Sign Android release (apk)
+    #   uses: r0adkll/sign-android-release@v1
+    #   with:
+    #     # The directory to find your release to sign
+    #     releaseDirectory: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/
+    #     # The key used to sign your release in base64 encoded format
+    #     signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+    #     # The key alias
+    #     alias: ${{ secrets.ALIAS }}
+    #     # The password to the keystore
+    #     keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+    #     # The password for the key
+    #     #keyPassword: ${{ secrets.KEY_PASSWORD }}
+    # - name: Print dir post-signing
+    #   run: |-
+    #     tree $GITHUB_WORKSPACE/build/android-build/build/outputs
+    # - name: Upload AAB
+    #   uses: actions/upload-artifact@v3.1.2
+    #   with:
+    #     path: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/*.aab
+    # - name: Upload APK
+    #   uses: actions/upload-artifact@v3.1.2
       with:
         path: ${{ github.workspace }}/build/android-build/build/outputs/apk/release/*.apk

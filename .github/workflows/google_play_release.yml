@@ -45,3 +45,12 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         path: ${{ github.workspace }}/build/android-build/build/outputs/apk/debug/*.apk
+    - name: Create service_account.json
+      run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
+    - name: Upload to Google Play
+      uses: r0adkll/upload-google-play@v1.1.2
+      with:
+        serviceAccountJson: service_account.json
+        packageName: com.knowikiapps.SCaLE
+        releaseFile: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/android-build-release.aab
+        track: internal

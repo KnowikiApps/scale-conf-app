@@ -46,7 +46,7 @@ android{
     include(./android_openssl/openssl.pri)
 
     ANDROID_MIN_SDK_VERSION = 27
-    ANDROID_TARGET_SDK_VERSION = 31
+    ANDROID_TARGET_SDK_VERSION = 33
 #    ANDROID_VERSION_CODE = 1131
 #    ANDROID_VERSION_NAME = "1.13.1"
     ANDROID_PACKAGE_NAME = "com.knowikiapps.SCaLE"

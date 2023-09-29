@@ -52,5 +52,5 @@ jobs:
       with:
         serviceAccountJson: service_account.json
         packageName: com.knowikiapps.SCaLE
-        releaseFile: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/android-build-release.aab
+        releaseFiles: ${{ github.workspace }}/build/android-build/build/outputs/bundle/release/android-build-release.aab
         track: internal

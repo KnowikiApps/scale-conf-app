@@ -29,5 +29,6 @@
         <file>pages/Schedule/SignModel.qml</file>
         <file>pages/CampusMap/CampusMap.qml</file>
         <file>pages/QrScan/QrScanLoader.qml</file>
+        <file>pages/Contacts/+android/Contacts.qml</file>
     </qresource>
 </RCC>

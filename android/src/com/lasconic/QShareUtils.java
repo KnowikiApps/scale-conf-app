@@ -79,7 +79,6 @@ public class QShareUtils
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, "Share CSV File");
         intent.putExtra(Intent.EXTRA_STREAM, contentUri);
         intent.setType("text/csv");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

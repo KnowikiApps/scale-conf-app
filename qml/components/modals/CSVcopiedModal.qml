@@ -1,27 +1,27 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.3
 
 Dialog {
     title: "CSV Copied"
     standardButtons: Dialog.Ok
 
-    x: (parent.width / 2) - (implicitWidth / 2)
-    y: (parent.height / 2) - (implicitHeight / 2)
+    parent: Overlay.overlay
+    anchors.centerIn: parent
+
 
     closePolicy: Popup.NoAutoClose
     modal: true
-    onAccepted: this.close()
-    contentItem: Rectangle {
-        color: "lightskyblue"
-        implicitWidth: window.width * 0.75
-        implicitHeight: window.height * 0.10
+    implicitWidth: implicitContentWidth
+    contentItem: Label {
+        id: text
+        text: "CSV Text has been copied to the clipboard and can be pasted into another application."
+        horizontalAlignment: Text.AlignHCenter
+        width: parent.width
+        wrapMode: Text.WordWrap
+        elide: Text.ElideRight
 
-        Text {
-            text: "CSV Text has been copied to the clipboard and can be pasted into another application."
-            horizontalAlignment: Text.AlignCenter
-            wrapMode: Text.WordWrap
-            width: parent.width
-            elide: Text.ElideRight
+        background: Rectangle {
+            color: "lightskyblue"
         }
     }
 }

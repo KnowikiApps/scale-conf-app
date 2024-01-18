@@ -1,27 +1,27 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.3
 
 Dialog {
     title: "Can't Connect to Wi-Fi"
     standardButtons: Dialog.Ok
 
-    x: (parent.width / 2) - (implicitWidth / 2)
-    y: (parent.height / 2) - (implicitHeight / 2)
+    parent: Overlay.overlay
+    anchors.centerIn: parent
+
 
     closePolicy: Popup.NoAutoClose
     modal: true
-    onAccepted: this.close()
-    contentItem: Rectangle {
-        color: "lightskyblue"
-        implicitWidth: parent.contentWidth * 0.75
-        implicitHeight: parent.contentHeight * 0.10
+    implicitWidth: implicitContentWidth
+    contentItem: Label {
+        id: text
+        text: "There was an error downloading the schedule, check your internet connection and try again"
+        horizontalAlignment: Text.AlignHCenter
+        width: parent.width
+        wrapMode: Text.WordWrap
+        elide: Text.ElideRight
 
-        Text {
-            text: "There was an error downloading the schedule, check your internet connection and try again"
-            horizontalAlignment: Text.AlignCenter
-            wrapMode: Text.WordWrap
-            width: parent.width
-            elide: Text.ElideRight
+        background: Rectangle {
+            color: "lightskyblue"
         }
     }
 }

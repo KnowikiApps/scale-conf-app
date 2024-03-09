@@ -1,0 +1,21 @@
+name: backend_refresh
+
+on:
+  schedule:
+    - cron: '1,31 * * * *'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install deps
+        shell: bash
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          apt update
+          apt install -y --no-recommends wget
+      - name: refresh events
+        run: wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh
+      - name: refresh speakers
+        run: wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh/speakers

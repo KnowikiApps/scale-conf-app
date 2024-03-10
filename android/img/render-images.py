@@ -59,3 +59,13 @@ cairosvg.svg2png(bytestring=appIcon, write_to=icon_dir+"icon.png")
 # Feature Graphic
 featureGraphic = cairosvg.svg2svg(bytestring=open("FeatureGraphic.svg").read().encode('utf-8'))
 cairosvg.svg2png(bytestring=featureGraphic, write_to="feature_graphic.png")
+
+
+# Adaptive Icons
+DESIRED_MDPI = 108
+SIZE_MULT = {'ldpi': 0.75, 'mdpi': 1, 'hdpi': 1.5, 'xhdpi': 2, 'xxhdpi': 3, 'xxxhdpi': 4}
+for key, value in SIZE_MULT.items():
+    icon_dir = os.path.join(RES_PATH, f'mipmap-{key}')
+    ICON_SIZE = DESIRED_MDPI*value
+    os.makedirs(icon_dir, exist_ok=True)
+    cairosvg.svg2png(url='foreground.svg', write_to=os.path.join(icon_dir, 'icon_foreground.png'), output_width=ICON_SIZE, output_height=ICON_SIZE)

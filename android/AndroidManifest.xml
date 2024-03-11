@@ -10,6 +10,16 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="-- %%INSERT_APP_NAME%% --" android:extractNativeLibs="true" android:icon="@drawable/icon">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.knowikiapps.SCaLE.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+         </provider>
+
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="-- %%INSERT_APP_NAME%% --" android:screenOrientation="unspecified" android:launchMode="singleTop" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -71,5 +81,7 @@
         </activity>
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
     </application>
+
+
 
 </manifest>

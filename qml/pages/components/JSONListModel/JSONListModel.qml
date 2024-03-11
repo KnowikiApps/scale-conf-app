@@ -23,7 +23,7 @@ Item {
                     console.log(e.name + " - "+ e.message);
                 }
             }else{
-                json = JSON.parse(DB.get_json(source.replace("https://scale-app-backend.onrender.com/", '').replace("/", '')));
+                json = JSON.parse(DB.get_json(source.replace("https://scale-app-backend-113205d83b1f.herokuapp.com/", '').replace("/", '')));
             }
         };
 
@@ -44,6 +44,6 @@ Item {
         }
 
         //sync json data to the local database
-        DB.add_json(JSON.stringify(json), source.replace("https://scale-app-backend.onrender.com/", '').replace("/", ''));
+        DB.add_json(JSON.stringify(json), source.replace("https://scale-app-backend-113205d83b1f.herokuapp.com/", '').replace("/", ''));
     }
 }

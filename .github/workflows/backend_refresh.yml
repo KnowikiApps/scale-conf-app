@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '1,31 * * * *'
   workflow_dispatch:
+  pull_request:
+    branches: master
+    paths:
+      - ".github/workflows/backend_refresh.yml"
 
 jobs:
   refresh:
@@ -13,8 +17,8 @@ jobs:
         shell: bash
         run: |
           export DEBIAN_FRONTEND=noninteractive
-          apt update
-          apt install -y --no-recommends wget
+          sudo apt update
+          sudo apt install -y --no-install-recommends wget
       - name: refresh events
         run: wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh
       - name: refresh speakers

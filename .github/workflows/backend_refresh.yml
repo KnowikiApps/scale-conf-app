@@ -19,7 +19,17 @@ jobs:
           export DEBIAN_FRONTEND=noninteractive
           sudo apt update
           sudo apt install -y --no-install-recommends wget
-      - name: refresh events
-        run: wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh
+      - name: refresh schedule
+        run: |
+          for try in 0 1 2 3; do
+            wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh && break
+            echo "Refreshing schedule data failed, attempt $try, sleeping 5 seconds and retrying"
+            sleep 5
+          done
       - name: refresh speakers
-        run: wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh/speakers
+        run: |
+          for try in 0 1 2 3; do
+            wget https://scale-app-backend-113205d83b1f.herokuapp.com/refresh/speakers && break
+            echo "Refreshing speaker data failed, attempt $try, sleeping 5 seconds and retrying"
+            sleep 5
+          done

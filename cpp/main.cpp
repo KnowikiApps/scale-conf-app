@@ -1,10 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "shareutils.h"
+
 #include <QZXing.h>
 #include <QDebug>
 #include <QtWebView/QtWebView>
 
+#ifdef Q_OS_ANDROID
+#include "shareutils.h"
+#endif
 
 
 int main(int argc, char *argv[])
@@ -12,8 +15,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
+#ifdef Q_OS_ANDROID
     qmlRegisterType<ShareUtils> ("com.lasconic", 1, 0, "ShareUtils");
-
+#endif
 
     QtWebView::initialize();
 

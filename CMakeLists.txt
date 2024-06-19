@@ -144,14 +144,14 @@ qt6_add_resources(scale-conf "fonts"
 )
 
 if(ANDROID)
-    target_sources(scale-conf PUBLIC
-        android/androidshareutils.cpp android/androidshareutils.h
-        shareutils.cpp shareutils.h
-    )
+    # target_sources(scale-conf PUBLIC
+    #     android/androidshareutils.cpp android/androidshareutils.h
+    #     shareutils.cpp shareutils.h
+    # )
 
-    target_link_libraries(scale-conf PUBLIC
-        Qt::AndroidExtras
-    )
+    # target_link_libraries(scale-conf PUBLIC
+    #     Qt::AndroidExtras
+    # )
 endif()
 
 

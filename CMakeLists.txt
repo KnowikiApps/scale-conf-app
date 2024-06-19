@@ -154,6 +154,20 @@ if(ANDROID)
     )
 endif()
 
+
+set(Qt5Core_DIR "$ENV{HOME}/Qt")
+message(STATUS "Qt5Core_DIR->${Qt5Core_DIR}")
+
+if(IOS)
+    include(${PROJECT_SOURCE_DIR}/FetchQtIosCMake.cmake)
+
+    add_qt_ios_app(scale-conf
+        NAME "SCALECONF"
+        BUNDLE_IDENTIFIER "com.knowikiapps.scaleconf"
+    )
+endif()
+
+
 install(TARGETS scale-conf
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"

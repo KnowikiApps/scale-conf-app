@@ -34,7 +34,7 @@ RESOURCES += \
     img/img.qrc \
     fonts/fonts.qrc
 
-include(./QZXing/QZXing.pri)
+#include(./QZXing/QZXing.pri)
 
 
 HEADERS += \
@@ -52,7 +52,7 @@ android{
     SOURCES += shareutils.cpp
 
     # END ShareUtils block
-    include(./android_openssl/openssl.pri)
+    # include(./android_openssl/openssl.pri)
 
     ANDROID_MIN_SDK_VERSION = 27
     ANDROID_TARGET_SDK_VERSION = 33

@@ -17,3 +17,5 @@ js_js_qmlcache.qrc
 qml_qml_qmlcache.qrc
 android-scale-conf-docker-deployment-settings.json
 *.txt.user
+qt_acct_email.txt
+qt_acct_pw.txt

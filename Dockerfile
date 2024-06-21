@@ -1,8 +1,5 @@
+# syntax = docker/dockerfile:1.2
 FROM debian:latest
-
-# Required Build args
-ARG EMAIL
-ARG PW
 
 # Before
 ARG DEBIAN_FRONTEND=noninteractive
@@ -17,8 +14,9 @@ RUN apt-get autoclean && apt-get clean
 # Qt5.15.2
 RUN wget https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-unified-linux-x64-4.6.1-online.run
 RUN chmod +x qt-unified-linux-x64-4.6.1-online.run
-RUN ./qt-unified-linux-x64-4.6.1-online.run --root /Qt --accept-licenses --confirm-command --accept-messages install qt.qt5.5152.android --email "${EMAIL}" --pw "${PW}" --accept-obligations
-
+RUN --mount=type=secret,id=qt_acct_email \
+    --mount=type=secret,id=qt_acct_pw \
+    ./qt-unified-linux-x64-4.6.1-online.run --root /Qt --accept-licenses --confirm-command --accept-messages install qt.qt5.5152.android --email $(cat /run/secrets/qt_acct_email) --pw $(cat /run/secrets/qt_acct_pw) --accept-obligations
 
 # JDK 20
 RUN wget https://download.java.net/java/GA/jdk20.0.2/6e380f22cbe7469fa75fb448bd903d8e/9/GPL/openjdk-20.0.2_linux-x64_bin.tar.gz

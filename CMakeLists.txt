@@ -13,8 +13,11 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}")
 
-find_package(QT NAMES Qt5 Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Qml Quick Svg WebView)
+find_package(Qt6 6.6 REQUIRED COMPONENTS Core Gui Quick WebView Svg QuickControls2 Multimedia)
+
+
+qt_standard_project_setup(REQUIRES 6.6)
+
 # find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS AndroidExtras)
 
 qt_add_executable(scale-conf WIN32 MACOSX_BUNDLE
@@ -22,10 +25,10 @@ qt_add_executable(scale-conf WIN32 MACOSX_BUNDLE
     cpp/main.cpp
 )
 qt_add_qml_module(scale-conf
-    URI scale-conf
+    URI Scaleconf
     VERSION ${PROJECT_VERSION}
     QML_FILES
-        qml/main.qml
+        qml/Main.qml
         qml/components/modals/ErrorModal.qml
         qml/components/modals/EventAlreadySavedModal.qml
         qml/components/modals/ProgressModal.qml
@@ -34,49 +37,48 @@ qt_add_qml_module(scale-conf
         qml/components/navigation/NavButton.qml
         qml/components/navigation/NavMenu.qml
         qml/components/navigation/TopBar.qml
-        # qml/pages/components/PresentationDetail/PresentationDetail.qml
-        # qml/pages/components/ScheduleFilter/ScheduleFilter.qml
-        # qml/pages/Contacts/Contacts.qml
-        # qml/pages/Contacts/FilePicker.qml
-        # qml/pages/Exhibitors/Exhibitors.qml
-        # qml/pages/Home/AnnouncementsModel.qml
-        # qml/pages/Home/Home.qml
-        # qml/pages/Messages/Messages.qml
-        # qml/pages/MySchedule/MySchedule.qml
-        # qml/pages/QrScan/QrScan.qml
-        # qml/pages/Schedule/Schedule.qml
-        # qml/pages/Speakers/Speakers.qml
-        # qml/pages/SpecialEvents/SpecialEvents.qml
-        # qml/components/modals/CSVcopiedModal.qml
-        # qml/pages/components/JSONListModel/JSONListModel.qml
-        # qml/pages/Speakers/SpeakersModel.qml
-        # qml/pages/Speakers/IndividualSpeaker.qml
-        # qml/pages/Schedule/SignModel.qml
-        # qml/pages/CampusMap/CampusMap.qml
-        # qml/pages/QrScan/QrScanLoader.qml
-        # qml/pages/Contacts/+android/Contacts.qml
-        # js/database.js
-        # js/initialize.js
-        # js/feed.js
-        # js/nav.js
-        # js/utils.js
+        qml/pages/components/PresentationDetail/PresentationDetail.qml
+        qml/pages/components/ScheduleFilter/ScheduleFilter.qml
+        qml/pages/Contacts/Contacts.qml
+        qml/pages/Contacts/FilePicker.qml
+        qml/pages/Exhibitors/Exhibitors.qml
+        qml/pages/Home/AnnouncementsModel.qml
+        qml/pages/Home/Home.qml
+        qml/pages/Messages/Messages.qml
+        qml/pages/MySchedule/MySchedule.qml
+        qml/pages/QrScan/QrScan.qml
+        qml/pages/Schedule/Schedule.qml
+        qml/pages/Speakers/Speakers.qml
+        qml/pages/SpecialEvents/SpecialEvents.qml
+        qml/components/modals/CSVcopiedModal.qml
+        qml/pages/components/JSONListModel/JSONListModel.qml
+        qml/pages/Speakers/SpeakersModel.qml
+        qml/pages/Speakers/IndividualSpeaker.qml
+        qml/pages/Schedule/SignModel.qml
+        qml/pages/CampusMap/CampusMap.qml
+        qml/pages/QrScan/QrScanLoader.qml
+        qml/pages/Contacts/+android/Contacts.qml
+        js/database.js
+        js/initialize.js
+        js/feed.js
+        js/nav.js
+        js/utils.js
     RESOURCES
-        # img/navicon.svg
-    #     img/arrow-left.svg
-    #     img/HomePageBanner.svg
-    #     img/SCaLE_icons-01_logo.svg
-    #     img/SCaLE_icons-02_home.svg
-    #     img/SCaLE_icons-03_menu-hamburger.svg
-    #     img/SCaLE_placeholders_speakers_penguin-02.svg
-    #     img/SCaLE_placeholders_speakers_penguin.svg
-    #     img/SCaLE_placeholders_speakers_robot-01.svg
-    #     img/SCaLE_placeholders_speakers_robot-02.svg
-    #     img/SCaLE_placeholders_speakers_robot-03.svg
-    #     img/SCaLE_placeholders_speakers_robot-04.svg
-    #     fonts/AnonymousPro-Regular.ttf
-    #     fonts/AnonymousPro-Bold.ttf
-    #     fonts/SourceCodePro-Black.ttf
-    # NO_RESOURCE_TARGET_PATH
+         img/navicon.svg
+         img/arrow-left.svg
+         img/HomePageBanner.svg
+         img/SCaLE_icons-01_logo.svg
+         img/SCaLE_icons-02_home.svg
+         img/SCaLE_icons-03_menu-hamburger.svg
+         img/SCaLE_placeholders_speakers_penguin-02.svg
+         img/SCaLE_placeholders_speakers_penguin.svg
+         img/SCaLE_placeholders_speakers_robot-01.svg
+         img/SCaLE_placeholders_speakers_robot-02.svg
+         img/SCaLE_placeholders_speakers_robot-03.svg
+         img/SCaLE_placeholders_speakers_robot-04.svg
+         fonts/AnonymousPro-Regular.ttf
+         fonts/AnonymousPro-Bold.ttf
+         fonts/SourceCodePro-Black.ttf
 )
 
 target_link_libraries(scale-conf PUBLIC

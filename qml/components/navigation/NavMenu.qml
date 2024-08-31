@@ -19,48 +19,48 @@ Drawer {
         NavButton{
             id: announcements
             buttonText: "Announcements"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/Home/Home.qml")
         }
         NavButton{
             id: schedule
             buttonText: "Schedule"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/Schedule/Schedule.qml")
+            onClicked: pages.push("qrc:/qt/qml/Scaleconf/qml/pages/Schedule/Schedule.qml")
         }
         NavButton {
             id: mySchedule
             buttonText: "My Schedule"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/MySchedule/MySchedule.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/MySchedule/MySchedule.qml")
         }
 
         NavButton{
             id: contacts
             buttonText: "Contacts"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/Contacts/Contacts.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/Contacts/Contacts.qml")
         }
         NavButton{
             id: exhibitors
             buttonText: "Exhibitors"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/Exhibitors/Exhibitors.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/Exhibitors/Exhibitors.qml")
         }
         NavButton{
             id: speakers
             buttonText: "Speakers"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/Speakers/Speakers.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/Speakers/Speakers.qml")
         }
         NavButton{
             id: specialEvents
             buttonText: "Special Events"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/SpecialEvents/SpecialEvents.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/SpecialEvents/SpecialEvents.qml")
         }
         NavButton{
             id: qrScan
             buttonText: "Scan Badge QR Code"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScanLoader.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/QrScan/QrScanLoader.qml")
         }
         NavButton{
             id: campusMap
             buttonText: "Campus Map"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/CampusMap/CampusMap.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/CampusMap/CampusMap.qml")
         }
     }
 }

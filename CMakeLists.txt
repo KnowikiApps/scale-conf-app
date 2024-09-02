@@ -88,6 +88,8 @@ target_link_libraries(scale-conf PUBLIC
     Qt::Quick
     Qt::Svg
     Qt::WebView
+    PRIVATE
+    Qt::Multimedia
 )
 
 

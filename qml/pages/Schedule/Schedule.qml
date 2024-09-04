@@ -6,7 +6,7 @@ import QtQuick.Controls 2.8
 import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
 
-import QtGraphicalEffects 1.12
+import Qt5Compat.GraphicalEffects
 
 import "../components/ScheduleFilter"
 

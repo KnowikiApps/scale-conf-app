@@ -13,7 +13,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}")
 
-find_package(Qt6 6.6 REQUIRED COMPONENTS Core Gui Quick WebView Svg QuickControls2 Multimedia Sql)
+find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Quick WebView Svg QuickControls2 Multimedia Sql)
 
 
 qt_standard_project_setup(REQUIRES 6.6)

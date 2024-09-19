@@ -21,7 +21,6 @@ qt_standard_project_setup(REQUIRES 6.6)
 # find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS AndroidExtras)
 
 qt_add_executable(scale-conf WIN32 MACOSX_BUNDLE
-    contactexporter.cpp contactexporter.h
     cpp/main.cpp
 )
 qt_add_qml_module(scale-conf
@@ -79,6 +78,14 @@ qt_add_qml_module(scale-conf
          fonts/AnonymousPro-Regular.ttf
          fonts/AnonymousPro-Bold.ttf
          fonts/SourceCodePro-Black.ttf
+
+    SOURCES
+        shareutils.h
+        shareutils.cpp
+        android/androidshareutils.h
+        android/androidshareutils.cpp
+        contactexporter.h
+        contactexporter.cpp
 )
 
 target_link_libraries(scale-conf PUBLIC
@@ -149,14 +156,9 @@ qt6_add_resources(scale-conf "fonts"
 )
 
 if(ANDROID)
-    # target_sources(scale-conf PUBLIC
-    #     android/androidshareutils.cpp android/androidshareutils.h
-    #     shareutils.cpp shareutils.h
-    # )
+    set_property(TARGET scale-conf APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+    ${CMAKE_CURRENT_SOURCE_DIR}/android)
 
-    # target_link_libraries(scale-conf PUBLIC
-    #     Qt::AndroidExtras
-    # )
 endif()
 
 

@@ -35,8 +35,10 @@ RUN yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
 RUN sdkmanager --sdk_root=$ANDROID_SDK_ROOT --install \
     "cmdline-tools;latest" \
     "platform-tools" \
-    "platforms;android-31" \
+    "platforms;android-34" \
+    "ndk;26.1.10909125" \
+    "build-tools;33.0.0"
  #   "build-tools;28.0.3" \
  #   "build-tools;30.0.3" \
  #   "build-tools;31.0.0" \
-    "ndk;21.3.6528147"
+ #   "ndk;21.3.6528147"

@@ -22,7 +22,7 @@
 
 package com.lasconic;
 
-import org.qtproject.qt5.android.QtNative;
+import org.qtproject.qt.android.QtNative;
 
 import java.lang.String;
 import android.content.Intent;

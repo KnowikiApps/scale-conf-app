@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.0
 import "qrc:/js/database.js" as DB
 import "qrc:/js/nav.js" as NavHelper
 
-import "qrc:/components/modals"
+import Scaleconf
 
 Rectangle {
     id: pgContacts

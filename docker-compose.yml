@@ -1,0 +1,13 @@
+#version: '3'
+services:
+  builder:
+    build:
+      context: .
+      secrets:
+        - qt_acct_email
+        - qt_acct_pw
+secrets:
+  qt_acct_email:
+    file: qt_acct_email.txt
+  qt_acct_pw:
+    file: qt_acct_pw.txt

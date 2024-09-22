@@ -1,14 +1,13 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
-import QtQuick.Dialogs 1.1
-
-import "components/modals"
-import "components/navigation"
+// import QtQuick.Dialogs 1.2
 
 import "qrc:/js/database.js" as DB
 import "qrc:/js/initialize.js" as Initializer
 import "qrc:/js/nav.js" as NavHelper
+
+import Scaleconf
 
 ApplicationWindow {
     id: window
@@ -30,7 +29,8 @@ ApplicationWindow {
     //declare the page manager
     StackView{
         id:pages
-        Component.onCompleted: NavHelper.nav_tray_push("qrc:/pages/Home/Home.qml")
+        anchors.fill: parent
+        initialItem: "qrc:/qt/qml/Scaleconf/qml/pages/Home/Home.qml"
     }
 
     ErrorModal {

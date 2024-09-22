@@ -67,7 +67,7 @@ ColumnLayout {
                 width: delegateRoot.width - deleteButton.width
 
                 onClicked: {
-                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: path});
+                    NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/components/PresentationDetail/PresentationDetail.qml", {page: path});
                 }
                 onPressAndHold: {
                     confirmDelete.open();

@@ -19,23 +19,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //=============================================================================
+
+#include <qglobal.h>
+// Macro added as QJniObject is not available on all platforms
+#ifdef Q_OS_ANDROID
 #include "androidshareutils.h"
 
-#include <QtAndroidExtras/QAndroidJniObject>
+
+
+
+#include <QJniObject>
 
 #include "contactexporter.h"
 
-
 AndroidShareUtils::AndroidShareUtils(QQuickItem* parent) : PlatformShareUtils(parent)
 {
-
 }
 
 void AndroidShareUtils::share(const QString &text, const QUrl &url)
 {
-    QAndroidJniObject jsText = QAndroidJniObject::fromString(text);
-    QAndroidJniObject jsUrl = QAndroidJniObject::fromString(url.toString());
-    QAndroidJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
+    QJniObject jsText = QJniObject::fromString(text);
+    QJniObject jsUrl = QJniObject::fromString(url.toString());
+    QJniObject::callStaticMethod<void>("org/qtproject/example/scale_conf/QShareUtils",
                                        "share",
                                        "(Ljava/lang/String;Ljava/lang/String;)V",
                                        jsText.object<jstring>(), jsUrl.object<jstring>());
@@ -43,8 +48,8 @@ void AndroidShareUtils::share(const QString &text, const QUrl &url)
 
 void AndroidShareUtils::shareJustText(const QString &text)
 {
-    QAndroidJniObject jsText = QAndroidJniObject::fromString(text);
-    QAndroidJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
+    QJniObject jsText = QJniObject::fromString(text);
+    QJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
                                        "shareJustText",
                                        "(Ljava/lang/String;)V",
                                        jsText.object<jstring>());
@@ -52,9 +57,11 @@ void AndroidShareUtils::shareJustText(const QString &text)
 
 void AndroidShareUtils::shareTextAsFile(const QString &vals) {
     writeStringToFile(vals);
-    QAndroidJniObject jsText = QAndroidJniObject::fromString(getFilePath());
-    QAndroidJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
+    QJniObject jsText = QJniObject::fromString(getFilePath());
+    QJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
                                        "shareFile",
                                        "(Ljava/lang/String;)V",
                                        jsText.object<jstring>());
+
 }
+#endif

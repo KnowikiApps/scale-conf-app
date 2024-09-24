@@ -158,6 +158,8 @@ qt6_add_resources(scale-conf "fonts"
 if(ANDROID)
     set_property(TARGET scale-conf APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
     ${CMAKE_CURRENT_SOURCE_DIR}/android)
+    include(android_openssl/android_openssl.cmake)
+    add_android_openssl_libraries(scale-conf)
 
 endif()
 

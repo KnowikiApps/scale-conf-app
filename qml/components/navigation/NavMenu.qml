@@ -24,7 +24,7 @@ Drawer {
         NavButton{
             id: schedule
             buttonText: "Schedule"
-            onClicked: pages.push("qrc:/qt/qml/Scaleconf/qml/pages/Schedule/Schedule.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/Schedule/Schedule.qml")
         }
         NavButton {
             id: mySchedule
@@ -56,6 +56,7 @@ Drawer {
             id: qrScan
             buttonText: "Scan Badge QR Code"
             onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/QrScan/QrScanLoader.qml")
+
         }
         NavButton{
             id: campusMap

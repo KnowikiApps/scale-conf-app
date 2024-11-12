@@ -46,7 +46,7 @@ Rectangle {
         Button {
             id: scanButton
             text: "Scan Badge"
-            onClicked: NavHelper.nav_tray_push("qrc:/pages/QrScan/QrScanLoader.qml")
+            onClicked: NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/QrScan/QrScanLoader.qml")
             background: Rectangle {
                 color: "lightskyblue"
                 border.color: "black"

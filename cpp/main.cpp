@@ -1,9 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-// #include <QZXing.h>
 #include <QDebug>
 #include <QtWebView/QtWebView>
+#include "SBarcodeScanner.h"
+
 
 // #ifdef Q_OS_ANDROID
 // #include "shareutils.h"
@@ -19,10 +20,11 @@ int main(int argc, char *argv[])
 //     qmlRegisterType<ShareUtils> ("com.lasconic", 1, 0, "ShareUtils");
 // #endif
 
+
     QtWebView::initialize();
 
-    // QZXing::registerQMLTypes();
 
+    qmlRegisterType<SBarcodeScanner>("com.scythestudio.scodes", 1, 0, "SBarcodeScanner");
 
     QQmlApplicationEngine engine;
     QObject::connect(

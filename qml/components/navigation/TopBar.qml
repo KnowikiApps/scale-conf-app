@@ -48,17 +48,16 @@ ToolBar{
                 pages.pop();
                 toolBar.hideNavBtn = false;
             }
-            implicitHeight: button_dimensions
-            implicitWidth: button_dimensions
-            width: button_dimensions
+            Layout.preferredHeight: button_dimensions
+            Layout.preferredWidth: button_dimensions
             background: Image {source: "qrc:/img/arrow-left.svg"}
         }
 
         Rectangle {
             id: homeRect
             Layout.alignment: Qt.AlignRight
-            width: window.width * 0.5
-            height: button_dimensions
+            Layout.preferredWidth: window.width * 0.5
+            Layout.preferredHeight: button_dimensions
             color: "#8cadc8"
 
             Image {

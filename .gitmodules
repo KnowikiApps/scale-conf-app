@@ -3,4 +3,4 @@
 	url = https://github.com/KDAB/android_openssl
 [submodule "SCodes"]
 	path = SCodes
-	url = git@github.com:scytheStudio/SCodes.git
+	url = https://github.com/scytheStudio/SCodes

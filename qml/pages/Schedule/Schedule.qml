@@ -6,7 +6,7 @@ import QtQuick.Controls 2.8
 import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
 
-import QtGraphicalEffects 1.12
+import Qt5Compat.GraphicalEffects
 
 import "../components/ScheduleFilter"
 
@@ -94,7 +94,7 @@ ColumnLayout {
                 height: delegateRoot.height
                 width: delegateRoot.width - addButton.width
                 onClicked: {
-                    NavHelper.nav_tray_push("qrc:/pages/components/PresentationDetail/PresentationDetail.qml", {page: url});
+                    NavHelper.nav_tray_push("qrc:/qt/qml/Scaleconf/qml/pages/components/PresentationDetail/PresentationDetail.qml", {page: url});
                 }
                 onPressAndHold: {
                     Database.add_record("schedule_list",{time: Feed.timeRange(when.startTime, when.endTime), day: Feed.parseDay(when.day), talkTitle: Database.sanitize(title), room: location, path: url})

@@ -38,6 +38,7 @@ public:
 class ShareUtils : public QQuickItem
 {
     Q_OBJECT
+    QML_ELEMENT
     PlatformShareUtils* _pShareUtils;
 public:
     explicit ShareUtils(QQuickItem *parent = 0);

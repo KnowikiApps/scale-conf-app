@@ -1,16 +1,56 @@
-import QtQuick 2.5
-import QtQuick.Controls 2.0
+import QtQuick
+import QtQuick.Controls
+import QtCore
 
 Item {
-    width: 100
-    height: 100
+    id: scannerLoader
+    anchors.fill: parent
 
-    // load and unload the Scanner page so that the camera is only in use when active
+    Rectangle {
+        anchors.fill: parent
+        CameraPermission {
+            id: cameraPermission
+        }
 
-    StackView.onActivated: loader.source = "qrc:/pages/QrScan/QrScan.qml"
-    StackView.onDeactivated: loader.source = ""
+        states: [
+            State {
+                name: "cameraPermissionUnkown"
+                when: cameraPermission.status === Qt.PermissionStatus.Undetermined
+                PropertyChanges {
+                    target: checkPermission; visible: true
+                }
+            },
 
-    Loader {
-        id: loader
+            State {
+                name: "cameraPermissionGranted"
+                when: cameraPermission.status === Qt.PermissionStatus.Granted
+                PropertyChanges {
+                    target: loader; source : "QrScan.qml"
+                }
+            }
+        ]
+
+
+
+        Rectangle {
+            id: checkPermission
+            anchors.fill: parent
+            visible: false
+            Text {
+                id: notice
+                anchors.centerIn: parent
+                text: qsTr("We need to request access to this device's camera")
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: cameraPermission.request()
+            }
+        }
+
+        Loader {
+            id: loader
+            anchors.fill: parent
+        }
     }
 }

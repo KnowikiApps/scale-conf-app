@@ -1,6 +1,8 @@
 #version: '3'
 services:
   builder:
+    volumes:
+      - ./:/work
     build:
       context: .
       secrets:
@@ -11,3 +13,5 @@ secrets:
     file: qt_acct_email.txt
   qt_acct_pw:
     file: qt_acct_pw.txt
+volumes:
+  work:

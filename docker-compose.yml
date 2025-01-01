@@ -1,6 +1,6 @@
 #version: '3'
 services:
-  builder:
+  android-builder:
     volumes:
       - ./:/work
     build:
@@ -8,6 +8,7 @@ services:
       secrets:
         - qt_acct_email
         - qt_acct_pw
+    image: knowikiapps/scale-conf-android-builder:latest
 secrets:
   qt_acct_email:
     file: qt_acct_email.txt

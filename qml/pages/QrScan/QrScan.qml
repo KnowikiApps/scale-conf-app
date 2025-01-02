@@ -1,9 +1,9 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
-import QtMultimedia 5.5
+import QtMultimedia
 import QtQuick.Window 2.0
-import QZXing 2.3
+import com.scythestudio.scodes 1.0
 import "qrc:/js/database.js" as DB
 
 Pane{
@@ -74,44 +74,16 @@ Pane{
     ColumnLayout{
         id: theLayout
         spacing: 2
-
-        Camera{
-            id: camera
-            focus {
-                focusMode: CameraFocus.FocusContinuous
-                focusPointMode: CameraFocus.FocusPointAuto
-            }
-        }
+        anchors.fill: parent
 
         VideoOutput{
             id: videoOutput
-            source: camera
+            //source: camera
             Layout.preferredWidth: window.width
             Layout.preferredHeight: window.height
-            autoOrientation: true
             fillMode: VideoOutput.PreserveAspectFit
-            filters: [zxingFilter]
 
-            MouseArea{
-                id: focusArea
-                anchors.fill: parent
-                onClicked: {
-                    console.log("focus area clicked");
-                    camera.focus.customFocusPoint = Qt.point(mouse.x/width, mouse.y/height);
-                    camera.focus.focusMode = CameraFocus.FocusMacro;
-                    camera.focus.focusPointMode = CameraFocus.FocusPointCustom;
-                }
 
-                PinchArea{
-                    id: zoomControl
-                    height: parent.height
-                    width: parent.width
-
-                    onPinchUpdated:{
-                        camera.digitalZoom = camera.digitalZoom + (pinch.previousScale - pinch.scale);
-                    }
-                }
-            }
             Rectangle{
                 id: captureZone
                 color: "red"
@@ -122,30 +94,22 @@ Pane{
             }
         }
 
-        QZXingFilter{
-            id: zxingFilter
-            captureRect: {
-                videoOutput.contentRect;
-                videoOutput.sourceRect;
-                return videoOutput.mapRectToSource(videoOutput.mapNormalizedRectToItem(Qt.rect(0.25, 0.25, 0.5, 0.5)));
-            }
-            decoder{
-                enabledDecoders: QZXing.DecoderFormat_QR_CODE
-                onTagFound: {
-                    console.log(tag.split("~"));
-                    if(!contactDialog.visible){
-                        contactDialog.tag = tag;
-                        contactDialog.open();
-                    }
+        SBarcodeScanner {
+          id: barcodeScanner
 
-//                    DB.add_contact(tag.split("~"));
-                }
+          forwardVideoSink: videoOutput.videoSink
+          scanning: !contactDialog.visible
+          captureRect: Qt.rect(0.25, 0.25, 0.5, 0.5)
 
-                tryHarder: true
-            }
-    //        onDecodingStarted: {console.log("Decoding Started...");}
-    //        onDecodingFinished: {console.log("Decoding Finished...");}
+          onCapturedChanged: function (captured) {
+              console.log(captured)
+              if(!contactDialog.visible) {
+                  contactDialog.tag = captured
+                  contactDialog.open()
+              }
+          }
         }
+
     }
 }
 

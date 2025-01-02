@@ -15,7 +15,7 @@ version_code=${version_name//.}
 echo "ANDROID_VERSION_CODE->${version_code}"
 echo "ANDROID_VERSION_NAME->${version_name}"
 
-BUILD_DIR='build'
+BUILD_DIR="/work/build"
 
 # Generate the photos using the render script
 (cd android/img/ && exec python3 render-images.py)
@@ -27,19 +27,21 @@ if [ ! -d "$BUILD_DIR" ]; then
 	mkdir "$BUILD_DIR"
 fi
 
-# # qmake calls
-# /Qt/5.15.2/android/bin/qmake ../scale-conf-docker.pro -spec android-clang -Wall 2>&1 | tee  /work/build/output_qmake.txt
-# /usr/lib/android-sdk/ndk/21.3.6528147/prebuilt/linux-x86_64/bin/make qmake_all | tee >> /work/build/output_qmake.txt
-# 
-# # make calls
-# /usr/lib/android-sdk/ndk/21.3.6528147/prebuilt/linux-x86_64/bin/make 2>&1 | tee /work/build/output_make.txt
-# /usr/lib/android-sdk/ndk/21.3.6528147/prebuilt/linux-x86_64/bin/make INSTALL_ROOT=/work/build/android-build install
-# cd /work/build/android-build
-# /usr/lib/android-sdk/ndk/21.3.6528147/prebuilt/linux-x86_64/bin/make INSTALL_ROOT=/work/build/android-build install
-# 
-# # android build
-# /Qt/5.15.2/android/bin/androiddeployqt --input /work/build/android-scale-conf-docker-deployment-settings.json --output /work/build/android-build --android-platform android-31 --jdk /jdk-20.0.2/bin --gradle --verbose | tee > /work/build/output_androiddeployqt.txt
+#array of android platforms
+declare -a platforms=(
+[0]=android_x86_64
+[1]=android_x86
+[2]=android_arm64_v8a
+[3]=android_armv7
+)
 
-cd "$BUILD_DIR"
-/Qt/5.15.2/android/bin/qmake CONFIG+=debug CONFIG+=qml_debug CONFIG+=qtquickcompiler ANDROID_VERSION_CODE=$version_code ANDROID_VERSION_NAME=$version_name /work/scale-conf.pro
-make aab
+#Run cmake generator and build for each platform
+for platform in "${platforms[@]}"
+do
+	/Qt/6.7.3/$platform/bin/qt-cmake -G Ninja -S /work -B $BUILD_DIR/$platform\
+	-DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
+
+	cmake --build $BUILD_DIR/$platform --target all
+done
+

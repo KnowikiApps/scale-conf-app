@@ -13,7 +13,7 @@ endif()
 
 set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}")
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Quick WebView Svg QuickControls2 Multimedia Sql)
+find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Quick WebView Svg QuickControls2 Multimedia Sql Concurrent)
 
 
 qt_standard_project_setup(REQUIRES 6.6)
@@ -100,6 +100,8 @@ target_link_libraries(scale-conf PUBLIC
     Qt::Sql
 )
 
+add_subdirectory(SCodes/src)
+target_link_libraries(scale-conf PUBLIC SCodes)
 
 # Resources:
 set(js_resource_files

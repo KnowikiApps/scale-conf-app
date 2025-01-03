@@ -42,7 +42,7 @@ jobs:
       - name: Copy signed android_x86 APK 
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/android_x86
-          cp ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_x86/
+          cp ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/*signed.apk ${{ github.workspace }}/artifacts/android_x86/
           ls ${{ github.workspace }}/artifacts/android_x86/
       - name: Sign android_x86_64 APK
         uses: r0adkll/sign-android-release@v1
@@ -55,7 +55,7 @@ jobs:
       - name: Copy signed android_x86_64 APK 
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/android_x86_64
-          cp ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_x86_64/
+          cp ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/*signed.apk ${{ github.workspace }}/artifacts/android_x86_64/
           ls ${{ github.workspace }}/artifacts/android_x86_64/
       - name: Sign android_arm64_v8a APK
         uses: r0adkll/sign-android-release@v1
@@ -68,7 +68,7 @@ jobs:
       - name: Copy signed android_arm64_v8a APK 
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/android_arm64_v8a
-          cp ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_arm64_v8a/
+          cp ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/*signed.apk ${{ github.workspace }}/artifacts/android_arm64_v8a/
           ls ${{ github.workspace }}/artifacts/android_arm64_v8a/
       - name: Sign android_armv7 APK
         uses: r0adkll/sign-android-release@v1
@@ -81,39 +81,11 @@ jobs:
       - name: Copy signed android_armv7 APK 
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/android_armv7
-          cp ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_armv7/
+          cp ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/*signed.apk ${{ github.workspace }}/artifacts/android_armv7/
           ls ${{ github.workspace }}/artifacts/android_armv7/
-      - name: print artifacts directory
-        run: ls ${{ github.workspace }}/artifacts
+      - name: Artifacts directory
+        run: ls -lR ${{ github.workspace }}/artifacts
       - name: Archive signed APKs
         uses: actions/upload-artifact@v4
         with:
           path: ${{ github.workspace }}/artifacts/*
-      
-      # - name: Archive signed android_x86_64 APK
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     path: ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/
-      # - name: Archive signed android_arm64_v8a APK
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     path: ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/
-      # - name: Archive signed android_armv7 APK
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     path: ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/
-            
-      
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -39,6 +39,7 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+          signedReleaseFile: ${{ github.workspace }}/build/artifacts/android_x86-build-release-signed.apk
       - name: Sign android_x86_64 APK
         uses: r0adkll/sign-android-release@v1
         with:

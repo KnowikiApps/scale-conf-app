@@ -1,1 +1,89 @@
+name: Android APK Builds
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "The branch to build"
+        required: true
+jobs:
+  android_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print before info"
+        run: echo "Checking out branch ->${ github.event.inputs.branch }"
+      - name: Checkout specified branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          submodules: 'recursive'
+      - name: build APKs for all supported Android platforms
+        uses: addnab/docker-run-action@v3
+        with:
+          image: knowikiapps/scale-conf-android-builder:latest
+          options: -v ${{ github.workspace }}:/work
+          run: cd /work && ./build-android.sh
+      - name: change owner
+        run: sudo chown -R runner:docker $GITHUB_WORKSPACE/
+      - name: Sign android_x86 APK
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Sign android_x86_64 APK
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Sign android_arm64_v8a APK
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Sign android_armv7 APK
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Archive signed android_x86 APK
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/
+      - name: Archive signed android_x86_64 APK
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/
+      - name: Archive signed android_arm64_v8a APK
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/
+      - name: Archive signed android_armv7 APK
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/
+            
+      
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -8,6 +8,8 @@ on:
 jobs:
   android_build:
     runs-on: ubuntu-latest
+    env:
+      BUILD_TOOLS_VERSION: 34.0.0
     steps:
       - name: "Print before info"
         run: echo "Checking out branch ->${{ github.event.inputs.branch }}"
@@ -15,7 +17,6 @@ jobs:
         run: |
           echo "Available versions"
           ls /usr/local/lib/android/sdk/build-tools/
-          BUILD_TOOLS_VERSION=34.0.0
           echo "Current BUILD_TOOLS_VERSION->" $BUILD_TOOLS_VERSION
       - name: Checkout specified branch
         uses: actions/checkout@v3

@@ -39,7 +39,10 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          signedReleaseFile: ${{ github.workspace }}/build/artifacts/android_x86-build-release-signed.apk
+      - name: Copy signed apk 
+        run: |
+          cp ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_x86/
+          ls ${{ github.workspace }}/artifacts/android_x86/
       - name: Sign android_x86_64 APK
         uses: r0adkll/sign-android-release@v1
         with:
@@ -64,22 +67,25 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: print artifacts directory
+        run: ls ${{ github.workspace }}/artifacts
       - name: Archive signed android_x86 APK
         uses: actions/upload-artifact@v4
         with:
-          path: ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/
-      - name: Archive signed android_x86_64 APK
-        uses: actions/upload-artifact@v4
-        with:
-          path: ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/
-      - name: Archive signed android_arm64_v8a APK
-        uses: actions/upload-artifact@v4
-        with:
-          path: ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/
-      - name: Archive signed android_armv7 APK
-        uses: actions/upload-artifact@v4
-        with:
-          path: ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/
+          path: ${{ github.workspace }}/artifacts/*
+      
+      # - name: Archive signed android_x86_64 APK
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     path: ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/
+      # - name: Archive signed android_arm64_v8a APK
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     path: ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/
+      # - name: Archive signed android_armv7 APK
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     path: ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/
             
       
 

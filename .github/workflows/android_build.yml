@@ -39,7 +39,7 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-      - name: Copy signed apk 
+      - name: Copy signed android_x86 APK 
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/android_x86
           cp ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_x86/
@@ -52,6 +52,11 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Copy signed android_x86_64 APK 
+        run: |
+          mkdir -p ${{ github.workspace }}/artifacts/android_x86_64
+          cp ${{ github.workspace }}/build/android_x86_64/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_x86_64/
+          ls ${{ github.workspace }}/artifacts/android_x86_64/
       - name: Sign android_arm64_v8a APK
         uses: r0adkll/sign-android-release@v1
         with:
@@ -60,6 +65,11 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Copy signed android_arm64_v8a APK 
+        run: |
+          mkdir -p ${{ github.workspace }}/artifacts/android_arm64_v8a
+          cp ${{ github.workspace }}/build/android_arm64_v8a/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_arm64_v8a/
+          ls ${{ github.workspace }}/artifacts/android_arm64_v8a/
       - name: Sign android_armv7 APK
         uses: r0adkll/sign-android-release@v1
         with:
@@ -68,9 +78,14 @@ jobs:
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Copy signed android_armv7 APK 
+        run: |
+          mkdir -p ${{ github.workspace }}/artifacts/android_armv7
+          cp ${{ github.workspace }}/build/android_armv7/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_armv7/
+          ls ${{ github.workspace }}/artifacts/android_armv7/
       - name: print artifacts directory
         run: ls ${{ github.workspace }}/artifacts
-      - name: Archive signed android_x86 APK
+      - name: Archive signed APKs
         uses: actions/upload-artifact@v4
         with:
           path: ${{ github.workspace }}/artifacts/*

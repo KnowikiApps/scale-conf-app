@@ -11,8 +11,12 @@ jobs:
     steps:
       - name: "Print before info"
         run: echo "Checking out branch ->${{ github.event.inputs.branch }}"
-      - name: print android build tools dir
-        run: ls /usr/local/lib/android/sdk/build-tools/
+      - name: android build tools
+        run: |
+          echo "Available versions"
+          ls /usr/local/lib/android/sdk/build-tools/
+          BUILD_TOOLS_VERSION=34.0.0
+          echo "Current BUILD_TOOLS_VERSION->" $BUILD_TOOLS_VERSION
       - name: Checkout specified branch
         uses: actions/checkout@v3
         with:

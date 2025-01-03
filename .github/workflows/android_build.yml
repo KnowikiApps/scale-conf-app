@@ -41,6 +41,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       - name: Copy signed apk 
         run: |
+          mkdir ${{ github.workspace }}/artifacts/android_x86
           cp ${{ github.workspace }}/build/android_x86/android-build/build/outputs/apk/release/* ${{ github.workspace }}/artifacts/android_x86/
           ls ${{ github.workspace }}/artifacts/android_x86/
       - name: Sign android_x86_64 APK

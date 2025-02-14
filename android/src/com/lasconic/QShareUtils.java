@@ -22,8 +22,6 @@
 
 package com.lasconic;
 
-import org.qtproject.qt.android.QtNative;
-
 import java.lang.String;
 import android.content.Intent;
 import android.util.Log;
@@ -42,39 +40,31 @@ public class QShareUtils
        //Log.d("lasconic", "QShareUtils()");
     }
 
-    public static void share(String text, String url) {
-        if (QtNative.activity() == null)
-            return;
+    public static void share(Context ctx, String text, String url) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, text + " " + url);
         sendIntent.setType("text/plain");
-        QtNative.activity().startActivity(sendIntent);
+        ctx.startActivity(sendIntent);
     }
     
-    public static void shareJustText(String text) {
-        if (QtNative.activity() == null)
-            return;
+    public static void shareJustText(Context ctx, String text) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, text);
         sendIntent.setType("text/plain");
-        QtNative.activity().startActivity(sendIntent);
+        ctx.startActivity(sendIntent);
     }
 
-    public static void shareFile(String filepath)
+    public static void shareFile(Context ctx, String filepath)
       {
-        if(QtNative.activity() == null)
-          return;
-
         File newFile = new File(filepath);
-
 
         if(!newFile.exists())
           return;
 
 
-        Uri contentUri = FileProvider.getUriForFile(QtNative.activity(), "com.knowikiapps.SCaLE.fileprovider", newFile);
+        Uri contentUri = FileProvider.getUriForFile(ctx, "com.knowikiapps.SCaLE.fileprovider", newFile);
 
 
         Intent intent = new Intent();
@@ -82,6 +72,6 @@ public class QShareUtils
         intent.putExtra(Intent.EXTRA_STREAM, contentUri);
         intent.setType("text/csv");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        QtNative.activity().startActivity(intent);
+        ctx.startActivity(intent);
         }
 }

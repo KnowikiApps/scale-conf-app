@@ -29,6 +29,7 @@
 
 
 #include <QJniObject>
+#include <QtCore/private/qandroidextras_p.h>
 
 #include "contactexporter.h"
 
@@ -40,27 +41,33 @@ void AndroidShareUtils::share(const QString &text, const QUrl &url)
 {
     QJniObject jsText = QJniObject::fromString(text);
     QJniObject jsUrl = QJniObject::fromString(url.toString());
+    auto context = QJniObject(QNativeInterface::QAndroidApplication::context());
     QJniObject::callStaticMethod<void>("org/qtproject/example/scale_conf/QShareUtils",
                                        "share",
-                                       "(Ljava/lang/String;Ljava/lang/String;)V",
+                                       "(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)V",
+                                       context.object(),
                                        jsText.object<jstring>(), jsUrl.object<jstring>());
 }
 
 void AndroidShareUtils::shareJustText(const QString &text)
 {
     QJniObject jsText = QJniObject::fromString(text);
+    auto context = QJniObject(QNativeInterface::QAndroidApplication::context());
     QJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
                                        "shareJustText",
-                                       "(Ljava/lang/String;)V",
+                                       "(Landroid/content/Context;Ljava/lang/String;)V",
+                                       context.object(),
                                        jsText.object<jstring>());
 }
 
 void AndroidShareUtils::shareTextAsFile(const QString &vals) {
     writeStringToFile(vals);
     QJniObject jsText = QJniObject::fromString(getFilePath());
+    auto context = QJniObject(QNativeInterface::QAndroidApplication::context());
     QJniObject::callStaticMethod<void>("com/lasconic/QShareUtils",
                                        "shareFile",
-                                       "(Ljava/lang/String;)V",
+                                       "(Landroid/content/Context;Ljava/lang/String;)V",
+                                       context.object(),
                                        jsText.object<jstring>());
 
 }

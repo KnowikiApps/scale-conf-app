@@ -42,6 +42,7 @@ Button {
 
     background: Rectangle {
         color: "#e9f2f9"
+        anchors.fill: parent
         //border.color: "black"
     }
     //padding: 12

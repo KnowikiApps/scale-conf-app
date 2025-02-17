@@ -32,17 +32,14 @@ ColumnLayout {
 
     ScheduleFilter {
         id: dayFilter
-        width: window.width
-        z:2
-
+        Layout.fillWidth: true
         listRef: mySchedule
     }
 
     ListView {
         id: mySchedule
-        width: window.width
-        height: window.height - parent.spacing*1.75
-        anchors.top: dayFilter.bottom
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
         model: ListModel{
             id: scheduleListModel

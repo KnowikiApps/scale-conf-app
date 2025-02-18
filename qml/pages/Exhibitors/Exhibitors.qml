@@ -6,7 +6,7 @@ WebView {
 
     width: window.width
     height: window.height
-    url: "https://www.socallinuxexpo.org/scale/21x/exhibitors"
+    url: "https://www.socallinuxexpo.org/scale/22x/exhibitors"
 
     // Used to move the WebView when the drawer is opened due to https://doc.qt.io/qt-5/qtwebview-index.html#Limitations
     x: window.width * window.drawerPosition

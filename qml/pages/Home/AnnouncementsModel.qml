@@ -5,7 +5,7 @@ import "qrc:/js/database.js" as DB
 
 XmlListModel{
     id: announcementsModel
-    source:"https://www.socallinuxexpo.org/announcementappdata/21x"
+    source:"https://www.socallinuxexpo.org/announcementappdata/22x"
     query: "/nodes/node"
 
     XmlListModelRole {name: "title"; elementName: "Title"}

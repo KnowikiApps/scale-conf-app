@@ -6,7 +6,7 @@ import QtQuick.Controls 2.8
 import QtQuick.Layouts 1.8
 import QtQuick.Layouts 1.0
 
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import "../components/ScheduleFilter"
 
@@ -39,13 +39,13 @@ ColumnLayout {
         listRef: schedule
 
         layer.enabled: true
-        layer.effect: DropShadow{
-            transparentBorder: true
-            horizontalOffset: 0
-            verticalOffset: 4
-            radius: 8
+        layer.effect: MultiEffect {
+            shadowEnabled: true
+            shadowHorizontalOffset: 0
+            shadowVerticalOffset: 4
         }
     }
+
 
     SignModel {
         id: signModel

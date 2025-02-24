@@ -31,19 +31,6 @@ jobs:
           run: cd /work && ./build-android.sh
       - name: change owner
         run: sudo chown -R runner:docker $GITHUB_WORKSPACE/
-      - name: Sign AAB
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: ${{ github.workspace }}/build/android-aab/android-build/build/outputs/bundle/release/
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-      - name: Copy signed AAB
-        run: |
-          mkdir -p ${{ github.workspace }}/artifacts/android-aab
-          cp ${{ github.workspace }}/build/android-aab/android-build/build/outputs/bundle/release/*signed.aab ${{ github.workspace }}/artifacts/android-aab/
-          ls ${{ github.workspace }}/artifacts/android-aab/
       - name: Sign android_x86 APK
         uses: r0adkll/sign-android-release@v1
         with:

@@ -42,6 +42,14 @@ do
 	-DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
         -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
 
-	cmake --build $BUILD_DIR/$platform --target all
+	cmake --build $BUILD_DIR/$platform --target apk
 done
+
+#build AAB
+/Qt/6.7.3/android_x86_64/bin/qt-cmake -G Ninja -S /work -B $BUILD_DIR/android-aab\
+	-DQT_ANDROID_BUILD_ALL_ABIS=TRUE \
+	-DANDROID_NDK_ROOT=$ANDROID_NDK_ROOT \
+	-DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
+
+cmake --build $BUILD_DIR/android-aab --target aab
 

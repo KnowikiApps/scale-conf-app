@@ -42,7 +42,7 @@ jobs:
       - name: Copy signed AAB
         run: |
           mkdir -p ${{ github.workspace }}/artifacts/android-aab
-          cp ${{ github.workspace }}/build/android-aab/android-build/build/outputs/bundle/release/*signed.aab ${{ github.workspace }}/artifacts/android-aab/
+          cp ${{ github.workspace }}/build/android-aab/android-build/build/outputs/bundle/release/*.aab ${{ github.workspace }}/artifacts/android-aab/
           ls ${{ github.workspace }}/artifacts/android-aab/
       - name: Sign android_x86 APK
         uses: r0adkll/sign-android-release@v1

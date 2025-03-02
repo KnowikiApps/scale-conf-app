@@ -62,6 +62,7 @@ qt_add_qml_module(scale-conf
         js/feed.js
         js/nav.js
         js/utils.js
+        QML_FILES
     RESOURCES
          img/navicon.svg
          img/arrow-left.svg
@@ -86,6 +87,8 @@ qt_add_qml_module(scale-conf
         android/androidshareutils.cpp
         contactexporter.h
         contactexporter.cpp
+        emsyncer.h
+        emsyncer.cpp
 )
 
 target_link_libraries(scale-conf PUBLIC
@@ -100,8 +103,12 @@ target_link_libraries(scale-conf PUBLIC
     Qt::Sql
 )
 
-add_subdirectory(SCodes/src)
-target_link_libraries(scale-conf PUBLIC SCodes)
+
+# Emscripten currently fails to compile with scodes
+if(NOT EMSCRIPTEN)
+ add_subdirectory(SCodes/src)
+ target_link_libraries(scale-conf PUBLIC SCodes)
+endif()
 
 # Resources:
 set(js_resource_files
@@ -165,6 +172,17 @@ if(ANDROID)
 
 endif()
 
+if(EMSCRIPTEN)
+    message(STATUS "This is webasm")
+
+    # To make fileSetup.js appear in the editor I am adding it into a custom target
+    add_custom_target(this_isnt_a_real_target SOURCES fileSetup.js)
+
+    # The idbfs allows for a persistent storage of files within the browser
+    target_link_libraries(scale-conf PUBLIC idbfs.js)
+    # Make sure to put the --pre-js before the -sFORCE_FILESYSTEM or this will not work.
+    target_link_options(scale-conf PUBLIC --pre-js ${PROJECT_SOURCE_DIR}/fileSetup.js -sFORCE_FILESYSTEM )
+endif()
 
 set(Qt5Core_DIR "$ENV{HOME}/Qt")
 message(STATUS "Qt5Core_DIR->${Qt5Core_DIR}")

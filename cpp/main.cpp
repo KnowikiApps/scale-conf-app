@@ -3,8 +3,9 @@
 
 #include <QDebug>
 #include <QtWebView/QtWebView>
+#ifndef Q_OS_WASM
 #include "SBarcodeScanner.h"
-
+#endif
 
 // #ifdef Q_OS_ANDROID
 // #include "shareutils.h"
@@ -23,8 +24,9 @@ int main(int argc, char *argv[])
 
     QtWebView::initialize();
 
-
+#ifndef Q_OS_WASM
     qmlRegisterType<SBarcodeScanner>("com.scythestudio.scodes", 1, 0, "SBarcodeScanner");
+#endif
 
     QQmlApplicationEngine engine;
     QObject::connect(

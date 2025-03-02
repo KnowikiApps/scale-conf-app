@@ -26,6 +26,11 @@ ApplicationWindow {
     //declare the nav menu container
     NavMenu{id: menu}
 
+    //Emscripten: expose sync function
+    EmSyncer {
+        id: emSyncer
+    }
+
     //declare the page manager
     StackView{
         id:pages
@@ -50,6 +55,7 @@ ApplicationWindow {
         onAccepted: {
             console.log("deleting: " + talkTitle);
             DB.remove_schedule_entry(talkTitle);
+            emSyncer.call_EM_Sync()
             model.clear();
             DB.get_schedule_list(model);
             this.close()

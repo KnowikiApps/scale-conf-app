@@ -8,6 +8,8 @@ import QtQuick.Layouts 1.0
 
 import QtQuick.Effects
 
+import Scaleconf
+
 import "../components/ScheduleFilter"
 
 import "qrc:/js/nav.js" as NavHelper
@@ -31,6 +33,10 @@ ColumnLayout {
     FontLoader {
         id: sourceCodeProBlack
         source: "qrc:/fonts/SourceCodePro-Black.ttf"
+    }
+
+    EmSyncer {
+        id: emSyncer
     }
 
     ScheduleFilter {
@@ -173,6 +179,7 @@ ColumnLayout {
                             addButtonText.color = (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                             timeText.color = (Database.record_exists_in_schedule_list(url) ? "#eb6c4b" : "#1D3261")
                             addButton.enabled = !Database.record_exists_in_schedule_list(url)
+                            emSyncer.call_EM_Sync()
                         }
                         visible: Feed.dayMatches(dayFilter.currentDay, when.day)
 

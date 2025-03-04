@@ -162,7 +162,7 @@ if(ANDROID)
     ${CMAKE_CURRENT_SOURCE_DIR}/android)
     include(android_openssl/android_openssl.cmake)
     add_android_openssl_libraries(scale-conf)
-    set_property(TARGET scale-conf APPEND PROPERTY QT_ANDROID_VERSION_CODE "1.15")
+    set_property(TARGET scale-conf APPEND PROPERTY QT_ANDROID_VERSION_CODE 1150)
 endif()
 
 

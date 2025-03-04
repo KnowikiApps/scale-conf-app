@@ -28,7 +28,7 @@ jobs:
         with:
           image: knowikiapps/scale-conf-android-builder:latest
           options: -v ${{ github.workspace }}:/work
-          run: cd /work && ./build-android.sh
+          run: cd /work && ./build-android.sh -t "1.15"
       - name: change owner
         run: sudo chown -R runner:docker $GITHUB_WORKSPACE/
       - name: Sign AAB

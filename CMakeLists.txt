@@ -1,7 +1,7 @@
 # Generated from scale-conf.pro.
 
 cmake_minimum_required(VERSION 3.16)
-project(scale-conf VERSION 1.0 LANGUAGES CXX)
+project(scale-conf VERSION 1.15 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
